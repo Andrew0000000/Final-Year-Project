@@ -1,8 +1,7 @@
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import pandas as pd
 import plotly.express as px
-
-df = pd.read_csv('MockData.csv')
+from demoGraph import demoGraph, demoGraphLayout
 
 
 app = Dash(__name__)
@@ -10,11 +9,7 @@ app = Dash(__name__)
 server = app.server
 
 app.layout = html.Div([
-    html.H1(children='My First App with Data, Graph, and Controls'),
-    html.Hr(),
-    dcc.RadioItems(options=['pop', 'lifeExp', 'gdpPercap'], value='lifeExp', id='controls-and-radio-item'),
-    dash_table.DataTable(data=df.to_dict('records'), page_size=10),
-    dcc.Graph(figure={}, id='controls-and-graph')
+    demoGraphLayout()
 ])
 
 # Add controls to build the interaction
@@ -24,8 +19,8 @@ app.layout = html.Div([
 )
 
 def update_graph(col_chosen):
-    fig = px.histogram(df, x='country', y=col_chosen)
-    return fig
+    return demoGraph(col_chosen)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
