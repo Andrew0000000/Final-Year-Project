@@ -13,7 +13,11 @@ def demoGraphLayout():
     return html.Div([
         html.H1(children='Demo App'),
         html.Hr(),
-        dcc.RadioItems(options=['pop', 'lifeExp', 'gdpPercap'], value='lifeExp', id='demoGraphRadioItem'),
+        dcc.RadioItems(
+            id='demoGraphRadioItem',
+            options=['pop', 'lifeExp', 'gdpPercap'], 
+            value='lifeExp'
+        ),
         dash_table.DataTable(data=pd.read_csv('../data/MockData.csv').to_dict('records'), page_size=10),
         dcc.Graph(figure={}, id='demoGraph')
     ])
