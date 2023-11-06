@@ -67,7 +67,7 @@ def requestedVsRecruitedGraph(selected_year):
     trace1 = go.Bar(
         x=df[selected_year + ' recruited'],
         y=df['Module Code'],
-        name='Students Recruited',
+        name='Recruited',
         text=df['Difference'],
         marker_color=colors,
         orientation='h'
@@ -76,7 +76,7 @@ def requestedVsRecruitedGraph(selected_year):
     trace2 = go.Bar(
         x=df[selected_year + ' requested'],
         y=df['Module Code'],
-        name='Students Requested',
+        name='Requested',
         text=df['Difference'],
         marker_color=colors,
         orientation='h'
