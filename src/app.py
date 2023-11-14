@@ -5,14 +5,11 @@ from requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecr
 app = Dash(__name__)
 server = app.server
 
-
 app.layout = html.Div([
     demoGraphLayout(),
-    html.Br(),
-    html.Hr(),
+    html.Div(className='graph-spacing'),
     requestedVsRecruitedGraphLayout(),
-    html.Br(),
-    html.Hr(),
+    html.Div(className='graph-spacing'),
     moduleHistoryGraphLayout()
 ])
 
