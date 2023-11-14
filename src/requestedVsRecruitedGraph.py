@@ -44,11 +44,11 @@ def requestedVsRecruitedGraphLayout():
             value='2023-24',
             id='requestedVsRecruitedGraphDropdown'
         ),
-        dash_table.DataTable(
-            data=df.to_dict('records'),
-            columns=columns_to_display,
-            page_size=10
-        ),
+        # dash_table.DataTable(
+        #     data=df.to_dict('records'),
+        #     columns=columns_to_display,
+        #     page_size=10
+        # ),
         dcc.Graph(figure={}, id='requestedVsRecruitedGraph'),
         html.Div([
             dcc.Markdown("**No Data Modules in 21-22:** " + ", ".join(noDataModules2122)),
@@ -88,7 +88,7 @@ def requestedVsRecruitedGraph(selected_year):
         yaxis_title='Module Code',
         hovermode='closest',
         height=5000,
-        width=1800
+        width=1700
     )
     return go.Figure(data=[trace_recruited, trace_requested], layout=layout)
 
@@ -112,11 +112,11 @@ def moduleHistoryGraphLayout():
             value=modules[0],  # Default value set to the first module in the list
             id='moduleHistoryGraphDropdown'
         ),
-        dash_table.DataTable(
-            data=df.to_dict('records'),
-            columns=[{'name': col, 'id': col} for col in df.columns if col not in ['Module Code and Title']],
-            page_size=10
-        ),
+        # dash_table.DataTable(
+        #     data=df.to_dict('records'),
+        #     columns=[{'name': col, 'id': col} for col in df.columns if col not in ['Module Code and Title']],
+        #     page_size=10
+        # ),
         dcc.Graph(figure={}, id='moduleHistoryGraph')
     ])
 

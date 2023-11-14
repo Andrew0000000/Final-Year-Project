@@ -11,8 +11,6 @@ def demoGraph(col_chosen):
 
 def demoGraphLayout():
     return html.Div([
-        html.H1(children='Demo App'),
-        html.Hr(),
         dcc.RadioItems(
             id='demoGraphRadioItem',
             options=['pop', 'lifeExp', 'gdpPercap'], 
