@@ -64,25 +64,25 @@ def requestedVsRecruitedGraph(selected_year):
     colors = df['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
 
     # plot the bar for pgtas recruited
-    trace1 = go.Bar(
+    trace_recruited = go.Bar(
         x=df[selected_year + ' recruited'],
         y=df['Module Code'],
         name='Recruited',
-        text=df['Difference'],
+        text=['Diff: ' + str(diff) for diff in df['Difference']],  
         marker_color=colors,
         orientation='h'
     )
     # plot the bar for pgtas requested
-    trace2 = go.Bar(
+    trace_requested = go.Bar(
         x=df[selected_year + ' requested'],
         y=df['Module Code'],
         name='Requested',
-        text=df['Difference'],
+        text=['Diff: ' + str(diff) for diff in df['Difference']],  
         marker_color=colors,
         orientation='h'
     )
     layout = go.Layout(
-        title='Comparison of Requested vs. Recruited Students',
+        title=f'Comparison of Requested vs Recruited PGTAs for {selected_year}',
         barmode='group',
         xaxis_title='Count',
         yaxis_title='Module Code',
@@ -90,7 +90,7 @@ def requestedVsRecruitedGraph(selected_year):
         height=5000,
         width=1800
     )
-    return go.Figure(data=[trace1, trace2], layout=layout)
+    return go.Figure(data=[trace_recruited, trace_requested], layout=layout)
 
 
 
@@ -132,28 +132,28 @@ def moduleHistoryGraph(selected_module):
 
         # Create traces for each year
         trace_recruited = go.Bar(
-            x=[module_data[year + ' recruited']],
-            y=[year],
+            x=[year],
+            y=[module_data[year + ' recruited'].values[0]],
             name=f'Recruited {year}',
+            text=['Diff: ' + str(diff) for diff in df['Difference']],  
             marker_color=colors.values[0],
-            orientation='h'
         )
         trace_requested = go.Bar(
-            x=[module_data[year + ' requested']],
-            y=[year],
+            x=[year],
+            y=[module_data[year + ' requested'].values[0]],
             name=f'Requested {year}',
+            text=['Diff: ' + str(diff) for diff in df['Difference']],  
             marker_color=colors.values[0],
-            orientation='h'
         )
         traces.extend([trace_recruited, trace_requested])
 
     layout = go.Layout(
-        title=f'Comparison of Requested vs. Recruited Students for {selected_module}',
+        title=f'Comparison of Requested vs Recruited PGTAs for {selected_module}',
         barmode='group',
-        xaxis_title='Count',
-        yaxis_title='Year',
+        xaxis_title='Year',
+        yaxis_title='Count',
         hovermode='closest',
-        height=600,
-        width=800
+        height=700,
+        width=1200
     )
     return go.Figure(data=traces, layout=layout)

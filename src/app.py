@@ -8,8 +8,10 @@ server = app.server
 
 app.layout = html.Div([
     demoGraphLayout(),
+    html.Br(),
     html.Hr(),
     requestedVsRecruitedGraphLayout(),
+    html.Br(),
     html.Hr(),
     moduleHistoryGraphLayout()
 ])
