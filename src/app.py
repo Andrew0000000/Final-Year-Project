@@ -76,6 +76,7 @@ def update_moduleHistoryGraph(selected_module):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# Callback for toggling between light and dark theme
 @app.callback(
     Output('dark-theme-components', 'style'),
     Input('toggle-theme', 'value'),
