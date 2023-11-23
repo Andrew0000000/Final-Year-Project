@@ -18,7 +18,7 @@
     border-radius: 15px;
 }
 
-.stats-section {
+.stats-container {
     display: flex;
     justify-content: space-around;
     padding: 20px;
@@ -29,4 +29,18 @@
     flex: 1;
 }
 
+.tab-style {
+    padding: 10px;
+    background-color: rgb(30, 101, 173);
+    border: 1px solid #ccc;
+}
 
+.selected-tab-style {
+    background-color: #411919;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.tabs-styles {
+    height: '30px';
+}

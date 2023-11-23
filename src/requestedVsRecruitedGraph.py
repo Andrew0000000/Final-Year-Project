@@ -60,12 +60,11 @@ stats_layout = html.Div([
     html.Div([
         dcc.Markdown("**Total Students in 22-23:** " + str(total_students_2223))
     ])
-], className='stats-section')
+], className='stats-container')
 
 
 def requestedVsRecruitedGraphLayout():
     options = [{'label': year, 'value': year} for year in ['2023-24', '2022-23', '2021-22']]
-    columns_to_display = [{'name': col, 'id': col} for col in df.columns if col not in ['Module Code and Title']]
     
     return html.Div([
         dcc.Dropdown(
