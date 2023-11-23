@@ -3,9 +3,11 @@ import plotly.graph_objects as go
 from dash import html, dcc, dash_table
 import numpy as np
 
-filePath = '../data/requestedVsRecruitedData.csv'
+filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
+filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
 
-df = pd.read_csv(filePath)
+df = pd.read_csv(filePath_requestedVsRecruited)
+df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
 
 # list modules with 'no data found' in their respective years
 noDataModules2122 = df.loc[
@@ -33,6 +35,33 @@ columns_to_replace = [
 for col in columns_to_replace:
     df[col] = df[col].replace('No data found', 0)
 df[columns_to_replace] = df[columns_to_replace].apply(pd.to_numeric, errors='coerce')
+
+
+# statistics of total students and PGTAs
+total_recruited_2122 = df['2021-22 recruited'].sum()
+total_requested_2122 = df['2021-22 requested'].sum()
+total_recruited_2223 = df['2022-23 recruited'].sum()
+total_requested_2223 = df['2022-23 requested'].sum()
+total_recruited_2324 = df['2023-24 recruited'].sum()
+total_requested_2324 = df['2023-24 requested'].sum()
+total_students_2223 = df_capVsActualStudents['2022-23 actual students'].sum() 
+
+stats_layout = html.Div([
+    html.Div([
+        dcc.Markdown("**Total PGTAs Recruited in 21-22:** " + str(total_recruited_2122)),
+        dcc.Markdown("**Total PGTAs Recruited in 22-23:** " + str(total_recruited_2223)),
+        dcc.Markdown("**Total PGTAs Recruited in 23-24:** " + str(total_recruited_2324)),
+    ], className='stats-column'),
+    html.Div([
+        dcc.Markdown("**Total PGTAs Requested in 21-22:** " + str(total_requested_2122)),
+        dcc.Markdown("**Total PGTAs Requested in 22-23:** " + str(total_requested_2223)),
+        dcc.Markdown("**Total PGTAs Requested in 23-24:** " + str(total_requested_2324)),
+    ], className='stats-column'),
+    html.Div([
+        dcc.Markdown("**Total Students in 22-23:** " + str(total_students_2223))
+    ])
+], className='stats-section')
+
 
 def requestedVsRecruitedGraphLayout():
     options = [{'label': year, 'value': year} for year in ['2023-24', '2022-23', '2021-22']]

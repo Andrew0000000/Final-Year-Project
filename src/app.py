@@ -1,7 +1,7 @@
 from dash import Dash, html, Output, Input, State
 import dash_daq as daq
 from demoGraph import demoGraph, demoGraphLayout
-from requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph
+from requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph, stats_layout
 
 app = Dash(__name__)
 server = app.server
@@ -39,6 +39,12 @@ app.layout = html.Div(id='dark-theme-components', style={
         html.H3('Module History', className='graph-title'),
         moduleHistoryGraphLayout()
     ]),
+
+    html.Div(className='graph-spacing'),
+
+    stats_layout
+
+
 ])
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
