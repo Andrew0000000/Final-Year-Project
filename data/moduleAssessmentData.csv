@@ -20,10 +20,10 @@ COMP0010,A5U,T1,1,GN01,Group project,Code (group),50
 COMP0010,A5U,T1,2,CN01,Coursework,Report (individual),50
 COMP0011,A4U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,100
 COMP0014,A5U,T2,1,CN01,Coursework,Coursework,100
-COMP0015,A5U,T1,1,TD01,Department test,Test,40
-COMP0015,A5U,T2,1,TD01,Department test,Test,40
-COMP0015,A5U,T1,2,CN01,Coursework,Coursework,60
-COMP0015,A5U,T2,2,CN01,Coursework,Coursework,60
+COMP0015,A5U,T1,1,TD01,Department test,Test,20
+COMP0015,A5U,T2,1,TD01,Department test,Test,20
+COMP0015,A5U,T1,2,CN01,Coursework,Coursework,30
+COMP0015,A5U,T2,2,CN01,Coursework,Coursework,30
 COMP0016,A5U,T1/2,1,GN02,Group coursework,Coursework (HCI) (group),5
 COMP0016,A5U,T1/2,2,GN02,Group coursework,Presentation 1 (pitch) (group),5
 COMP0016,A5U,T1/2,3,GN02,Group coursework,Presentation 2 (client) (group),5
@@ -35,60 +35,35 @@ COMP0019,A6U,T2,2,CN01,Coursework,Coursework 1,13
 COMP0019,A6U,T2,3,CN01,Coursework,Coursework 2,13
 COMP0019,A6U,T2,4,CN01,Coursework,Coursework 3,14
 COMP0020,A6U,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,100
-COMP0020,A7P,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,100
 COMP0021,A6U,T2,1,TD01,Department test,Test 1,12
 COMP0021,A6U,T2,2,TD01,Department test,Test 2,12
 COMP0021,A6U,T2,3,TD01,Department test,Test 3,12
 COMP0021,A6U,T2,4,TD01,Department test,Test 4,12
 COMP0021,A6U,T2,5,CN01,Coursework,Coursework 1,10
 COMP0021,A6U,T2,6,CN01,Coursework,Coursework 2,42
-COMP0021,A7P,T2,1,TD01,Department test,Test 1,12
-COMP0021,A7P,T2,2,TD01,Department test,Test 2,12
-COMP0021,A7P,T2,3,TD01,Department test,Test 3,12
-COMP0021,A7P,T2,4,TD01,Department test,Test 4,12
-COMP0021,A7P,T2,5,CN01,Coursework,Coursework 1,10
-COMP0021,A7P,T2,6,CN01,Coursework,Coursework 2,42
 COMP0022,A6U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
 COMP0022,A6U,T2,2,CN01,Coursework,Coursework,50
 COMP0023,A6U,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,70
 COMP0023,A6U,T2,2,CN01,Coursework,Coursework 1,15
 COMP0023,A6U,T2,3,CN01,Coursework,Coursework 2,15
-COMP0023,A7P,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,70
-COMP0023,A7P,T2,2,CN01,Coursework,Coursework 1,15
-COMP0023,A7P,T2,3,CN01,Coursework,Coursework 2,15
 COMP0024,A6U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,90
 COMP0024,A6U,T2,2,CN01,Coursework,Coursework 1,5
 COMP0024,A6U,T2,3,CN01,Coursework,Coursework 2,5
-COMP0024,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,90
-COMP0024,A7P,T2,2,CN01,Coursework,Coursework 1,5
-COMP0024,A7P,T2,3,CN01,Coursework,Coursework 2,5
 COMP0025,A6U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
 COMP0025,A6U,T1,2,CN01,Coursework,Coursework,25
-COMP0025,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
-COMP0025,A7P,T1,2,CN01,Coursework,Coursework,25
-COMP0025,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
-COMP0025,A7U,T1,2,CN01,Coursework,Coursework,25
 COMP0026,A6U,T1,1,CN01,Coursework,Coursework 1,10
 COMP0026,A6U,T1,2,CN01,Coursework,Coursework 2,10
 COMP0026,A6U,T1,3,PD01,Practical examination (Departmentally managed),Practical,80
-COMP0026,A6U,T1,3,PD01,Practical examination (Departmentally managed),Practical,80
-COMP0026,A7P,T1,1,CN01,Coursework,Coursework 1,10
-COMP0026,A7P,T1,2,CN01,Coursework,Coursework 2,10
-COMP0026,A7P,T1,3,PD01,Practical examination (Departmentally managed),Practical,80
-COMP0026,A7P,T1,3,PD01,Practical examination (Departmentally managed),Practical,80
 COMP0027,A6U,T1,1,CN01,Coursework,Coursework 1 (raytracing),33
 COMP0027,A6U,T1,2,CN01,Coursework,Coursework 2 (rasterization),33
 COMP0027,A6U,T1,3,CN01,Coursework,Coursework 3 (path tracing),34
-COMP0027,A7P,T1,1,CN01,Coursework,Coursework 1 (raytracing),33
-COMP0027,A7P,T1,2,CN01,Coursework,Coursework 2 (rasterization),33
-COMP0027,A7P,T1,3,CN01,Coursework,Coursework 3 (path tracing),34
 COMP0029,A6U,T1/2,1,RN01,Report,Individual report,90
 COMP0029,A6U,T1/2,2,CN01,Coursework,UCL challenge,10
 COMP0030,A6U,T1,1,CN01,Coursework,Coursework,80
 COMP0030,A6U,T1,2,CN01,Coursework,UCL challenge,20
 COMP0031,A6U,T2,2,GN02,Group coursework,Report 1 (group),40
 COMP0031,A6U,T2,3,RN01,Report,Report 2 (individual),60
-COMP0032,A6U,T1/2/3,1,FN01,Overall mark,Study abroad final mark,98
+COMP0032,A6U,T1/2/3,1,FN01,Study abroad,Study abroad final mark,98
 COMP0032,A6U,T1/2/3,2,CN01,Coursework,UCL challenge,2
 COMP0033,A6U,YEAR,1,RN01,Report,Individual report,100
 COMP0034,A6U,T2,1,CN01,Coursework,Coursework 1,50
@@ -108,9 +83,6 @@ COMP0041,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condi
 COMP0041,A7P,T2,2,CN01,Coursework,Coursework,20
 COMP0043,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,60
 COMP0043,A7P,T1,2,HD03,Take-Home Paper 48 Hours (Departmentally Managed),Take-Home Paper (48hrs),40
-COMP0044,A7P,T1,1,GN02,Group coursework,Coursework (group),50
-COMP0044,A7P,T1,2,TD01,Department test,Test 1,25
-COMP0044,A7P,T1,3,TD01,Department test,Test 2,25
 COMP0044,A7U,T1,1,GN02,Group coursework,Coursework (group),50
 COMP0044,A7U,T1,2,TD01,Department test,Test 1,25
 COMP0044,A7U,T1,3,TD01,Department test,Test 2,25
@@ -124,41 +96,23 @@ COMP0049,A7P,T1,1,CN01,Coursework,Coursework,100
 COMP0050,A7P,T2,1,CN01,Coursework,Coursework,100
 COMP0051,A7P,T2,1,CN01,Coursework,Coursework 1,40
 COMP0051,A7P,T2,2,CN01,Coursework,Coursework 2,60
-COMP0053,A7P,T2,1,GN01,Group project,Coursework 1 (group),40
-COMP0053,A7P,T2,2,CN01,Coursework,Coursework 2 (individual),60
 COMP0053,A7U,T2,1,GN01,Group project,Coursework 1 (group),40
 COMP0053,A7U,T2,2,CN01,Coursework,Coursework 2 (individual),60
-COMP0054,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
-COMP0054,A7P,T1,2,CN01,Coursework,Coursework,20
 COMP0054,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
 COMP0054,A7U,T1,2,CN01,Coursework,Coursework,20
-COMP0055,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,40
-COMP0055,A7P,T2,2,GN01,Group project,Coursework 1 (group),30
-COMP0055,A7P,T2,3,CN01,Coursework,Coursework 2 (individual),30
 COMP0055,A7U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,40
 COMP0055,A7U,T2,2,GN01,Group project,Coursework 1 (group),30
 COMP0055,A7U,T2,3,CN01,Coursework,Coursework 2 (individual),30
-COMP0056,A7P,T1,1,CN01,Coursework,Coursework 1,25
-COMP0056,A7P,T1,2,CN01,Coursework,Coursework 2,75
 COMP0056,A7U,T1,1,CN01,Coursework,Coursework 1,25
 COMP0056,A7U,T1,2,CN01,Coursework,Coursework 2,75
 COMP0057,A7P,T2,1,CN01,Coursework,Coursework 1,10
 COMP0057,A7P,T2,2,CN01,Coursework,Coursework 2,10
 COMP0057,A7P,T2,3,CN01,Coursework,Report,60
 COMP0057,A7P,T2,4,CN01,Coursework,Oral presentation,20
-COMP0057,A7P,T2,4,CN01,Coursework,Oral presentation,20
-COMP0057,A7P,T2,4,CN01,Coursework,Oral presentation,20
-COMP0057,A7P,T2,4,CN01,Coursework,Oral presentation,20
-COMP0057,A7P,T2,4,CN01,Coursework,Oral presentation,20
-COMP0057,A7P,T2,4,CN01,Coursework,Oral presentation,20
 COMP0059,A7P,T2,1,CN01,Coursework,Coursework 1,25
 COMP0059,A7P,T2,2,CN01,Coursework,Coursework 2,75
-COMP0060,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
-COMP0060,A7P,T2,2,CN01,Coursework,Coursework,20
 COMP0060,A7U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
 COMP0060,A7U,T2,2,CN01,Coursework,Coursework,20
-COMP0061,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,70
-COMP0061,A7P,T2,3,CN01,Coursework,Coursework,30
 COMP0061,A7U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,70
 COMP0061,A7U,T2,3,CN01,Coursework,Coursework,30
 COMP0063,A7P,T1,1,CN01,Coursework,Coursework 1,25
@@ -167,8 +121,6 @@ COMP0063,A7P,T1,3,CN01,Coursework,Coursework 3,40
 COMP0064,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0066,A6U,T1,1,TD01,Department test,Test,20
 COMP0066,A6U,T1,2,GN01,Group project,Project (group),80
-COMP0066,A7P,T1,1,TD01,Department test,Test,20
-COMP0066,A7P,T1,2,GN01,Group project,Project (group),80
 COMP0067,A7P,T2,1,GN02,Group coursework,HCI report (group),10
 COMP0067,A7P,T2,2,GN01,Group project,Project report (group),20
 COMP0067,A7P,T2,3,GN01,Group project,Project code (group),25
@@ -183,30 +135,17 @@ COMP0073,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0075,A7P,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,100
 COMP0076,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0077,A7P,T2/3,1,RN01,Report,Individual report,100
-COMP0078,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
-COMP0078,A7P,T1,2,GN01,Group project,Coursework 1 (group),25
-COMP0078,A7P,T1,3,GN01,Group project,Coursework 2 (group),25
 COMP0078,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
 COMP0078,A7U,T1,2,GN01,Group project,Coursework 1 (group),25
 COMP0078,A7U,T1,3,GN01,Group project,Coursework 2 (group),25
-COMP0080,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
-COMP0080,A7P,T1,2,GN02,Group coursework,Coursework (group),20
 COMP0080,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
 COMP0080,A7U,T1,2,GN01,Group project,Coursework (group),20
-COMP0081,A7P,T2,1,CN01,Coursework,Coursework 1,50
-COMP0081,A7P,T2,2,CN01,Coursework,Coursework 2,50
 COMP0081,A7U,T2,1,CN01,Coursework,Coursework 1,50
 COMP0081,A7U,T2,2,CN01,Coursework,Coursework 2,50
-COMP0082,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,60
-COMP0082,A7P,T2,2,CN01,Coursework,Coursework,40
 COMP0082,A7U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,60
 COMP0082,A7U,T2,2,CN01,Coursework,Coursework,40
-COMP0083,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
-COMP0083,A7P,T1,2,CN01,Coursework,Coursework,50
 COMP0083,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
 COMP0083,A7U,T1,2,CN01,Coursework,Coursework,50
-COMP0084,A7P,T2,1,CN01,Coursework,Coursework 1,50
-COMP0084,A7P,T2,2,CN01,Coursework,Coursework 2,50
 COMP0084,A7U,T2,1,CN01,Coursework,Coursework 1,50
 COMP0084,A7U,T2,2,CN01,Coursework,Coursework 2,50
 COMP0085,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
@@ -214,37 +153,19 @@ COMP0085,A7P,T1,2,CN01,Coursework,Coursework,50
 COMP0086,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
 COMP0086,A7P,T1,2,CN01,Coursework,Coursework,50
 COMP0087,A7P,T2,1,GN01,Group project,Coursework (group),100
-COMP0087,A7U,T2,1,GN01,Group project,Coursework (group),100
 COMP0088,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,100
-COMP0089,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
-COMP0089,A7P,T2,2,CN01,Coursework,Coursework,50
 COMP0089,A7U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
 COMP0089,A7U,T2,2,CN01,Coursework,Coursework,50
 COMP0091,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0098,A7P,T2/3,1,RN01,Report,Individual report,100
-COMP0101,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
-COMP0101,A7P,T1,2,GN01,Group project,Group project (with individual contribution),25
 COMP0101,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
 COMP0101,A7U,T1,2,GN01,Group project,Group project (with individual contribution),25
-COMP0102,A7P,T2,1,CN01,Coursework,Individual report,50
-COMP0102,A7P,T2,2,GN01,Group project,Group project (with individual contribution),50
 COMP0102,A7U,T2,1,CN01,Coursework,Individual report,50
 COMP0102,A7U,T2,2,GN01,Group project,Group project (with individual contribution),50
-COMP0103,A7P,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
-COMP0103,A7P,T2,2,CN01,Coursework,Coursework 1,20
-COMP0103,A7P,T2,3,CN01,Coursework,Coursework 2,10
-COMP0103,A7P,T2,4,CN01,Coursework,Coursework 3,10
 COMP0103,A7U,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
 COMP0103,A7U,T2,2,CN01,Coursework,Coursework 1,20
 COMP0103,A7U,T2,3,CN01,Coursework,Coursework 2,10
 COMP0103,A7U,T2,4,CN01,Coursework,Coursework 3,10
-COMP0104,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
-COMP0104,A7P,T1,2,CN01,Coursework,Coursework 1 (individual),6
-COMP0104,A7P,T1,3,GN01,Group project,Coursework 2 (group),15
-COMP0104,A7P,T1,4,CN01,Coursework,Peer assessment 1,1
-COMP0104,A7P,T1,5,CN01,Coursework,Peer assessment 2,1
-COMP0104,A7P,T1,6,CN01,Coursework,Peer assessment 3,1
-COMP0104,A7P,T1,7,CN01,Coursework,Peer assessment 4,1
 COMP0104,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,75
 COMP0104,A7U,T1,2,CN01,Coursework,Coursework 1 (individual),6
 COMP0104,A7U,T1,3,GN01,Group project,Coursework 2 (group),15
@@ -252,8 +173,6 @@ COMP0104,A7U,T1,4,CN01,Coursework,Peer assessment 1,1
 COMP0104,A7U,T1,5,CN01,Coursework,Peer assessment 2,1
 COMP0104,A7U,T1,6,CN01,Coursework,Peer assessment 3,1
 COMP0104,A7U,T1,7,CN01,Coursework,Peer assessment 4,1
-COMP0105,A7P,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,70
-COMP0105,A7P,T1,2,GN01,Group project,Coursework (group),30
 COMP0105,A7U,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,70
 COMP0105,A7U,T1,2,GN01,Group project,Coursework (group),30
 COMP0108,A7P,T1,1,CN01,Coursework,Coursework 1 (individual),14
@@ -266,58 +185,28 @@ COMP0110,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0111,A7P,T2/3,1,GN01,Group project,Group report,40
 COMP0111,A7P,T2/3,2,RN01,Report,Individual report,40
 COMP0111,A7P,T2/3,3,OD01,Oral examination (Departmentally managed),Individual oral examination,20
-COMP0113,A7P,T2,1,GN01,Group project,Project (group),50
-COMP0113,A7P,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7P,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7P,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7P,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7P,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7P,T2,3,CN01,Coursework,Coursework (individual),30
 COMP0113,A7U,T2,1,GN01,Group project,Project (group),50
 COMP0113,A7U,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7U,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7U,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7U,T2,2,GN01,Group project,Presentation (group),20
-COMP0113,A7U,T2,2,GN01,Group project,Presentation (group),20
 COMP0113,A7U,T2,3,CN01,Coursework,Coursework (individual),30
-COMP0114,A7P,T2,1,CN01,Coursework,Coursework 1,20
-COMP0114,A7P,T2,2,CN01,Coursework,Coursework 2,20
-COMP0114,A7P,T2,3,CN01,Coursework,Coursework 3,10
-COMP0114,A7P,T2,4,CN01,Coursework,Coursework 4,50
 COMP0114,A7U,T2,1,CN01,Coursework,Coursework 1,20
 COMP0114,A7U,T2,2,CN01,Coursework,Coursework 2,20
 COMP0114,A7U,T2,3,CN01,Coursework,Coursework 3,10
 COMP0114,A7U,T2,4,CN01,Coursework,Coursework 4,50
-COMP0118,A7P,T2,1,CN01,Coursework,Coursework 1 (individual),35
-COMP0118,A7P,T2,2,CN01,Coursework,Coursework 2 (individual),15
-COMP0118,A7P,T2,3,CN01,Coursework,Coursework 3 (individual),45
-COMP0118,A7P,T2,4,GN01,Group project,Presentation (group),5
 COMP0118,A7U,T2,1,CN01,Coursework,Coursework 1 (individual),35
 COMP0118,A7U,T2,2,CN01,Coursework,Coursework 2 (individual),15
 COMP0118,A7U,T2,3,CN01,Coursework,Coursework 3 (individual),45
 COMP0118,A7U,T2,4,GN01,Group project,Presentation (group),5
-COMP0119,A7P,T2,1,CN01,Coursework,Individual coursework 1,30
-COMP0119,A7P,T2,2,CN01,Coursework,Individual coursework 2,30
-COMP0119,A7P,T2,3,GN02,Group coursework,Group project,40
 COMP0119,A7U,T2,1,CN01,Coursework,Individual coursework 1,30
 COMP0119,A7U,T2,2,CN01,Coursework,Individual coursework 2,30
 COMP0119,A7U,T2,3,GN02,Group coursework,Group project,40
-COMP0121,A7P,T1,1,CN01,Coursework,Coursework 1,30
-COMP0121,A7P,T1,2,CN01,Coursework,Coursework 2,30
-COMP0121,A7P,T1,3,CN01,Coursework,Coursework 3,15
-COMP0121,A7P,T1,4,CN01,Coursework,Coursework 4,25
 COMP0121,A7U,T1,1,CN01,Coursework,Coursework 1,30
 COMP0121,A7U,T1,2,CN01,Coursework,Coursework 2,30
 COMP0121,A7U,T1,3,CN01,Coursework,Coursework 3,15
 COMP0121,A7U,T1,4,CN01,Coursework,Coursework 4,25
 COMP0122,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0122,A7P,T2/3,2,CN01,Coursework,Project presentation,0
-COMP0123,A7P,T1,1,CN01,Coursework,Coursework 1,30
-COMP0123,A7P,T1,2,CN01,Coursework,Coursework 2,70
 COMP0123,A7U,T1,1,CN01,Coursework,Coursework 1,30
 COMP0123,A7U,T1,2,CN01,Coursework,Coursework 2,70
-COMP0124,A7P,T2,1,CN01,Coursework,Coursework (individual),50
-COMP0124,A7P,T2,2,GN01,Group project,Project (group),50
 COMP0124,A7U,T2,1,CN01,Coursework,Coursework (individual),50
 COMP0124,A7U,T2,2,GN01,Group project,Project (group),50
 COMP0127,A7P,T1,1,CN01,Coursework,Coursework 1,30
@@ -332,16 +221,10 @@ COMP0130,A7P,T2,1,GN01,Group project,Coursework 1 (group),33
 COMP0130,A7P,T2,2,GN01,Group project,Coursework 2 (group),33
 COMP0130,A7P,T2,3,GN01,Group project,Coursework 3 (group),34
 COMP0132,A7P,T2/3,1,RN01,Report,Individual report,100
-COMP0133,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,70
-COMP0133,A7P,T1,2,CN01,Coursework,Coursework 1,15
-COMP0133,A7P,T1,3,CN01,Coursework,Coursework 2,15
 COMP0133,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,70
 COMP0133,A7U,T1,2,CN01,Coursework,Coursework 1,15
 COMP0133,A7U,T1,3,CN01,Coursework,Coursework 2,15
 COMP0135,A7P,T2,1,CN01,Coursework,Coursework,100
-COMP0137,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
-COMP0137,A7P,T1,2,CN01,Coursework,Coursework 1,10
-COMP0137,A7P,T1,3,CN01,Coursework,Coursework 2,10
 COMP0137,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,80
 COMP0137,A7U,T1,2,CN01,Coursework,Coursework 1,10
 COMP0137,A7U,T1,3,CN01,Coursework,Coursework 2,10
@@ -350,11 +233,6 @@ COMP0141,A5U,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled C
 COMP0142,A6U,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
 COMP0142,A6U,T2,2,CN01,Coursework,Coursework 1,20
 COMP0142,A6U,T2,3,CN01,Coursework,Coursework 2,20
-COMP0142,A7P,T2,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
-COMP0142,A7P,T2,2,CN01,Coursework,Coursework 1,20
-COMP0142,A7P,T2,3,CN01,Coursework,Coursework 2,20
-COMP0143,A7P,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
-COMP0143,A7P,T1,2,CN01,Coursework,Coursework,40
 COMP0143,A7U,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
 COMP0143,A7U,T1,2,CN01,Coursework,Coursework,40
 COMP0145,A7P,T1,1,CN01,Coursework,Portfolio,100
@@ -387,32 +265,16 @@ COMP0168,A7P,T2,3,TD01,Department test,Test 3,5
 COMP0168,A7P,T2,4,TD01,Department test,Test 4,5
 COMP0168,A7P,T2,5,TD01,Department test,Test 5,5
 COMP0168,A7P,T2,6,GN02,Group coursework,Presentation (group),35
-COMP0168,A7P,T2,6,GN02,Group coursework,Presentation (group),35
-COMP0168,A7P,T2,6,GN02,Group coursework,Presentation (group),35
-COMP0168,A7P,T2,6,GN02,Group coursework,Presentation (group),35
-COMP0168,A7P,T2,6,GN02,Group coursework,Presentation (group),35
-COMP0168,A7P,T2,7,CN01,Coursework,Coursework (individual),40
-COMP0168,A7P,T2,7,CN01,Coursework,Coursework (individual),40
-COMP0168,A7P,T2,7,CN01,Coursework,Coursework (individual),40
-COMP0168,A7P,T2,7,CN01,Coursework,Coursework (individual),40
 COMP0168,A7P,T2,7,CN01,Coursework,Coursework (individual),40
 COMP0169,A6U,T1,1,CN01,Coursework,Coursework 1,50
 COMP0169,A6U,T1,2,CN01,Coursework,Coursework 2,50
-COMP0169,A7P,T1,1,CN01,Coursework,Coursework 1,50
-COMP0169,A7P,T1,2,CN01,Coursework,Coursework 2,50
 COMP0171,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
 COMP0171,A7P,T1,2,CN01,Coursework,Coursework 1,25
 COMP0171,A7P,T1,3,CN01,Coursework,Coursework 2,25
-COMP0172,A7P,T1,1,CN01,Coursework,Coursework 1,60
-COMP0172,A7P,T1,2,CN01,Coursework,Coursework 2,40
 COMP0172,A7U,T1,1,CN01,Coursework,Coursework 1,60
 COMP0172,A7U,T1,2,CN01,Coursework,Coursework 2,40
-COMP0173,A7P,T1,1,CN01,Coursework,Coursework 1,50
-COMP0173,A7P,T1,2,CN01,Coursework,Coursework 2,50
 COMP0173,A7U,T1,1,CN01,Coursework,Coursework 1,50
 COMP0173,A7U,T1,2,CN01,Coursework,Coursework 2,50
-COMP0174,A7P,T2,1,GN01,Group project,Coursework 1 (group),50
-COMP0174,A7P,T2,2,CN01,Coursework,Coursework 2 (individual),50
 COMP0174,A7U,T2,1,GN01,Group project,Coursework 1 (group),50
 COMP0174,A7U,T2,2,CN01,Coursework,Coursework 2 (individual),50
 COMP0175,A7P,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,50
@@ -422,14 +284,10 @@ COMP0176,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0177,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0178,A7P,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,50
 COMP0178,A7P,T1,2,CN01,Coursework,Group project with peer assessment,50
-COMP0186,A7P,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,70
-COMP0186,A7P,T1,2,CN01,Coursework,Coursework,30
 COMP0186,A7U,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,70
 COMP0186,A7U,T1,2,CN01,Coursework,Coursework,30
 COMP0187,A7P,T1,1,EC05,Exam (In Person Written) (Centrally Managed),Controlled Condition Exam,60
 COMP0187,A7P,T1,2,TD01,Department test,Test,40
-COMP0188,A7P,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,60
-COMP0188,A7P,T1,2,CN01,Coursework,Coursework,40
 COMP0188,A7U,T1,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,60
 COMP0188,A7U,T1,2,CN01,Coursework,Coursework,40
 COMP0189,A7P,T2,1,CN01,Coursework,Coursework 1,50
@@ -438,8 +296,6 @@ COMP0190,A7P,T2,1,CN01,Coursework,Coursework 1,50
 COMP0190,A7P,T2,2,CN01,Coursework,Coursework 2,50
 COMP0191,A7P,T2/3,1,RN01,Report,Individual report,100
 COMP0192,A7P,T2/3,1,RN01,Report,Individual report,100
-COMP0195,A7P,T2,1,CN01,Coursework,Coursework 1,50
-COMP0195,A7P,T2,2,CN01,Coursework,Coursework 2,50
 COMP0195,A7U,T2,1,CN01,Coursework,Coursework 1,50
 COMP0195,A7U,T2,2,CN01,Coursework,Coursework 2,50
 COMP0196,A7U,T2,1,EC03,Exam (Remote Online) (Centrally Managed),Controlled Condition Exam,90
@@ -454,9 +310,6 @@ COMP0199,A5U,T2,3,TD01,Department test,Test 2,10
 COMP0200,A7P,T2,1,GN02,Group coursework,Coursework 1 (group),70
 COMP0200,A7P,T2,2,CN01,Coursework,Coursework 2 (individual),30
 COMP0201,A7P,T1,1,CN01,Coursework,Coursework,100
-COMP0232,A7P,T2,1,CN01,Coursework,Coursework,100
 COMP0232,A7U,T2,1,CN01,Coursework,Coursework,100
-COMP0233,A7P,T1,1,GN02,Group coursework,Coursework 1 (group),50
-COMP0233,A7P,T1,2,CN01,Coursework,Coursework 2 (individual),50
 COMP0233,A7U,T1,1,GN02,Group coursework,Coursework 1 (group),50
 COMP0233,A7U,T1,2,CN01,Coursework,Coursework 2 (individual),50

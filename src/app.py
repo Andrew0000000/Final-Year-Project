@@ -2,7 +2,7 @@ from dash import Dash, html, Output, Input, State, dcc
 import dash_daq as daq
 from demoGraph import demoGraph, demoGraphLayout
 from requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph, stats_layout
-from variablesVsRecruitedGraph import studentsVsRecruitedGraph, studentsVsRecruitedGraphLayout
+from variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
 app = Dash(__name__)
 server = app.server
 
@@ -22,6 +22,9 @@ app.layout = html.Div(id='dark-theme-components', style={
     html.Div(className='graph-spacing'),
 
     dcc.Tabs(className='tabs-styles', children=[
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
         dcc.Tab(label='Demo Graph', children=[
             html.Div(className='graph-container', children=[
                 html.H3('Demo', className='graph-title'),
@@ -29,12 +32,16 @@ app.layout = html.Div(id='dark-theme-components', style={
             ])
         ], className='tab-style', selected_className='selected-tab-style'),
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
         dcc.Tab(label='PGTAs Requested vs Recruited', children=[
             html.Div(className='graph-container', children=[
                 html.H3('Requested vs Recruited', className='graph-title'),
                 requestedVsRecruitedGraphLayout()
             ])
         ], className='tab-style', selected_className='selected-tab-style'),
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
         dcc.Tab(label='Module History', children=[
             html.Div(className='graph-container', children=[
@@ -45,17 +52,34 @@ app.layout = html.Div(id='dark-theme-components', style={
             stats_layout
         ], className='tab-style', selected_className='selected-tab-style'),
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
         dcc.Tab(label='Variables Vs PGTAs Recruited', children=[
+
             html.Div(className='graph-container', children=[
                 html.H3('Students Vs PGTAs Recruited for 2022-2023', className='graph-title'),
                 studentsVsRecruitedGraphLayout()
             ]),
             html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('Exam:Coursework Weight Ratio Vs PGTAs Recruited for 2022-2023', className='graph-title'),
+                examWeightsVsRecruitedGraphLayout()
+            ]),
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('Delivery Code Vs PGTAs Recruited for 2022-2023', className='graph-title'),
+                deliveryCodeVsRecruitedGraphLayout()
+            ]),
+            html.Div(className='graph-spacing'),
         ], className='tab-style', selected_className='selected-tab-style'),
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
     ])
 ])
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for demoGraph
 @app.callback(
