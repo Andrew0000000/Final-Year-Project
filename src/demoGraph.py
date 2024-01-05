@@ -5,6 +5,7 @@ from dash import html, dash_table, dcc
 
 df = pd.read_csv('../data/MockData.csv')
 
+
 def demoGraph(col_chosen):
     fig = px.histogram(df, x='country', y=col_chosen)
     return fig
