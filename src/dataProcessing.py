@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 
+# list modules with 'no data found' in their respective years
+def no_data_modules(df, col1, col2):
+    return df.loc[(df[col1] == 'No data found') | (df[col2] == 'No data found'), 'Module Code'].tolist()
 
 # Define a new DataFrame consisting of the following data: Module Code, Number of Students, PGTAs Recruited, Exam:Coursework Ratio, Delivery Code
 def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited):
@@ -12,15 +15,15 @@ def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents
         if module in df_capVsActualStudents['Module Code'].values and module in df_requestedVsRecruited['Module Code'].values:
 
             # extract data from thier respective dataframes
-            students_2324 = df_capVsActualStudents[df_capVsActualStudents['Module Code'] == module]['2022-23 actual students'].iloc[0]
-            recruited_2324 = df_requestedVsRecruited[df_requestedVsRecruited['Module Code'] == module]['2023-24 recruited'].iloc[0]
+            students_2223 = df_capVsActualStudents[df_capVsActualStudents['Module Code'] == module]['2022-23 actual students'].iloc[0]
+            recruited_2223 = df_requestedVsRecruited[df_requestedVsRecruited['Module Code'] == module]['2022-23 recruited'].iloc[0]
             exam_coursework_ratio = df_moduleAssessmentData[df_moduleAssessmentData['Module Code'] == module]['Exam:Coursework Ratio'].iloc[0]
             delivery_code = df_moduleAssessmentData[df_moduleAssessmentData['Module Code'] == module]['Delivery Code'].iloc[0]
 
             row_data = {
                 'Module Code': module,
-                'Number of Students': students_2324,
-                'PGTAs Recruited': recruited_2324,
+                'Number of Students': students_2223,
+                'PGTAs Recruited': recruited_2223,
                 'Exam:Coursework Ratio': exam_coursework_ratio,
                 'Delivery Code': delivery_code
             }
@@ -54,6 +57,10 @@ def create_coursework_exam_ratio_column(df):
 
     return df
 
+def split_coursework_exam_ratio_column(df):
+    df[['Exam Weight', 'Coursework Weight']] = df['Exam:Coursework Ratio'].str.split(':', expand=True).astype(int)
+    return df.drop('Exam:Coursework Ratio', axis=1)
+
 # Replace 'No data found' with 0 in the specified columns
 def handle_missing_data(df, columns):
     for col in columns:
@@ -72,4 +79,3 @@ def difference_calculation(df, selected_year):
 # red is shown for PGTAs recruited > requested, signalling demand higher than expected
 def set_color(df):
     return df['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
-    

@@ -109,8 +109,16 @@ def update_requestedVsRecruitedGraph(selected_year):
     Input(component_id='moduleHistoryGraphDropdown' , component_property='value')
 )
 
+# @app.callback(
+#     Output(component_id='moduleStudentsDisplay', component_property='children'),  # The component where the number of students will be displayed
+#     [Input(component_id='moduleHistoryGraphDropdown', component_property='value')]  # The input that triggers the callback function
+# )
+
 def update_moduleHistoryGraph(selected_module):
     return moduleHistoryGraph(selected_module)
+
+# def update_studentsDisplay(selected_module):
+#     return studentsDisplay(selected_module)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

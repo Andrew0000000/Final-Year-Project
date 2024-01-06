@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash import html, dcc, dash_table
 import numpy as np
-from dataProcessing import handle_missing_data, column_sum, difference_calculation, set_color
+from dataProcessing import handle_missing_data, column_sum, difference_calculation, set_color, no_data_modules
 
 filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
 filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
@@ -11,18 +11,9 @@ df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
 df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
 
 # list modules with 'no data found' in their respective years
-noDataModules2122 = df_requestedVsRecruited.loc[
-    (df_requestedVsRecruited['2021-22 requested'] == 'No data found') | 
-    (df_requestedVsRecruited['2021-22 recruited'] == 'No data found'),
-    'Module Code'].tolist()
-noDataModules2223 = df_requestedVsRecruited.loc[
-    (df_requestedVsRecruited['2022-23 requested'] == 'No data found') | 
-    (df_requestedVsRecruited['2022-23 recruited'] == 'No data found'),
-    'Module Code'].tolist()
-noDataModules2324 = df_requestedVsRecruited.loc[
-    (df_requestedVsRecruited['2023-24 requested'] == 'No data found') | 
-    (df_requestedVsRecruited['2023-24 recruited'] == 'No data found'),
-    'Module Code'].tolist()
+noDataModules2122 = no_data_modules(df_requestedVsRecruited, '2021-22 requested', '2021-22 recruited')
+noDataModules2223 = no_data_modules(df_requestedVsRecruited, '2022-23 requested', '2022-23 recruited')
+noDataModules2324 = no_data_modules(df_requestedVsRecruited, '2023-24 requested', '2023-24 recruited')
 
 # Replace 'No data found' with 0 in the specified columns
 columns_to_replace = [
@@ -69,11 +60,6 @@ def requestedVsRecruitedGraphLayout():
             value='2023-24',
             id='requestedVsRecruitedGraphDropdown'
         ),
-        # dash_table.DataTable(
-        #     data=df_requestedVsRecruited.to_dict('records'),
-        #     columns=columns_to_display,
-        #     page_size=10
-        # ),
         dcc.Graph(figure={}, id='requestedVsRecruitedGraph'),
         html.Div([
             dcc.Markdown("**No Data Modules in 21-22:** " + ", ".join(noDataModules2122)),
@@ -134,12 +120,8 @@ def moduleHistoryGraphLayout():
             value=modules[0],  # Default value set to the first module in the list
             id='moduleHistoryGraphDropdown'
         ),
-        # dash_table.DataTable(
-        #     data=df_requestedVsRecruited.to_dict('records'),
-        #     columns=[{'name': col, 'id': col} for col in df_requestedVsRecruited.columns if col not in ['Module Code and Title']],
-        #     page_size=10
-        # ),
-        dcc.Graph(figure={}, id='moduleHistoryGraph')
+        dcc.Graph(figure={}, id='moduleHistoryGraph'),
+        # html.Div(id='moduleStudentsDisplay')
     ])
 
 def moduleHistoryGraph(selected_module):
@@ -148,9 +130,8 @@ def moduleHistoryGraph(selected_module):
 
     traces = []
     for year in ['2021-22', '2022-23', '2023-24']:
-        # Calculate the difference for each year
-        module_data['Difference'] = module_data[year + ' requested'] - module_data[year + ' recruited']
-        colors = module_data['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
+        difference_calculation(module_data, year)
+        colors = set_color(module_data)
 
         # Create traces for each year
         trace_recruited = go.Bar(
