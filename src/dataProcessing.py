@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+from sklearn.preprocessing import OneHotEncoder
 
 # list modules with 'no data found' in their respective years
 def no_data_modules(df, col1, col2):
@@ -68,6 +68,10 @@ def handle_missing_data(df, columns):
     df[columns] = df[columns].apply(pd.to_numeric, errors='coerce')
     return columns
 
+def handle_nan_data(df):
+    return df.fillna(0)
+
+# get the sum of the column
 def column_sum(df, column):
     return df[column].sum()
 
@@ -79,3 +83,19 @@ def difference_calculation(df, selected_year):
 # red is shown for PGTAs recruited > requested, signalling demand higher than expected
 def set_color(df):
     return df['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
+
+def load_data(df):
+    X = df[['Number of Students', 'Exam Weight', 'Coursework Weight', 'Delivery Code']]
+    y = df['PGTAs Recruited']
+
+    # One-hot encode the 'Delivery Code' column
+    encoder = OneHotEncoder(sparse=False)
+    encoded_delivery_code = encoder.fit_transform(X[['Delivery Code']])
+    
+    # Create a DataFrame from the encoded array
+    encoded_delivery_code_df = pd.DataFrame(encoded_delivery_code, columns=encoder.get_feature_names_out(['Delivery Code']))
+
+    # Drop the original 'Delivery Code' column and concatenate the encoded columns
+    X = X.drop('Delivery Code', axis=1)
+    X = pd.concat([X, encoded_delivery_code_df], axis=1)
+    return X, y
