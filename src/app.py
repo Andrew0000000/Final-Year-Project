@@ -1,8 +1,9 @@
 from dash import Dash, html, Output, Input, State, dcc
 import dash_daq as daq
-from demoGraph import demoGraph, demoGraphLayout
-from requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph, stats_layout
-from variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
+from graphs.demoGraph import demoGraph, demoGraphLayout
+from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph, stats_layout
+from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
+from PredictionCallback import predict, predictorGraphLayout
 app = Dash(__name__)
 server = app.server
 
@@ -77,6 +78,14 @@ app.layout = html.Div(id='dark-theme-components', style={
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
+        dcc.Tab(label='Predictor', children=[
+            html.Div(className='graph-container', children=[
+                html.H3('Predictor', className='graph-title'),
+                predictorGraphLayout(),
+            ]),
+            html.Div(className='graph-spacing'),
+        ], className='tab-style', selected_className='selected-tab-style'),
+
     ])
 ])
 
@@ -109,16 +118,23 @@ def update_requestedVsRecruitedGraph(selected_year):
     Input(component_id='moduleHistoryGraphDropdown' , component_property='value')
 )
 
-# @app.callback(
-#     Output(component_id='moduleStudentsDisplay', component_property='children'),  # The component where the number of students will be displayed
-#     [Input(component_id='moduleHistoryGraphDropdown', component_property='value')]  # The input that triggers the callback function
-# )
-
 def update_moduleHistoryGraph(selected_module):
     return moduleHistoryGraph(selected_module)
 
-# def update_studentsDisplay(selected_module):
-#     return studentsDisplay(selected_module)
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for PredictionCallback
+@app.callback(
+    Output('prediction-output', 'children'),
+    [Input('predict-button', 'n_clicks')],
+    [State('number-of-students', 'value'),
+    State('exam-weight', 'value'),
+    State('coursework-weight', 'value'),
+    State('delivery-code', 'value')]
+)
+
+def update_prediction(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
+    return predict(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

@@ -2,7 +2,7 @@ import pandas as pd
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from dataProcessing import create_combined_variables_df, create_coursework_exam_ratio_column, split_coursework_exam_ratio_column, handle_nan_data, load_data
+from data_processing.dataProcessing import create_combined_variables_df, create_coursework_exam_ratio_column, split_coursework_exam_ratio_column, handle_nan_data, load_data
 import numpy as np
 from pygam import LinearGAM, s
 import tensorflow as tf
@@ -32,11 +32,9 @@ X, y = load_data(df)
 # Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-
 # Assuming you have your training data in X_train and y_train
 gam = LinearGAM(s(0, penalties='auto') + s(1, penalties='auto') + s(2, penalties='auto') + s(3, penalties='auto') + s(4, penalties='auto'))
 gam.fit(X_train, y_train)
 y_pred = gam.predict(X_test)
-
 
 print("RMSE:", mean_squared_error(y_test, y_pred, squared=False))

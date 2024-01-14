@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash import html, dcc, dash_table
 import numpy as np
-from dataProcessing import handle_missing_data, column_sum, difference_calculation, set_color, no_data_modules
+from data_processing.dataProcessing import handle_missing_data, column_sum, difference_calculation, set_color, no_data_modules
 
 filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
 filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
