@@ -39,47 +39,45 @@ def train_model(X, y, model_type):
     return model
 
 
-if __name__ == '__main__':
+filePath_requestedVsRecruited = 'data/requestedVsRecruitedData.csv'
+filePath_capVsActualStudents = 'data/capVsActualStudentsData.csv'
+filePath_moduleAssessmentData = 'data/moduleAssessmentData.csv'
 
-    filePath_requestedVsRecruited = 'data/requestedVsRecruitedData.csv'
-    filePath_capVsActualStudents = 'data/capVsActualStudentsData.csv'
-    filePath_moduleAssessmentData = 'data/moduleAssessmentData.csv'
+df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
+df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
+df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
 
-    df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
-    df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
-    df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
+df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
+df = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
+df = split_coursework_exam_ratio_column(df)
+df = handle_nan_data(df)
 
-    df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
-    df = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
-    df = split_coursework_exam_ratio_column(df)
-    df = handle_nan_data(df)
+# Prepare the features and target variables
+X, y = load_data(df)
 
-    # Prepare the features and target variables
-    X, y = load_data(df)
+# Convert categorical data to dummy variables
+X = pd.get_dummies(X)
 
-    # Convert categorical data to dummy variables
-    X = pd.get_dummies(X)
+# Train the model
+model = train_model(X, y, model_type='ridge')
 
-    # Train the model
-    model = train_model(X, y, model_type='ridge')
+# Initialize the K-Fold cross-validator
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
-    # Initialize the K-Fold cross-validator
-    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+# Perform cross-validation and compute the scores
+scores = cross_val_score(model, X, y, cv=kf, scoring='neg_mean_squared_error')
 
-    # Perform cross-validation and compute the scores
-    scores = cross_val_score(model, X, y, cv=kf, scoring='neg_mean_squared_error')
+# Convert the scores to root mean squared error (RMSE)
+rmse_scores = np.sqrt(-scores)
 
-    # Convert the scores to root mean squared error (RMSE)
-    rmse_scores = np.sqrt(-scores)
+# Print the RMSE for each fold
+print("RMSE scores for each fold:", rmse_scores)
 
-    # Print the RMSE for each fold
-    print("RMSE scores for each fold:", rmse_scores)
+# Print the mean RMSE
+print("Mean RMSE:", rmse_scores.mean())
+print("Standard deviation:", rmse_scores.std())
 
-    # Print the mean RMSE
-    print("Mean RMSE:", rmse_scores.mean())
-    print("Standard deviation:", rmse_scores.std())
-
-    # Save the trained model
-    save_model(model, 'ridge_model.pkl')
-    print("Model trained and saved as ridge_model.pkl")
-    print(df.head())
+# Save the trained model
+save_model(model, 'ridge_model.pkl')
+print("Model trained and saved as ridge_model.pkl")
+print(df.head())
