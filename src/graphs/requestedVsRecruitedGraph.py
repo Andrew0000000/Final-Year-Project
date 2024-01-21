@@ -51,6 +51,7 @@ stats_layout = html.Div([
     ])
 ], className='stats-container')
 
+
 def requestedVsRecruitedGraphLayout():
     options = [{'label': year, 'value': year} for year in ['2023-24', '2022-23', '2021-22']]
     
@@ -62,10 +63,16 @@ def requestedVsRecruitedGraphLayout():
         ),
         dcc.Graph(figure={}, id='requestedVsRecruitedGraph'),
         html.Div([
-            dcc.Markdown("**No Data Modules in 21-22:** " + ", ".join(noDataModules2122)),
-            dcc.Markdown("**No Data Modules in 22-23:** " + ", ".join(noDataModules2223)),
-            dcc.Markdown("**No Data Modules in 23-24:** " + ", ".join(noDataModules2324))
-        ])
+            'Empty rows represent data that is not available in the dataset'
+        ]),
+        html.Div([
+            html.Div([
+                dcc.Markdown("**No Data Modules in 21-22:** " + ", ".join(noDataModules2122)),
+                dcc.Markdown("**No Data Modules in 22-23:** " + ", ".join(noDataModules2223)),
+                dcc.Markdown("**No Data Modules in 23-24:** " + ", ".join(noDataModules2324)),
+            ], className='stats-column'),
+        ], className='stats-container'),
+        stats_layout,
     ])
 
 
@@ -121,6 +128,7 @@ def moduleHistoryGraphLayout():
             id='moduleHistoryGraphDropdown'
         ),
         dcc.Graph(figure={}, id='moduleHistoryGraph'),
+        stats_layout,
         # html.Div(id='moduleStudentsDisplay')
     ])
 
