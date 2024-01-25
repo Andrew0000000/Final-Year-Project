@@ -58,8 +58,9 @@ X, y = load_data(df)
 # Convert categorical data to dummy variables
 X = pd.get_dummies(X)
 
+model_type = 'linear'
 # Train the model
-model = train_model(X, y, model_type='ridge')
+model = train_model(X, y, model_type)
 
 # Initialize the K-Fold cross-validator
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
@@ -70,14 +71,18 @@ scores = cross_val_score(model, X, y, cv=kf, scoring='neg_mean_squared_error')
 # Convert the scores to root mean squared error (RMSE)
 rmse_scores = np.sqrt(-scores)
 
-# Print the RMSE for each fold
 print("RMSE scores for each fold:", rmse_scores)
-
-# Print the mean RMSE
 print("Mean RMSE:", rmse_scores.mean())
 print("Standard deviation:", rmse_scores.std())
 
 # Save the trained model
-save_model(model, 'ridge_model.pkl')
-print("Model trained and saved as ridge_model.pkl")
+if model_type == 'ridge':
+    save_model(model, 'ridge_model.pkl')
+    print("Model trained and saved as ridge_model.pkl")
+
+else:
+    save_model(model, 'linear_model.pkl')
+    print("Model trained and saved as linear_model.pkl")
+
+    
 print(df.head())

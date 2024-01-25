@@ -2,7 +2,9 @@ import pandas as pd
 from dash import html, dcc
 from models.LoadModel import load_model
 
-model = load_model('models/ridge_model.pkl')
+# select whether to use linear regression or ridge regression by switching model_type between 'linear' or 'ridge'
+model_type = 'ridge'
+model = load_model('models/{model_type}_model.pkl')
 
 def predictorGraphLayout():
     return html.Div([
