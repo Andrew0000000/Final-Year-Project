@@ -16,6 +16,8 @@ df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
 df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
 df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
 
+print(df_requestedVsRecruited.head())
+
 
 df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
 combined_data = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)

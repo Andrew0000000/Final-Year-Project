@@ -3,7 +3,7 @@ import dash_daq as daq
 from graphs.demoGraph import demoGraph, demoGraphLayout
 from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph
 from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
-from PredictionCallback import predict, predictorGraphLayout
+from prediction_prompt.predictionPrompt import predict, predictorGraphLayout
 app = Dash(__name__)
 server = app.server
 

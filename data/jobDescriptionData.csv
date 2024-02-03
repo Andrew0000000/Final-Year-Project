@@ -1,0 +1,119 @@
+Timestamp,Select module,When is the module taught/delivered?,PGTA hours excluding marking,Marking hours excluding end of year exam (if required),Marking hours for end of year exam (if required),How many TAs do you need?,Duties,Select up to 3 categories that best fit the role,Enter text to be used in the advert for your module
+2/5/2023 10:22,COMP0027 Computer Graphics,Term 1,120,80,0,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Graphics, Programming - C, Parallel computing","Support the 2-hour lab where students work on their coursework, mostly shader programming (OpenGL Shading Language). Correct those coursework."
+2/5/2023 12:21,COMP0113 Virtual Environments,Term 2,100,60,0,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Facilitating student teams (e.g. projects), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Graphics, HCI, Unity, C#. experience with VR","Duties
+Support one 2 hour lab session per week.
+Respond to Moodle Q&A queries.
+Mark written work.
+Attend and mark student seminars.
+
+Skills and experience required
+Must have: Some programming experience, experience with XR systems
+Useful to have: C#, Unity
+
+Further information 
+Assistants will need to facilitate student group work using XR devices."
+2/5/2023 15:28,COMP0005 Algorithms,Term 2,120,60,0,6,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Algorithms, Programming - Python","TAs will be responsible for running labs (2 hours per week, for 10 weeks during term 2). Exercises (and draft solutions) for each lab session will be set by the module lead. TAs will also help with marking one piece of group coursework at the end of term 2/beginning of term 3 (approx 10 hours). Number of hours per TA: 30."
+3/5/2023 16:33,COMP0147 Discrete Mathematics for Computer Scientists,Term 1,194,0,50,5,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Preparing lab/tutorial/class activities, Marking - end of year exam (term 3)",Mathematics,"The course is an introduction to discrete mathematics, and it requires elementary knowledge of this subject. A teaching assistant for this course will supervise a group of students in a weekly 1 hour exercise session (sheets and solutions will be provided), for a total of 8 weeks, in T1, and be available to discuss with the lecturer the design of the mid-term coursework quiz, and to discuss its outcome with the students. Also, the teaching assistant will be involved in the marking for the course, in T3, under the supervision of the lecturer."
+3/5/2023 16:41,COMP0009 Logic,Term 1,95,0,0,8,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)",Logic,"Teaching assistants needed to run weekly problem classes, in logic. Also, one PGTA to help with questions and design for an automatically marked coursework."
+4/5/2023 11:47,COMP0165 Digital Technologies and Business Strategy,Term 2,80,20,,1,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Facilitating student teams (e.g. projects), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)",Digital Technology and Business Strategy,"15 hours - teaching in class
+20 hours - exercises and case study discussion and coordination in class
+15 hours - class preparation, case studies preparation (support)
+20 hours - Moodle and online support (support)
+10 hours - meeting with students (support)
+20 hours - exam preparation and marking (we had 3 coursework last year)"
+6/23/2023 16:30:16,ENGF0032_T2 Design and Professional Skills (Term 2 ),Term 2,20,60,0,4,"Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Programming - Java, Programming - Python, Software engineering","Duties:
+1-2 hours of student support (office hours or answering questions on Moodle) per week (8-16 hours).
+10-40 hours of marking, concentrated during the reading week of Term 2, with additional marking after Term 2 ends. Marking involves mainly giving feedback on technical writing (project plans).
+Can choose a subset of these duties as desired.
+
+Skills and experience required: 
+Must have: Basic programming and software engineering experience (enough to give advice and feedback to 1st year UG students working on a fairly hefty programming project).
+Useful to have: Python, Java, web development experience, etc.
+"
+4/5/2023 13:10,COMP0002 Principles of Programming (C ),Term 1,180,0,0,6,Supporting scheduled sessions (computing lab / tutorial / class etc ),Programming - C,"Duties: support two 2-hour labs per week.
+Skills and experience required: C programming, Visual Studio Code"
+4/5/2023 13:14,COMP0004 Object-Oriented Programming,Term 2,360,0,0,6,Supporting scheduled sessions (computing lab / tutorial / class etc ),Programming - Java,"Duties: Support two 2-hour lab sessions per week
+Skill and experience: Good knowledge of Java and OO concepts/design. Using an IDE."
+4/5/2023 18:33,COMP0019 Computer Systems,Term 2,96,0,75,3,"Providing student support (e.g. Moodle Q&A, office hours), Marking - end of year exam (term 3)","Programming - C, Computer Systems","Skills required:
+Must be expert C programmers and x86-64 assembly programmer; must have detailed familiarity with UNIX and Linux system call interface; must be familiar with low-level x86-64 CPU virtual memory hardware and OS kernel code for virtual memory."
+8/5/2023 9:43,COMP0143 Cryptocurrencies,Term 1,80,30,30,2,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc), Marking - end of year exam (term 3)","Algorithms, Mathematics, Security","TAs should have good general math and CS skills and ideally some background in blockchains/cryptocurrencies and cryptography. Duties include preparation of homework assignments, answering student queries (Moodle and email), running tutorial sessions, and coursework and exam marking support."
+9/10/2023 10:21,COMP0008 Computer Architecture and Concurrency,Term 2,30,0,60,2,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Preparing lab/tutorial/class activities, Marking - end of year exam (term 3)","Programming - Java, computer architecture and concurrency","TAs are expected to support the students in some of the non-assessed courseworks, and help us with class activities and exam marking. Anyone who took such a module in the past (or is otherwise familiar with MIPS) is qualified."
+5/15/2023 13:23:51,COMP0187 Probabilistic Modelling,Term 1,50,25,50,1,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc), Marking - end of year exam (term 3)","Data science, Machine learning, Mathematics","Duties: 1h TA session per week (+1h preparation -- material will be provided), respond to Moodle Q&A queries and 1h office hours per week, contribution to marking (one in class test in Term 1, and final exam in Term 3)"
+5/17/2023 12:49:12,COMP0181 Modelling and Designing Embedded Systems,Term 1,86,10,30,2,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Networks, Robotics, IoT","Support one 2 hour lab session per week in UCL East. Respond to Moodle Q&A queries. The module covers a broad range of topics at a superficial level, including microcontrollers, control theory, networks."
+5/19/2023 15:03:15,COMP0035 Applied Software Engineering,Term 1,120,120,,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Data science, Programming - Python, Software engineering","Duties: (1) Programming tutorial support to beginner programmers. Attend one of the two tutorials (usually 2-4 and 4-6 on a Friday pending timetabling) to provide Python, data preparation and general software engineering skills support to beginner programmers (using GitHub, creating venv, installing packages, linting, using VS Code or PyCharm). 1 hour prep time per week allowed; all materials are provided, this time is to allow you to go through the tutorial content prior to the sessions. 
+(2) Mark one section of the first and second courseworks (usually submitted reading week and at the end of Xmas break). Marking guidance and exemplars are given. 
+
+PGTA applicants who do not wish to mark will still be welcomed; though with 188 students I will need some who are willing to share the marking with me!
+
+The students taking COMP0035 in term 1 also take COMP0034 in term 2 and if you are available in both terms that would be great as you will get to know the students and the course content. Please apply separately for COMP0034.
+
+Skills and experience required: Willingness to support early stage programmers. Knowledge of python and pandas for basic data preparation and exploration; use of GitHub; use of VS Code IDE. All the skills that the students need to learn are typically supported with step by step instructions; so the focus of the role is on helping students to troubleshoot and to explain any concepts they have misunderstood."
+5/19/2023 14:59:06,COMP0034 Application Programming for Data Science,Term 2,120,60,,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Application development, Data science, Programming - Python","Duties: (1) Supporting programming tutorials. Each PGTA is asked to support 1 x 2 hour session per week. There are 2 sessions, usually 2-4 and 4-6 on a Friday. 1 hour prep is also paid; you do not need to prepare any materials, this is for you to familiarise yourself with the existing content. Provide support to early stage programming students (these are engineering students who are not Computer Science students) who are developing and testing data-focussed web applications using Python Flask and Plotly Dash (Python). (2) Marking of one section of the first coursework (usually submitted at reading week) - marking guidance and exemplars will be provided.
+
+Skills and experience: Willingness to support beginner programmers who may lack experience/skills/confidence in programming. Knowledge of Python and pandas and an understanding of web app frameworks. Flask and Plotly Dash (python) preferred, though if you have experience of Django, Streamlit etc then I'm sure you would easily pick up Flask and Dash."
+5/19/2023 16:10:02,COMP0043 Numerical Methods for Finance,Term 1,10,25,25,1,"Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc), Marking - end of year exam (term 3)","Mathematics, Programming - Python, Programming - Matlab","Duties: 1 hour per week Q+A support for homework, including answering queries on the Moodle forum. Help with marking the 40% in-class assessment and the 60% final exam.
+
+Experience: Matlab, Python, scientific computing, numerical methods, financial mathematics."
+5/19/2023 16:17:24,COMP0045 Probability Theory and Stochastic Processes,Term 1,10,25,25,1,"Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc), Marking - end of year exam (term 3)","Mathematics, Probability Theory, Stochastic Processes","Duties: 1 hour per week Q+A support for homework, including answering queries on the Moodle forum. Help with marking the 40% in-class assessment and the 60% final exam.
+
+Experience: probability theory, stochastic processes, calculus, linear algebra."
+5/19/2023 16:23:23,COMP0067 App Engineering,Term 2,120,0,60,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - end of year exam (term 3)","Application development, Software engineering","Duties
+Support one 2 hour lab session per week.
+Assess the final deliverables of your supervised teams.
+
+Skills and experience required
+Must have: React or React Native, Node.js, MySQL"
+5/19/2023 16:33:11,COMP0233 Research Software Engineering with Python,Term 1,110,60,,2,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Product management, Programming - Python, Software engineering","Duties
+Support one 3-hour lab session per week.
+Respond to Moodle Q&A queries.
+
+Skills and experience required
+Must have: Python, Software engineering (testing, documentation, git), and GitHub.
+
+Further information 
+As a TA you will be expected to help the students through our workshop style sessions to solve the exercises, as well as to provide feedback after each session about the instruction and the exercises. You will also help with the running of office hours/moodle/github and marking part of the assignments."
+5/19/2023 16:40:25,COMP0210 Research Computing with C++,Term 2,110,60,,2,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Application development, Software engineering, Programming - C++","Duties
+Support one 3-hour lab session per week. 
+Respond to Moodle Q&A queries. 
+
+Skills and experience required
+Must have: Modern C++, Software engineering (testing, documentation, git), and GitHub.
+
+Further information 
+As a TA you will be expected to help the students through our workshop style sessions to solve the exercises, as well as to provide feedback after each session about the instruction and the exercises. You will also help with the running of office hours/moodle/github and marking part of the assignments."
+5/19/2023 18:12:50,COMP0037 Robotic Systems,Term 2,90,18,0,3,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Machine learning, Mathematics, Robotics","This module teaches basic reinforcement learning to third year undergraduate students as the final module in the IEP minor on intelligent systems. TAs will provide support across the module. This includes teaching (2 hours of labs + 1 hour of preparation per week), together with limited support (helping to refine coursework and supporting students via moodle) and marking (assessment is via two courseworks; parts of these are exploratory to give students flexiblity in the quality of their answers). Ideal candidates will already have some experience in reinforcement learning and, in particular, ML-based approaches. Familiarity with standard tools (Python, PyCharm and git) helpful."
+5/19/2023 18:10:42,COMP0130 Robot Vision and Navigation,Term 2,90,18,0,3,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Machine learning, Mathematics, Robotics","This module is part of the MSc Robotics and Computation. It teaches the fundamentals of how robots localise themselves and map their environments using a variety of estimation algorithms and sensing techniques (including satellite-based systems, inertial measurement systems, and cameras and laser-based systems). It is taken by students from robotics, machine learning, and comptuer graphics. TAs will provide support across the module. This includes teaching (2 hours of labs + 1 hour of preparation per week), and a small amount of support (helping to refine coursework and supporting students via moodle) and marking (assessment consists of three courseworks; parts of these are exploratory to give students flexiblity in the quality of their answers). Candidates must be familiar with probability (Bayes, etc.). Familiarity of recursive estimation algorithms (Kalman filters) extremely useful. Coding is in a mixture of Matlab and C++."
+5/26/2023 12:16:30,COMP0164 Digital Finance,Term 1,70,20,,1,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Facilitating student teams (e.g. projects), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Data science, Financial computing, Programming - Python","Python programming skills and good knowledge in finance; understanding of blockchain technologies, machine learning and cloud systems is a plus"
+5/26/2023 12:16:14,COMP0163 Blockchain Technologies,Term 1,60,40,,1,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Facilitating student teams (e.g. projects), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Financial computing, Programming - Solidity",rudimentary understanding of blockchain; basic programming skills (language agnostic); prior experience with Solidity is a plus
+5/24/2023 12:45:38,COMP0015_T1 Introduction to Programming (Term 1 ),Term 1,120,65,0,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)",Programming - Python,COMP0015 was designed for students who would like to learn how to solve problems using coding as a tool. Python is used because it is a good introductory language and it is one of the most popular programming languages in the world. TAs should have expertise in Python and programming languages in general. A TA is asked to supervise a weekly 2 hours lab session (ten in total) in which the students will try solving questions on the topics of the (previously recorded) lecture. The TA should be available to answer questions and participate in discussions with the students. The TA will also help marking the middle term exam (test) and the coursework.
+5/24/2023 12:45:55,COMP0015_T2 Introduction to Programming (Term 2 ),Term 2,120,65,0,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)",Programming - Python,COMP0015 was designed for students who would like to learn how to solve problems using coding as a tool. Python is used because it is a good introductory language and it is one of the most popular programming languages in the world. TAs should have expertise in Python and programming languages in general. A TA is asked to supervise a weekly 2 hours lab session (ten in total) in which the students will try solving questions on the topics of the (previously recorded) lecture. The TA should be available to answer questions and participate in discussions with the students. The TA will also help marking the middle term exam (test) and the coursework.
+5/23/2023 14:09:33,COMP0128 Robotic Control Theory and Systems,Term 1,120,80,0,4,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours), Preparing lab/tutorial/class activities, Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Mathematics, Robotics, Programming: Matlab","Duties
+Support one 2 hour lab session per week.
+Assist in updating lab materials / coursework (Matlab code).
+Respond to Moodle Q&A queries.
+
+Skills required
+Matlab programming (primary - most lab materials / all courseworks)
+C Programming (secondary - helpful for 1/2 lab sessions)
+Control Theory basics (State-space representation, transfer functions)
+
+Further information
+Labs/courseworks involve controlling differential drive robots and quadcopters in Matlab simulation. 
+1/2 lab sessions may be dedicated to controlling a physical small wheeled robot with C."
+5/24/2023 15:11:03,ENGF0032_T1 Design and Professional Skills (Term 1 ),Term 1,209,,,5,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Providing student support (e.g. Moodle Q&A, office hours)",Programming - Python,"Advert text:
+1 x 65 hours Technical support of grading system
+4 x 36 hours Help/support for year 1 students learning Python
+
+Roles:
+
+Python support: Running daily clinic style sessions on a rota basis. You will need knowledge of python, github, basic algorithms & data structures.
+
+Technical support for grading system: To configure and prepare the autogradr application and database during August/September. During term 1 you will then support the use of the system as students submit their assignments. 5 hours of the role is budgeted for the late summer assessment in 2023. You will need to be proactive and work from system documentation as the original developer is no longer at UCL. You will mostly need to use SQL (PostgresSQL) and GitLab. Technologies used in the Gradr application are Python & Flask; vue.js for the frontend, and socket.io for real-time communication between the backend and the web interface; SQL; Linux system administration skills (PostgreSQL/nginx/Redis/gunicorn); GitLab."
+7/23/2023 12:39:02,COMP0012 Compilers,Term 2,30,120,60,2,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc), Marking - end of year exam (term 3)","Logic, Programming - Java, Software engineering","Skills and experience required:
+Must have:
+Java, compiler
+Useful to have: 
+JFlex, CUP, formal language"
+5/30/2023 19:27:47,COMP0010 Software Engineering,Term 1,120,60,,3,"Supporting scheduled sessions (computing lab / tutorial / class etc ), Marking - other (e.g. coursework, coding activities, in class tests, formative assessment, etc)","Programming - Java, Software engineering","Skills and experience required: TAs need to have basic understanding of Java, Linux shell, design patterns and unit testing.
+
+Duties: TA will help answering student questions about their Java coursework project, and then later help grading student submissions (grading is partially automated, and detailed grading instructions will be provided)."

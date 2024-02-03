@@ -1,6 +1,6 @@
 import pandas as pd
 from dash import html, dcc
-from models.LoadModel import load_model
+from models.regression.modelLoading import load_model
 
 # select whether to use linear regression or ridge regression by switching model_type between 'linear' or 'ridge'
 model_type = 'ridge'

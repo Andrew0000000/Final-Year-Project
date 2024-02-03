@@ -2,7 +2,7 @@ import pandas as pd
 import sys
 import os
 import pickle
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from data_processing.dataProcessing import create_combined_variables_df, create_coursework_exam_ratio_column, split_coursework_exam_ratio_column, handle_nan_data, load_data
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn.ensemble import RandomForestRegressor
@@ -84,5 +84,4 @@ else:
     save_model(model, 'linear_model.pkl')
     print("Model trained and saved as linear_model.pkl")
 
-    
 print(df.head())
