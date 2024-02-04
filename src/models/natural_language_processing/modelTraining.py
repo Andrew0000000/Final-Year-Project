@@ -4,6 +4,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error
 from dataPreprocessing import download_nltk_resources, preprocess_description_list
@@ -28,10 +30,10 @@ X_preprocessed = preprocess_description_list(X)
 # Create a pipeline with TF-IDF Vectorization and Linear Regression
 pipeline = Pipeline([
     ('tfidf', TfidfVectorizer()),
-    ('regressor', LinearRegression())
+    ('regressor', RandomForestRegressor())
 ])
 
-kf = KFold(n_splits=5, shuffle=True, random_state=42)
+kf = KFold(n_splits=3, shuffle=True, random_state=42)
 scores = cross_val_score(pipeline, X_preprocessed, y, cv=kf, scoring='neg_mean_squared_error')
 rmse_scores = np.sqrt(-scores)
 
@@ -40,7 +42,7 @@ print("Mean RMSE:", rmse_scores.mean())
 print("Standard deviation:", rmse_scores.std())
 
 
-for a in df_jobDescriptionData['Duties'].unique():
-    print('=========================================')
-    print(a)
-    print('=========================================')
+# for a in df_jobDescriptionData['Duties'].unique():
+#     print('=========================================')
+#     print(a)
+#     print('=========================================')
