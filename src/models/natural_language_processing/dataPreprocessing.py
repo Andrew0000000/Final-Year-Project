@@ -8,31 +8,6 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-# Example text
-text = "This is an example sentence to demonstrate text preprocessing."
-
-# Tokenization
-tokens = word_tokenize(text)
-
-# Stopwords removal
-stop_words = set(stopwords.words('english'))
-filtered_tokens = [word for word in tokens if word not in stop_words]
-
-# Lemmatization
-lemmatizer = WordNetLemmatizer()
-lemmatized_tokens = [lemmatizer.lemmatize(word) for word in filtered_tokens]
-
-# Join tokens back to string
-preprocessed_text = ' '.join(lemmatized_tokens)
-
-# TF-IDF Vectorization
-vectorizer = TfidfVectorizer()
-tfidf_matrix = vectorizer.fit_transform([preprocessed_text])
-
-print(tfidf_matrix)
-
-
-
 # Ensure necessary NLTK resources are downloaded
 def download_nltk_resources():
     nltk.download('punkt')
