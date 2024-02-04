@@ -38,7 +38,6 @@ def train_model(X, y, model_type):
 
     return model
 
-
 filePath_requestedVsRecruited = 'data/requestedVsRecruitedData.csv'
 filePath_capVsActualStudents = 'data/capVsActualStudentsData.csv'
 filePath_moduleAssessmentData = 'data/moduleAssessmentData.csv'

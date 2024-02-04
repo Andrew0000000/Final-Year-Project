@@ -1,5 +1,15 @@
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
+import nltk
+from sklearn.feature_extraction.text import TfidfVectorizer
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+# =======================================================================
+# HANDLES DATA PROCESSING FOR GRAPH PLOTTING AND LINEAR REGRESSION MODELS
+# =======================================================================
+
 
 # list modules with 'no data found' in their respective years
 def no_data_modules(df, col1, col2):
@@ -99,3 +109,98 @@ def load_data(df):
     X = X.drop('Delivery Code', axis=1)
     X = pd.concat([X, encoded_delivery_code_df], axis=1)
     return X, y
+
+
+
+# =======================================================
+# HANDLES DATA PROCESSING FOR NATURAL LANGUAGE PROCESSING
+# =======================================================
+
+
+# Obtain the set of base duties from the job description
+def split_duties(duty):
+    result = []
+    stack = []
+    temp = ''
+    for c in duty:
+        if c == '(':
+            stack.append(c)
+        if c == ')':
+            stack.pop()
+        if c == ',' and stack == []:
+            if temp[0] == ' ':
+                result.append(temp[1:])
+            else:
+                result.append(temp)
+            temp = ''
+        else:
+            temp += c
+    if temp[0] == ' ':
+        result.append(temp[1:])
+    else:
+        result.append(temp)
+    return result
+
+def get_set_of_duties(job_desc):
+    base_duties = []
+    for duties_combination in job_desc:
+        duty = split_duties(duties_combination)
+        for d in duty:
+            base_duties.append(d)
+    return set(base_duties)
+
+# Ensure necessary NLTK resources are downloaded
+def download_nltk_resources():
+    nltk.download('punkt')
+    nltk.download('stopwords')
+    nltk.download('wordnet')
+
+# Tokenize the text
+def tokenize_text(text):
+    return word_tokenize(text)
+
+# Remove stopwords from a list of tokens
+def remove_stopwords(tokens):
+    stop_words = set(stopwords.words('english'))
+    return [word for word in tokens if word not in stop_words]
+
+# Lemmatize a list of tokens
+def lemmatize_tokens(tokens):
+    lemmatizer = WordNetLemmatizer()
+    return [lemmatizer.lemmatize(word) for word in tokens]
+
+# Preprocess a single description
+def preprocess_description(text):
+    tokens = tokenize_text(text)
+    tokens = remove_stopwords(tokens)
+    lemmatized_tokens = lemmatize_tokens(tokens)
+    return ' '.join(lemmatized_tokens)
+
+# Preprocess all descriptions in a list and return a transformed list
+def preprocess_description_list(description_list):
+    return description_list.apply(preprocess_description)
+
+# Vectorize a series of preprocessed documents
+def vectorize_documents(preprocessed_text):
+    vectorizer = TfidfVectorizer()
+    return vectorizer.fit_transform(preprocessed_text)
+
+
+# FEATURE ENGINEERING
+
+def keyword_binary_features(df, keyword):
+    # Binary feature for the presence of a specific keyword
+    feature_name = f'has_{keyword}'
+    df[feature_name] = df['Duties'].str.contains(keyword).astype(int)
+    return df
+
+def count_feature(df, phrase):
+    # Count occurrences of a specific phrase
+    feature_name = f'count_{phrase}'
+    df[feature_name] = df['Duties'].str.count(phrase)
+    return df
+
+def text_length_feature(df):
+    # Text length of the job description
+    df['desc_length'] = df['Duties'].str.len()
+    return df
