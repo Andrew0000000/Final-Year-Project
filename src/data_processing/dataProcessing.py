@@ -116,6 +116,11 @@ def load_data(df):
 # HANDLES DATA PROCESSING FOR NATURAL LANGUAGE PROCESSING
 # =======================================================
 
+# Obtain the total PGTA hours needed including marking
+def get_total_pgta_hours(df):
+    df = handle_nan_data(df)
+    df['PGTA hours'] = df['PGTA hours excluding marking'] + df['Marking hours excluding end of year exam (if required)'] + df['Marking hours for end of year exam (if required)']
+    return df
 
 # Obtain the set of base duties from the job description
 def split_duties(duty):
