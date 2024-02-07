@@ -27,59 +27,80 @@ app.layout = html.Div(id='dark-theme-components', style={
 # # # # #   FIRST TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
         dcc.Tab(label='PGTAs Requested vs Recruited', children=[
+
+            html.Div(className='graph-spacing'),
+
             html.Div(className='graph-container', children=[
                 html.H3('Requested vs Recruited', className='graph-title'),
                 requestedVsRecruitedGraphLayout()
-            ])
+            ]),
+
+            html.Div(className='graph-spacing'),
+
         ], className='tab-style', selected_className='selected-tab-style'),
 
 # # # # #   SECOND TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
         dcc.Tab(label='Module History', children=[
+
+            html.Div(className='graph-spacing'),
+
             html.Div(className='graph-container', children=[
                 html.H3('Module History', className='graph-title'),
                 moduleHistoryGraphLayout()
             ]),
+
             html.Div(className='graph-spacing'),
+
         ], className='tab-style', selected_className='selected-tab-style'),
 
 # # # # #   THIRD TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
         dcc.Tab(label='Variables Vs PGTAs Recruited', children=[
 
+            html.Div(className='graph-spacing'),
+
             html.Div(className='graph-container', children=[
                 html.H3('Students Vs PGTAs Recruited for 2022-2023', className='graph-title'),
                 studentsVsRecruitedGraphLayout()
             ]),
+
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
                 html.H3('Exam:Coursework Weight Ratio Vs PGTAs Recruited for 2022-2023', className='graph-title'),
                 examWeightsVsRecruitedGraphLayout()
             ]),
+
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
                 html.H3('Delivery Code Vs PGTAs Recruited for 2022-2023', className='graph-title'),
                 deliveryCodeVsRecruitedGraphLayout()
             ]),
+            
             html.Div(className='graph-spacing'),
+
         ], className='tab-style', selected_className='selected-tab-style'),
 
 # # # # #   FOURTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
         dcc.Tab(label='Duties Vs PGTA Hours Needed', children=[
-
+            
+            html.Div(className='graph-spacing'),
+            
             html.Div(className='graph-container', children=[
-                html.H3('Students Vs PGTA Hours Needed', className='graph-title'),
+                html.H3('Duties Vs PGTA Hours Needed', className='graph-title'),
                 dutiesVsPGTAHoursGraphLayout()
             ]),
+            
             html.Div(className='graph-spacing'),
-
+            
             html.Div(className='graph-container', children=[
                 html.H3('Average PGTA Hours for Each Duty', className='graph-title'),
                 dutiesVsPGTAHoursAverageGraphLayout()
             ]),
+            
             html.Div(className='graph-spacing'),
 
         ], className='tab-style', selected_className='selected-tab-style'),
@@ -87,13 +108,18 @@ app.layout = html.Div(id='dark-theme-components', style={
 # # # # #   FIFTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
         dcc.Tab(label='Predictor', children=[
+
+            html.Div(className='graph-spacing'),
+
             html.Div(className='graph-container', children=[
                 html.H3('Predictor', className='graph-title'),
                 predictorGraphLayout(),
             ]),
+            
             html.Div(className='graph-spacing'),
+        
         ], className='tab-style', selected_className='selected-tab-style'),
-
+    
     ])
 ])
 
