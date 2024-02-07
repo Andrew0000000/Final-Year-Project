@@ -86,9 +86,9 @@ def handle_nan_data(df):
 def column_sum(df, column):
     return df[column].sum()
 
-# get the average of the column with 1 decimal place
+# get the average of the column
 def column_average(df, column):
-    return round(df[column].mean(), 1)
+    return df[column].mean()
 
 # calculate the difference between pgtas requested and recruited
 def difference_calculation(df, selected_year):
