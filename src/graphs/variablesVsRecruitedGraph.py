@@ -1,6 +1,9 @@
+import sys
+import os
 import pandas as pd
 import plotly.express as px
 from dash import html, dcc, dash_table
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataProcessing import create_coursework_exam_ratio_column, create_combined_variables_df
 
 filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
@@ -15,8 +18,6 @@ filePath_moduleAssessmentData = '../data/moduleAssessmentData.csv'
 df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
 df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
 df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
-
-print(df_requestedVsRecruited.head())
 
 
 df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)

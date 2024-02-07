@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 from sklearn.preprocessing import OneHotEncoder
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -85,6 +86,10 @@ def handle_nan_data(df):
 def column_sum(df, column):
     return df[column].sum()
 
+# get the average of the column with 1 decimal place
+def column_average(df, column):
+    return round(df[column].mean(), 1)
+
 # calculate the difference between pgtas requested and recruited
 def difference_calculation(df, selected_year):
     df['Difference'] = df[selected_year + ' requested'] - df[selected_year + ' recruited']
@@ -122,8 +127,10 @@ def get_total_pgta_hours(df):
     df['PGTA hours'] = df['PGTA hours excluding marking'] + df['Marking hours excluding end of year exam (if required)'] + df['Marking hours for end of year exam (if required)']
     return df
 
-# Obtain the set of base duties from the job description
+# Split the duties into a list of individual duties
 def split_duties(duty):
+    if duty == 'No data found' or len(duty) == 0:
+        return []
     result = []
     stack = []
     temp = ''
@@ -133,19 +140,28 @@ def split_duties(duty):
         if c == ')':
             stack.pop()
         if c == ',' and stack == []:
-            if temp[0] == ' ':
+            if temp[0] == ' ' and temp[-1] == ' ':
+                result.append(temp[1:-1])
+            elif temp[0] == ' ':
                 result.append(temp[1:])
+            elif temp[-1] == ' ':
+                result.append(temp[:-1])
             else:
                 result.append(temp)
             temp = ''
         else:
             temp += c
-    if temp[0] == ' ':
+    if temp[0] == ' ' and temp[-1] == ' ':
+        result.append(temp[1:-1])
+    elif temp[0] == ' ':
         result.append(temp[1:])
+    elif temp[-1] == ' ':
+        result.append(temp[:-1])
     else:
         result.append(temp)
     return result
 
+# Obtain the set of base duties from the job description
 def get_set_of_duties(job_desc):
     base_duties = []
     for duties_combination in job_desc:
@@ -153,6 +169,10 @@ def get_set_of_duties(job_desc):
         for d in duty:
             base_duties.append(d)
     return set(base_duties)
+
+def filter_base_duty_in_duties(df, duty):
+    return df[df['Duties'].str.contains(re.escape(duty), case=False, na=False, regex=True)]
+
 
 # Ensure necessary NLTK resources are downloaded
 def download_nltk_resources():

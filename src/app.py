@@ -2,6 +2,7 @@ from dash import Dash, html, Output, Input, State, dcc
 import dash_daq as daq
 from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph
 from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
+from graphs.dutiesVsPGTAHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVsPGTAHoursGraph, dutiesVsPGTAHoursAverageGraph, dutiesVsPGTAHoursAverageGraphLayout
 from prediction_prompt.predictionPrompt import predict, predictorGraphLayout
 app = Dash(__name__)
 server = app.server
@@ -67,6 +68,24 @@ app.layout = html.Div(id='dark-theme-components', style={
 
 # # # # #   FOURTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
+        dcc.Tab(label='Duties Vs PGTA Hours Needed', children=[
+
+            html.Div(className='graph-container', children=[
+                html.H3('Students Vs PGTA Hours Needed', className='graph-title'),
+                dutiesVsPGTAHoursGraphLayout()
+            ]),
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('Average PGTA Hours for Each Duty', className='graph-title'),
+                dutiesVsPGTAHoursAverageGraphLayout()
+            ]),
+            html.Div(className='graph-spacing'),
+
+        ], className='tab-style', selected_className='selected-tab-style'),
+
+# # # # #   FIFTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
         dcc.Tab(label='Predictor', children=[
             html.Div(className='graph-container', children=[
                 html.H3('Predictor', className='graph-title'),
@@ -77,8 +96,6 @@ app.layout = html.Div(id='dark-theme-components', style={
 
     ])
 ])
-
-
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -101,6 +118,17 @@ def update_requestedVsRecruitedGraph(selected_year):
 
 def update_moduleHistoryGraph(selected_module):
     return moduleHistoryGraph(selected_module)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for Duties Vs PGTA Hours Graph
+@app.callback(
+    Output(component_id='dutiesVsPGTAHoursGraph', component_property='figure'),
+    Input(component_id='dutiesVsPGTAHoursGraphDropdown' , component_property='value')
+)
+
+def update_dutiesVsPGTAHoursGraph(selected_duty):
+    return dutiesVsPGTAHoursGraph(selected_duty)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

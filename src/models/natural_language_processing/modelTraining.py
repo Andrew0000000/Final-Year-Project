@@ -12,7 +12,7 @@ from data_processing.dataProcessing import download_nltk_resources, preprocess_d
 import numpy as np
 
 # Download NLTK resources
-# download_nltk_resources()
+download_nltk_resources()
 
 filePath_jobDescriptionData = 'data/jobDescriptionData.csv'
 
