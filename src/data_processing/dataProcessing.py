@@ -5,12 +5,13 @@ import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk import pos_tag
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
 
 # =======================================================================
 # HANDLES DATA PROCESSING FOR GRAPH PLOTTING AND LINEAR REGRESSION MODELS
 # =======================================================================
-
 
 # list modules with 'no data found' in their respective years
 def no_data_modules(df, col1, col2):
@@ -41,12 +42,12 @@ def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents
 
             combined_data_list.append(row_data)
 
-    combined_data_list = sorted(combined_data_list, key=lambda d: d['Exam:Coursework Ratio'],  reverse=True)
+    # combined_data_list = sorted(combined_data_list, key=lambda d: d['Exam:Coursework Ratio'],  reverse=True)
     # converts list into dataframe
     combined_data = pd.DataFrame(combined_data_list)
 
-    # replace 'No data found' values with 0 to prevent complexities in plotting
-    combined_data['PGTAs Recruited'] = combined_data['PGTAs Recruited'].drop(1).reset_index(drop=True).replace('No data found', 0).apply(pd.to_numeric, errors='coerce')
+    # replace 'No data found' values with 0 to prevent complexities in plotting and removes the first row as it is the same module as the second row
+    combined_data['PGTAs Recruited'] = combined_data['PGTAs Recruited'].reset_index(drop=True).replace('No data found', 0).apply(pd.to_numeric, errors='coerce')
 
     return combined_data
 
@@ -77,7 +78,7 @@ def handle_missing_data(df, columns):
     for col in columns:
         df[col] = df[col].replace('No data found', 0)
     df[columns] = df[columns].apply(pd.to_numeric, errors='coerce')
-    return columns
+    return df
 
 def handle_nan_data(df):
     return df.fillna(0)
@@ -173,12 +174,21 @@ def get_set_of_duties(job_desc):
 def filter_base_duty_in_duties(df, duty):
     return df[df['Duties'].str.contains(re.escape(duty), case=False, na=False, regex=True)]
 
-
 # Ensure necessary NLTK resources are downloaded
 def download_nltk_resources():
     nltk.download('punkt')
     nltk.download('stopwords')
     nltk.download('wordnet')
+    nltk.download('averaged_perceptron_tagger')
+
+def get_wordnet_pos(word):
+    """Map POS tag to first character lemmatize() accepts"""
+    tag = nltk.pos_tag([word])[0][1][0].upper()
+    tag_dict = {"J": wordnet.ADJ,
+                "N": wordnet.NOUN,
+                "V": wordnet.VERB,
+                "R": wordnet.ADV}
+    return tag_dict.get(tag, wordnet.NOUN)
 
 # Tokenize the text
 def tokenize_text(text):
@@ -192,7 +202,7 @@ def remove_stopwords(tokens):
 # Lemmatize a list of tokens
 def lemmatize_tokens(tokens):
     lemmatizer = WordNetLemmatizer()
-    return [lemmatizer.lemmatize(word) for word in tokens]
+    return  [lemmatizer.lemmatize(word, get_wordnet_pos(word)) for word in tokens]
 
 # Preprocess a single description
 def preprocess_description(text):
@@ -229,3 +239,5 @@ def text_length_feature(df):
     # Text length of the job description
     df['desc_length'] = df['Duties'].str.len()
     return df
+
+download_nltk_resources()

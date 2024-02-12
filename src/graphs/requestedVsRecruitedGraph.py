@@ -2,7 +2,7 @@ import sys
 import os
 import pandas as pd
 import plotly.graph_objects as go
-from dash import html, dcc, dash_table
+from dash import html, dcc
 import numpy as np
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataProcessing import handle_missing_data, column_sum, difference_calculation, set_color, no_data_modules
@@ -27,7 +27,7 @@ columns_to_replace = [
     '2022-23 recruited', 
     '2021-22 recruited']
 
-handle_missing_data(df_requestedVsRecruited, columns_to_replace)
+df_requestedVsRecruited = handle_missing_data(df_requestedVsRecruited, columns_to_replace)
 
 stats_layout = html.Div([
     html.Div([

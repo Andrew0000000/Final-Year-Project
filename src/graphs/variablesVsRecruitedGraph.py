@@ -2,7 +2,7 @@ import sys
 import os
 import pandas as pd
 import plotly.express as px
-from dash import html, dcc, dash_table
+from dash import html, dcc
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataProcessing import create_coursework_exam_ratio_column, create_combined_variables_df
 
@@ -19,10 +19,8 @@ df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
 df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
 df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
 
-
 df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
-combined_data = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
-
+df_combined_data = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -33,7 +31,7 @@ def studentsVsRecruitedGraphLayout():
 
 def studentsVsRecruitedGraph():
     fig = px.scatter(
-        combined_data,
+        df_combined_data,
         x='Number of Students',
         y='PGTAs Recruited',
         hover_name='Module Code',
@@ -51,7 +49,7 @@ def examWeightsVsRecruitedGraphLayout():
 
 def examWeightsVsRecruitedGraph():
     fig = px.scatter(
-        combined_data,
+        df_combined_data,
         x='Exam:Coursework Ratio',
         y='PGTAs Recruited',
         hover_name='Module Code',
@@ -69,7 +67,7 @@ def deliveryCodeVsRecruitedGraphLayout():
 
 def deliveryCodeVsRecruitedGraph():
     fig = px.scatter(
-        combined_data,
+        df_combined_data,
         x='Delivery Code',
         y='PGTAs Recruited',
         hover_name='Module Code',

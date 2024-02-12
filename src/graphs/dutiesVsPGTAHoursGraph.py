@@ -1,6 +1,5 @@
 import sys
 import os
-import re
 import pandas as pd
 import plotly.express as px
 from dash import html, dcc
