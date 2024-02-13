@@ -1,5 +1,6 @@
 import pytest
 import nltk
+from nltk.corpus import wordnet
 import pandas as pd
 import sys
 import os
@@ -157,11 +158,25 @@ def test_remove_stopwords():
     text2 = ['There', 'are', 'some', 'stopwords', 'in', 'this', 'long', 'sentence', 'such', 'as', 'and', 'etc.']
     assert dp.remove_stopwords(text2) == ['There', 'stopwords', 'long', 'sentence', 'etc.']
 
+def test_get_wordnet_pos():
+    nltk.download('averaged_perceptron_tagger')
+    assert dp.get_wordnet_pos('running') == wordnet.VERB
+    assert dp.get_wordnet_pos('Beautiful') == wordnet.ADJ
+    assert dp.get_wordnet_pos('quickly') == wordnet.ADV
+    assert dp.get_wordnet_pos('ideas') == wordnet.NOUN
+    assert dp.get_wordnet_pos('Honest') == wordnet.ADJ
+    assert dp.get_wordnet_pos('bank') == wordnet.NOUN
+    assert dp.get_wordnet_pos('xyz') == wordnet.NOUN
+
 def test_lemmatize_tokens():
     text = ['runs', 'swimming', 'drove']
     text1 = ['jumped', 'walked', 'looked']
     text2 = ['better', 'best', 'good']
+    text3 = ['went', 'children', 'teeth']
+    
     nltk.download('wordnet')
     assert dp.lemmatize_tokens(text) == ['run', 'swim', 'drove']
     assert dp.lemmatize_tokens(text1) == ['jumped', 'walk', 'look']
     assert dp.lemmatize_tokens(text2) == ['well', 'best', 'good']
+    assert dp.lemmatize_tokens(text3) == ['go', 'child', 'teeth']
+

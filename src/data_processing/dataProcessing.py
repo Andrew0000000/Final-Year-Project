@@ -181,15 +181,6 @@ def download_nltk_resources():
     nltk.download('wordnet')
     nltk.download('averaged_perceptron_tagger')
 
-def get_wordnet_pos(word):
-    """Map POS tag to first character lemmatize() accepts"""
-    tag = nltk.pos_tag([word])[0][1][0].upper()
-    tag_dict = {"J": wordnet.ADJ,
-                "N": wordnet.NOUN,
-                "V": wordnet.VERB,
-                "R": wordnet.ADV}
-    return tag_dict.get(tag, wordnet.NOUN)
-
 # Tokenize the text
 def tokenize_text(text):
     return word_tokenize(text)
@@ -198,6 +189,20 @@ def tokenize_text(text):
 def remove_stopwords(tokens):
     stop_words = set(stopwords.words('english'))
     return [word for word in tokens if word not in stop_words]
+
+# Mapping from POS tag to wordnet tag
+def get_wordnet_pos(word):
+    """Map POS tag to the format accepted by WordNetLemmatizer"""
+    pos_tag = nltk.pos_tag([word])[0][1]  # Get the POS tag for the word
+
+    # Define a mapping from the POS tag to the format accepted by WordNetLemmatizer
+    tag_dict = {
+        'NN': wordnet.NOUN, 'NNS': wordnet.NOUN, 'NNP': wordnet.NOUN, 'NNPS': wordnet.NOUN,
+        'VB': wordnet.VERB, 'VBD': wordnet.VERB, 'VBG': wordnet.VERB, 'VBN': wordnet.VERB, 'VBP': wordnet.VERB, 'VBZ': wordnet.VERB,
+        'JJ': wordnet.ADJ, 'JJR': wordnet.ADJ, 'JJS': wordnet.ADJ,
+        'RB': wordnet.ADV, 'RBR': wordnet.ADV, 'RBS': wordnet.ADV
+    }
+    return tag_dict.get(pos_tag, wordnet.NOUN)  # Default to NOUN if not found
 
 # Lemmatize a list of tokens
 def lemmatize_tokens(tokens):
