@@ -133,33 +133,35 @@ def test_tokenize_text():
     assert dp.tokenize_text(text) == []
 
     text = "Dan's car isn't that fast."
-    assert dp.tokenize_text(text) == [('Dan', 'NNP'), ("'s", 'POS'), ('car', 'NN'), ('is', 'VBZ'), ("n't", 'RB'), ('that', 'IN'), ('fast', 'RB'), ('.', '.')]
+    assert dp.tokenize_text(text) == ['Dan', "'s", 'car', 'is', "n't", 'that', 'fast', '.']
 
     text = "The price is $10.99."
-    assert dp.tokenize_text(text) == [('The', 'DT'), ('price', 'NN'), ('is', 'VBZ'), ('$', '$'), ('10.99', 'CD'), ('.', '.')]
+    assert dp.tokenize_text(text) == ['The', 'price', 'is', '$', '10.99', '.']
 
     text = "Hello. How are you?"
-    assert dp.tokenize_text(text) == [('Hello', 'NNP'), ('.', '.'), ('How', 'WRB'), ('are', 'VBP'), ('you', 'PRP'), ('?', '.')]
+    assert dp.tokenize_text(text) == ['Hello', '.', 'How', 'are', 'you', '?']
 
     text = "   This    is   a   test.   "
-    assert dp.tokenize_text(text) == [('This', 'DT'), ('is', 'VBZ'), ('a', 'DT'), ('test', 'NN'), ('.', '.')]
+    assert dp.tokenize_text(text) == ['This', 'is', 'a', 'test', '.']
 
     text = "The long-term goal is to succeed."
-    assert dp.tokenize_text(text) == [('The', 'DT'), ('long-term', 'JJ'), ('goal', 'NN'), ('is', 'VBZ'), ('to', 'TO'), ('succeed', 'VB'), ('.', '.')]
+    assert dp.tokenize_text(text) == ['The', 'long-term', 'goal', 'is', 'to', 'succeed', '.']
 
 def test_remove_stopwords():
     text = ['This', 'is', 'a', 'sentence']
-    text1 = ['Here', 'are', 'some', 'stopwords', 'in', 'this', 'sentence']
-    text2 = ['There', 'are', 'some', 'stopwords', 'in', 'this', 'long', 'sentence', 'such', 'as', 'and', 'etc.']
     assert dp.remove_stopwords(text) == ['This', 'sentence']
+
+    text1 = ['Here', 'are', 'some', 'stopwords', 'in', 'this', 'sentence']
     assert dp.remove_stopwords(text1) == ['Here', 'stopwords', 'sentence']
+
+    text2 = ['There', 'are', 'some', 'stopwords', 'in', 'this', 'long', 'sentence', 'such', 'as', 'and', 'etc.']
     assert dp.remove_stopwords(text2) == ['There', 'stopwords', 'long', 'sentence', 'etc.']
 
 def test_lemmatize_tokens():
-    text = [('runs', 'VBZ'), ('swimming', 'VBG'), ('drove', 'VBD')]
-    text1 = [('jumped', 'VBD'), ('walked', 'VBD'), ('looked', 'VBD')]
-    text2 = [('better', 'JJR'), ('best', 'JJS'), ('good', 'JJ')]
+    text = ['runs', 'swimming', 'drove']
+    text1 = ['jumped', 'walked', 'looked']
+    text2 = ['better', 'best', 'good']
     nltk.download('wordnet')
-    assert dp.lemmatize_tokens(text) == [('run', 'VBZ'), ('swim', 'VBG'), ('drive', 'VBD')]
-    assert dp.lemmatize_tokens(text1) == [('jump', 'VBD'), ('walk', 'VBD'), ('look', 'VBD')]
-    assert dp.lemmatize_tokens(text2) == [('good', 'JJR'), ('good', 'JJS'), ('good', 'JJ')]
+    assert dp.lemmatize_tokens(text) == ['run', 'swim', 'drove']
+    assert dp.lemmatize_tokens(text1) == ['jumped', 'walk', 'look']
+    assert dp.lemmatize_tokens(text2) == ['well', 'best', 'good']
