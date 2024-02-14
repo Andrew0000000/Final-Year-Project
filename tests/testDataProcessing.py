@@ -85,15 +85,12 @@ def test_load_data():
     data = {'Number of Students': [100, 200, 300], 'Exam Weight': [40, 50, 60], 'Coursework Weight': [60, 50, 40], 'Delivery Code': ['DC1', 'DC2', 'DC3'], 'PGTAs Recruited': [10, 20, 30]}
     df = pd.DataFrame(data)
     X, y = dp.load_data(df)
-
     # check if the original Delivery Code column is removed
     assert 'Delivery Code' not in X.columns
-
     # check if the encoded columns have the correct binary values
     assert (X['Delivery Code_DC1'] == [1, 0, 0]).all()
     assert (X['Delivery Code_DC2'] == [0, 1, 0]).all()
     assert (X['Delivery Code_DC3'] == [0, 0, 1]).all()
-
     assert X['Number of Students'].tolist() == [100, 200, 300]
     assert X['Exam Weight'].tolist() == [40, 50, 60]
     assert X['Coursework Weight'].tolist() == [60, 50, 40]
@@ -118,6 +115,17 @@ def test_get_set_of_duties():
     data2 = {'Duties': ['Duty 1, Duty 2', 'Duty 3, Duty 4', 'Duty 4, Duty 5']}
     df2 = pd.DataFrame(data2)
     assert dp.get_set_of_duties(df2['Duties']) == {'Duty 1', 'Duty 2', 'Duty 3', 'Duty 4', 'Duty 5'}
+
+def test_create_feature_vector():
+    data = {'Duties': ['Duty 1, Duty 2', 'Duty 2, Duty 5', 'Duty 3, Duty 4', 'Duty 4, Duty 5']}
+    df = pd.DataFrame(data)
+    unique_duties = {'Duty 1', 'Duty 2', 'Duty 3', 'Duty 4', 'Duty 5'}
+    result = dp.create_feature_vector(df, unique_duties)
+    assert result['Duty 1'].tolist() == [1, 0, 0, 0]
+    assert result['Duty 2'].tolist() == [1, 1, 0, 0]
+    assert result['Duty 3'].tolist() == [0, 0, 1, 0]
+    assert result['Duty 4'].tolist() == [0, 0, 1, 1]
+    assert result['Duty 5'].tolist() == [0, 1, 0, 1]
 
 def test_filter_base_duty_in_duties():
     data = {'Duties': ['Duty 1, Duty 2', 'Duty 2, Duty 5', 'Duty 3, Duty 4', 'Duty 4, Duty 5']}
@@ -179,14 +187,3 @@ def test_lemmatize_tokens():
     assert dp.lemmatize_tokens(text1) == ['jumped', 'walk', 'look']
     assert dp.lemmatize_tokens(text2) == ['well', 'best', 'good']
     assert dp.lemmatize_tokens(text3) == ['go', 'child', 'teeth']
-
-def test_create_feature_vector():
-    data = {'Duties': ['Duty 1, Duty 2', 'Duty 2, Duty 5', 'Duty 3, Duty 4', 'Duty 4, Duty 5']}
-    df = pd.DataFrame(data)
-    unique_duties = {'Duty 1', 'Duty 2', 'Duty 3', 'Duty 4', 'Duty 5'}
-    result = dp.create_feature_vector(df, unique_duties)
-    assert result['Duty 1'].tolist() == [1, 0, 0, 0]
-    assert result['Duty 2'].tolist() == [1, 1, 0, 0]
-    assert result['Duty 3'].tolist() == [0, 0, 1, 0]
-    assert result['Duty 4'].tolist() == [0, 0, 1, 1]
-    assert result['Duty 5'].tolist() == [0, 1, 0, 1]

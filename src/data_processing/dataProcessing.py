@@ -174,12 +174,10 @@ def get_set_of_duties(job_desc):
 def create_feature_vector(df, unique_duties):
     for duty in unique_duties:
         df[duty] = 0
-
     for index, row in df.iterrows():
         for duty in unique_duties:
             if duty in row['Duties']:
                 df.at[index, duty] = 1
-
     return df
 
 def filter_base_duty_in_duties(df, duty):
@@ -235,23 +233,3 @@ def preprocess_text_list(text_list):
 def vectorize_documents(preprocessed_text):
     vectorizer = TfidfVectorizer()
     return vectorizer.fit_transform(preprocessed_text)
-
-
-# FEATURE ENGINEERING
-
-def keyword_binary_features(df, keyword):
-    # Binary feature for the presence of a specific keyword
-    feature_name = f'has_{keyword}'
-    df[feature_name] = df['Duties'].str.contains(keyword).astype(int)
-    return df
-
-def count_feature(df, phrase):
-    # Count occurrences of a specific phrase
-    feature_name = f'count_{phrase}'
-    df[feature_name] = df['Duties'].str.count(phrase)
-    return df
-
-def text_length_feature(df):
-    # Text length of the job description
-    df['desc_length'] = df['Duties'].str.len()
-    return df
