@@ -8,7 +8,7 @@ from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from data_processing.dataProcessing import download_nltk_resources, preprocess_text_list, get_set_of_duties, get_total_pgta_hours, create_feature_vector
+from data_processing.dataProcessing import download_nltk_resources, get_set_of_duties, get_total_pgta_hours, create_feature_vector
 import numpy as np
 
 # Download NLTK resources
@@ -18,29 +18,22 @@ filePath_jobDescriptionData = 'data/jobDescriptionData.csv'
 
 # Load the data
 df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
-
 df_jobDescriptionData = get_total_pgta_hours(df_jobDescriptionData)
+unique_duties = list(get_set_of_duties(df_jobDescriptionData['Duties']))
+df_jobDescriptionData = create_feature_vector(df_jobDescriptionData, unique_duties)
 
-# Assume 'Duties' column exists and we're predicting 'PGTA hours excluding marking'
-X = df_jobDescriptionData['Duties']
+X = df_jobDescriptionData[unique_duties]
 y = df_jobDescriptionData['PGTA hours']
 
-# Preprocess the 'Duties' text data
-X_preprocessed = preprocess_text_list(X)
+# Initialize and train the RandomForestRegressor
+model = RandomForestRegressor(random_state=42)
+model = model.fit(X, y)
 
-# Create a pipeline with TF-IDF Vectorization and Linear Regression
-pipeline = Pipeline([
-    ('tfidf', TfidfVectorizer()),
-    ('regressor', RandomForestRegressor())
-])
-
+# Evaluate the model
 kf = KFold(n_splits=3, shuffle=True, random_state=42)
-scores = cross_val_score(pipeline, X_preprocessed, y, cv=kf, scoring='neg_mean_squared_error')
+scores = cross_val_score(model, X, y, cv=kf, scoring='neg_mean_squared_error')
 rmse_scores = np.sqrt(-scores)
 
 print("RMSE scores for each fold:", rmse_scores)
 print("Mean RMSE:", rmse_scores.mean())
 print("Standard deviation:", rmse_scores.std())
-
-unique_duties = get_set_of_duties(df_jobDescriptionData['Duties'])
-df = create_feature_vector(df_jobDescriptionData, unique_duties)

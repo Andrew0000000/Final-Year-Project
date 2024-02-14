@@ -180,3 +180,13 @@ def test_lemmatize_tokens():
     assert dp.lemmatize_tokens(text2) == ['well', 'best', 'good']
     assert dp.lemmatize_tokens(text3) == ['go', 'child', 'teeth']
 
+def test_create_feature_vector():
+    data = {'Duties': ['Duty 1, Duty 2', 'Duty 2, Duty 5', 'Duty 3, Duty 4', 'Duty 4, Duty 5']}
+    df = pd.DataFrame(data)
+    unique_duties = {'Duty 1', 'Duty 2', 'Duty 3', 'Duty 4', 'Duty 5'}
+    result = dp.create_feature_vector(df, unique_duties)
+    assert result['Duty 1'].tolist() == [1, 0, 0, 0]
+    assert result['Duty 2'].tolist() == [1, 1, 0, 0]
+    assert result['Duty 3'].tolist() == [0, 0, 1, 0]
+    assert result['Duty 4'].tolist() == [0, 0, 1, 1]
+    assert result['Duty 5'].tolist() == [0, 1, 0, 1]

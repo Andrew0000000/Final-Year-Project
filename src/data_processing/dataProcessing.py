@@ -171,6 +171,17 @@ def get_set_of_duties(job_desc):
             base_duties.append(d)
     return set(base_duties)
 
+def create_feature_vector(df, unique_duties):
+    for duty in unique_duties:
+        df[duty] = 0
+
+    for index, row in df.iterrows():
+        for duty in unique_duties:
+            if duty in row['Duties']:
+                df.at[index, duty] = 1
+
+    return df
+
 def filter_base_duty_in_duties(df, duty):
     return df[df['Duties'].str.contains(re.escape(duty), case=False, na=False, regex=True)]
 
@@ -210,15 +221,15 @@ def lemmatize_tokens(tokens):
     return  [lemmatizer.lemmatize(word, get_wordnet_pos(word)) for word in tokens]
 
 # Preprocess a single description
-def preprocess_description(text):
+def preprocess_text(text):
     tokens = tokenize_text(text)
     tokens = remove_stopwords(tokens)
     lemmatized_tokens = lemmatize_tokens(tokens)
     return ' '.join(lemmatized_tokens)
 
 # Preprocess all descriptions in a list and return a transformed list
-def preprocess_description_list(description_list):
-    return description_list.apply(preprocess_description)
+def preprocess_text_list(text_list):
+    return text_list.apply(preprocess_text)
 
 # Vectorize a series of preprocessed documents
 def vectorize_documents(preprocessed_text):
@@ -244,5 +255,3 @@ def text_length_feature(df):
     # Text length of the job description
     df['desc_length'] = df['Duties'].str.len()
     return df
-
-download_nltk_resources()
