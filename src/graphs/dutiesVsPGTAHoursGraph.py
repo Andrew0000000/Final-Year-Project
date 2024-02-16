@@ -62,5 +62,3 @@ def dutiesVsPGTAHoursAverageGraph():
         height=1100
     )
     return fig
-
-print(duties)

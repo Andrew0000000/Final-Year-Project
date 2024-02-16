@@ -181,7 +181,7 @@ def create_feature_vector(df, unique_duties):
     return df
 
 def filter_base_duty_in_duties(df, duty):
-    return df[df['Duties'].str.contains(re.escape(duty), case=False, na=False, regex=True)]
+    return df[df['Duties'].str.contains(re.escape(duty), case=False, na=False)]
 
 # Ensure necessary NLTK resources are downloaded
 def download_nltk_resources():
