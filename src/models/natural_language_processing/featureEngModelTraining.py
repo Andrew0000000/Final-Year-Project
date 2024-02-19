@@ -10,6 +10,7 @@ from sklearn.pipeline import Pipeline
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from data_processing.dataProcessing import download_nltk_resources, get_set_of_duties, get_total_pgta_hours, create_feature_vector
 import numpy as np
+from models.modelSaving import save_model
 
 # Download NLTK resources
 download_nltk_resources()
@@ -37,3 +38,6 @@ rmse_scores = np.sqrt(-scores)
 print("RMSE scores for each fold:", rmse_scores)
 print("Mean RMSE:", rmse_scores.mean())
 print("Standard deviation:", rmse_scores.std())
+
+save_model(model, 'feature_engineering_model.pkl')
+print("Model trained and saved as feature_engineering_model.pkl")
