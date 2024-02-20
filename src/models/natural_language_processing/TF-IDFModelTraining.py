@@ -3,19 +3,17 @@ import sys
 import pandas as pd
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import Ridge
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from data_processing.dataProcessing import download_nltk_resources, preprocess_text_list, get_set_of_duties, get_total_pgta_hours, create_feature_vector
+from data_processing.dataProcessing import download_nltk_resources, preprocess_text_list, get_total_pgta_hours
 import numpy as np
 from models.modelSaving import save_model
 
 # Download NLTK resources
 download_nltk_resources()
 
-filePath_jobDescriptionData = 'data/jobDescriptionData.csv'
+filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
 
 # Load the data
 df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
@@ -33,6 +31,9 @@ pipeline = Pipeline([
     ('tfidf', TfidfVectorizer()),
     ('regressor', RandomForestRegressor())
 ])
+
+# Fit the pipeline to the data
+pipeline.fit(X_preprocessed, y)
 
 kf = KFold(n_splits=3, shuffle=True, random_state=42)
 scores = cross_val_score(pipeline, X_preprocessed, y, cv=kf, scoring='neg_mean_squared_error')

@@ -10,16 +10,15 @@ filePath_jobDescriptionData = os.path.join(project_base_path, 'data/jobDescripti
 df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
 base_duties = get_set_of_duties(df_jobDescriptionData['Duties'])
 
-# Load the feature engineering model
+# load the feature engineering model
 model_type = 'feature_engineering'
 model = load_model(f'{model_type}_model.pkl')
 
-
-def featureEngPredictorGraphLayout():
+def featureEngineeringPredictorLayout():
     return html.Div([
         html.H1("PGTAs Recruitment Predictor with Feature Engineering"),
         
-        # Create radio items for each base duty
+        # create radio items for each base duty
         html.Div([
             dcc.Checklist(
                 id='base-duties-checklist',
@@ -29,29 +28,30 @@ def featureEngPredictorGraphLayout():
             ),
         ]),
         html.Br(),
-        html.Button('Predict', id='predict-feature-button', n_clicks=0),
+        html.Button('Predict', id='feature-prediction-button', n_clicks=0),
         html.Hr(),
         html.Br(),
-        html.Div(id='prediction-feature-output')
+        html.Div(id='feature-prediction-output')
     ])
 
-def feature_engineering_predict(n_clicks, selected_duties):
+def featureEngineeringPredictor(n_clicks, selected_duties):
     if n_clicks > 0:
-        # Prepare the input data in the format expected by the model
+        # prepare the input data in the format expected by the model
         input_data = {duty: 0 for duty in base_duties}
         for duty in selected_duties:
             input_data[duty] = 1
         
         input_df = pd.DataFrame([input_data])
         
-        # Ensure all columns from training data are present in input data (fill missing columns with 0s)
+        # fill missing columns with 0s
         missing_cols = set(model.feature_names_in_) - set(input_df.columns)
         for col in missing_cols:
             input_df[col] = 0
-        # Reorder columns to match the training data
-        input_df = input_df[model.feature_names_in_]
 
-        # Make prediction
+        # reorder columns to match the training data
+        input_df = input_df[model.feature_names_in_]
+        print(input_df)
+        # make prediction
         prediction = model.predict(input_df)[0]
         return f"Predicted PGTAs Recruited: {prediction}"
     return ""

@@ -9,7 +9,7 @@ model_type = 'ridge'
 project_base_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
 model = load_model(f'{model_type}_model.pkl')
 
-def linearRegPredictorGraphLayout():
+def linearRegressionPredictorLayout():
     return html.Div([
         html.H1("PGTAs Recruitment Predictor with Ridge Regression"),
     
@@ -18,14 +18,14 @@ def linearRegPredictorGraphLayout():
         dcc.Input(id='coursework-weight', type='number', placeholder='Coursework Weight'),
         dcc.Input(id='delivery-code', type='text', placeholder='Delivery Code'),
         
-        html.Button('Predict', id='predict-button', n_clicks=0),
+        html.Button('Predict', id='TF-IDF-prediction-button', n_clicks=0),
         html.Br(),
         html.Br(),
         html.Hr(),
-        html.Div(id='prediction-output')
+        html.Div(id='TF-IDF-prediction-output')
     ])
 
-def linear_regression_predict(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
+def linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
     if n_clicks > 0:
         # Prepare the input data in the format expected by the model
         input_data = pd.DataFrame([{

@@ -8,9 +8,9 @@ from sklearn.ensemble import RandomForestRegressor
 import numpy as np
 from models.modelSaving import save_model
 
-filePath_requestedVsRecruited = 'data/requestedVsRecruitedData.csv'
-filePath_capVsActualStudents = 'data/capVsActualStudentsData.csv'
-filePath_moduleAssessmentData = 'data/moduleAssessmentData.csv'
+filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
+filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
+filePath_moduleAssessmentData = '../data/moduleAssessmentData.csv'
 
 df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
 df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)

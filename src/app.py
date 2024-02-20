@@ -3,8 +3,9 @@ import dash_daq as daq
 from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph
 from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
 from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVsPGTAHoursGraph, dutiesVsPGTAHoursAverageGraphLayout
-from prediction_prompts.linearRegPrompt import linear_regression_predict, linearRegPredictorGraphLayout
-from prediction_prompts.nlpPrompt import feature_engineering_predict, featureEngPredictorGraphLayout
+from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
+from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
+from prediction_prompts.vectoriserPrompt import vectoriserPredictor ,vectoriserPredictorLayout
 app = Dash(__name__)
 server = app.server
 
@@ -114,16 +115,23 @@ app.layout = html.Div(id='dark-theme-components', style={
 
             html.Div(className='graph-container', children=[
                 html.H3('Regression Predictor', className='graph-title'),
-                linearRegPredictorGraphLayout(),
+                linearRegressionPredictorLayout(),
             ]),
             
             html.Div(className='graph-spacing'),
         
             html.Div(className='graph-container', children=[
                 html.H3('NLP Predictor', className='graph-title'),
-                featureEngPredictorGraphLayout(),
+                featureEngineeringPredictorLayout(),
             ]),
-            
+
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('NLP Predictor', className='graph-title'),
+                vectoriserPredictorLayout(),
+            ]),
+
             html.Div(className='graph-spacing'),
 
         ], className='tab-style', selected_className='selected-tab-style'),
@@ -168,28 +176,40 @@ def update_dutiesVsPGTAHoursGraph(selected_duty):
 
 # Callback for PredictionCallback
 @app.callback(
-    Output('prediction-output', 'children'),
-    [Input('predict-button', 'n_clicks')],
+    Output('TF-IDF-prediction-output', 'children'),
+    [Input('TF-IDF-prediction-button', 'n_clicks')],
     [State('number-of-students', 'value'),
     State('exam-weight', 'value'),
     State('coursework-weight', 'value'),
     State('delivery-code', 'value')]
 )
 
-def update_linear_regression_predict(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
-    return linear_regression_predict(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
+def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
+    return linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for PredictionCallback
 @app.callback(
-    Output('prediction-feature-output', 'children'),
-    [Input('predict-feature-button', 'n_clicks')],
+    Output('feature-prediction-output', 'children'),
+    [Input('feature-prediction-button', 'n_clicks')],
     [State('base-duties-checklist', 'value')]
 )
 
-def update_feature_engineering_predict(n_clicks, selected_duties):
-    return feature_engineering_predict(n_clicks, selected_duties)
+def update_featureEngineeringPredictor(n_clicks, selected_duties):
+    return featureEngineeringPredictor(n_clicks, selected_duties)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for PredictionCallback
+@app.callback(
+    Output('vectoriser-prediction-output', 'children'),
+    [Input('vectoriser-prediction-button', 'n_clicks')],
+    [State('base-duties-checklist', 'value')]
+)
+
+def update_vectoriserPredictor(n_clicks, selected_duties):
+    return vectoriserPredictor(n_clicks, selected_duties)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
