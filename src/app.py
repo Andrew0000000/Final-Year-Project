@@ -193,7 +193,7 @@ def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, course
 @app.callback(
     Output('feature-prediction-output', 'children'),
     [Input('feature-prediction-button', 'n_clicks')],
-    [State('base-duties-checklist', 'value')]
+    [State('feature-base-duties-checklist', 'value')]
 )
 
 def update_featureEngineeringPredictor(n_clicks, selected_duties):
@@ -205,7 +205,7 @@ def update_featureEngineeringPredictor(n_clicks, selected_duties):
 @app.callback(
     Output('vectoriser-prediction-output', 'children'),
     [Input('vectoriser-prediction-button', 'n_clicks')],
-    [State('base-duties-checklist', 'value')]
+    [State('vectoriser-base-duties-checklist', 'value')]
 )
 
 def update_vectoriserPredictor(n_clicks, selected_duties):

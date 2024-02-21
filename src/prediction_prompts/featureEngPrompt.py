@@ -1,12 +1,12 @@
 import pandas as pd
+import os
+import sys
 from dash import html, dcc
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from models.modelLoading import load_model
-import os 
 from data_processing.dataProcessing import get_set_of_duties
 
-
-project_base_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
-filePath_jobDescriptionData = os.path.join(project_base_path, 'data/jobDescriptionData.csv')
+filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
 df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
 base_duties = get_set_of_duties(df_jobDescriptionData['Duties'])
 
@@ -21,7 +21,7 @@ def featureEngineeringPredictorLayout():
         # create radio items for each base duty
         html.Div([
             dcc.Checklist(
-                id='base-duties-checklist',
+                id='feature-base-duties-checklist',
                 options=[{'label': duty, 'value': duty} for duty in base_duties],
                 value=[],
                 labelStyle={'display': 'block'}

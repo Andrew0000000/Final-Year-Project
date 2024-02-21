@@ -1,12 +1,11 @@
 import pandas as pd
 from dash import html, dcc
-from models.modelLoading import load_model
 import os 
 import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+from models.modelLoading import load_model
 
-# select whether to use linear regression or ridge regression by switching model_type between 'linear' or 'ridge'
 model_type = 'ridge'
-project_base_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../'))
 model = load_model(f'{model_type}_model.pkl')
 
 def linearRegressionPredictorLayout():

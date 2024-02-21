@@ -11,7 +11,7 @@ from models.modelSaving import save_model
 # Download NLTK resources
 download_nltk_resources()
 
-filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
+filePath_jobDescriptionData = 'data/jobDescriptionData.csv'
 
 # Load the data
 df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
