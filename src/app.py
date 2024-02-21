@@ -174,10 +174,10 @@ def update_dutiesVsPGTAHoursGraph(selected_duty):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Callback for PredictionCallback
+# Callback for Linear Regression Predictor Prompt
 @app.callback(
-    Output('TF-IDF-prediction-output', 'children'),
-    [Input('TF-IDF-prediction-button', 'n_clicks')],
+    Output('regression-prediction-output', 'children'),
+    [Input('regression-prediction-button', 'n_clicks')],
     [State('number-of-students', 'value'),
     State('exam-weight', 'value'),
     State('coursework-weight', 'value'),
@@ -189,7 +189,7 @@ def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, course
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Callback for PredictionCallback
+# Callback for Feature Engineering Predictor Prompt
 @app.callback(
     Output('feature-prediction-output', 'children'),
     [Input('feature-prediction-button', 'n_clicks')],
@@ -201,7 +201,7 @@ def update_featureEngineeringPredictor(n_clicks, selected_duties):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Callback for PredictionCallback
+# Callback for Vectoriser Predictor Prompt
 @app.callback(
     Output('vectoriser-prediction-output', 'children'),
     [Input('vectoriser-prediction-button', 'n_clicks')],

@@ -18,11 +18,11 @@ def linearRegressionPredictorLayout():
         dcc.Input(id='coursework-weight', type='number', placeholder='Coursework Weight'),
         dcc.Input(id='delivery-code', type='text', placeholder='Delivery Code'),
         
-        html.Button('Predict', id='TF-IDF-prediction-button', n_clicks=0),
+        html.Button('Predict', id='regression-prediction-button', n_clicks=0),
         html.Br(),
         html.Br(),
         html.Hr(),
-        html.Div(id='TF-IDF-prediction-output')
+        html.Div(id='regression-prediction-output')
     ])
 
 def linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):

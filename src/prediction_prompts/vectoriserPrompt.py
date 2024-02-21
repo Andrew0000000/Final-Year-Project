@@ -42,4 +42,3 @@ def vectoriserPredictor(n_clicks, selected_duties):
         prediction = model.predict([preprocessed_input_data])[0]
         return f"Predicted PGTAs Recruited: {prediction}"
     return ""
-
