@@ -1,50 +1,11 @@
 import sys
 import os
-import pandas as pd
 import plotly.graph_objects as go
 from dash import html, dcc
-import numpy as np
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import handle_missing_data, column_sum, difference_calculation, set_color, no_data_modules
-
-filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
-filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
-
-df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
-df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
-
-# list modules with 'no data found' in their respective years
-noDataModules2122 = no_data_modules(df_requestedVsRecruited, '2021-22 requested', '2021-22 recruited')
-noDataModules2223 = no_data_modules(df_requestedVsRecruited, '2022-23 requested', '2022-23 recruited')
-noDataModules2324 = no_data_modules(df_requestedVsRecruited, '2023-24 requested', '2023-24 recruited')
-
-# Replace 'No data found' with 0 in the specified columns
-columns_to_replace = [
-    '2023-24 requested', 
-    '2022-23 requested', 
-    '2021-22 requested', 
-    '2023-24 recruited', 
-    '2022-23 recruited', 
-    '2021-22 recruited']
-
-df_requestedVsRecruited = handle_missing_data(df_requestedVsRecruited, columns_to_replace)
-
-stats_layout = html.Div([
-    html.Div([
-        dcc.Markdown("**Total PGTAs Recruited in 21-22:** " + str(column_sum(df_requestedVsRecruited, '2021-22 recruited'))),
-        dcc.Markdown("**Total PGTAs Recruited in 22-23:** " + str(column_sum(df_requestedVsRecruited, '2022-23 recruited'))),
-        dcc.Markdown("**Total PGTAs Recruited in 23-24:** " + str(column_sum(df_requestedVsRecruited, '2023-24 recruited'))),
-    ], className='stats-column'),
-    html.Div([
-        dcc.Markdown("**Total PGTAs Requested in 21-22:** " + str(column_sum(df_requestedVsRecruited, '2021-22 requested'))),
-        dcc.Markdown("**Total PGTAs Requested in 22-23:** " + str(column_sum(df_requestedVsRecruited, '2022-23 requested'))),
-        dcc.Markdown("**Total PGTAs Requested in 23-24:** " + str(column_sum(df_requestedVsRecruited, '2023-24 requested'))),
-    ], className='stats-column'),
-    html.Div([
-        dcc.Markdown("**Total Students in 22-23:** " + str(column_sum(df_capVsActualStudents, '2022-23 actual students')))
-    ])
-], className='stats-container')
-
+from data_processing.dataProcessing import difference_calculation, set_color
+from data_processing.dataframeCleaning import df_requestedVsRecruitedCleaned
+from data_processing.statsLayout import stats_layout, noDataModules2122, noDataModules2223, noDataModules2324, noDataModules2122, noDataModules2223, noDataModules2324
 
 def requestedVsRecruitedGraphLayout():
     options = [{'label': year, 'value': year} for year in ['2023-24', '2022-23', '2021-22']]
@@ -71,24 +32,24 @@ def requestedVsRecruitedGraphLayout():
 
 
 def requestedVsRecruitedGraph(selected_year):
-    difference_calculation(df_requestedVsRecruited, selected_year)
-    colors = set_color(df_requestedVsRecruited)
+    difference_calculation(df_requestedVsRecruitedCleaned, selected_year)
+    colors = set_color(df_requestedVsRecruitedCleaned)
 
     # plot the bar for pgtas recruited
     trace_recruited = go.Bar(
-        x=df_requestedVsRecruited[selected_year + ' recruited'],
-        y=df_requestedVsRecruited['Module Code'],
+        x=df_requestedVsRecruitedCleaned[selected_year + ' recruited'],
+        y=df_requestedVsRecruitedCleaned['Module Code'],
         name='Recruited',
-        text=['Diff: ' + str(diff) for diff in df_requestedVsRecruited['Difference']],  
+        text=['Diff: ' + str(diff) for diff in df_requestedVsRecruitedCleaned['Difference']],  
         marker_color=colors,
         orientation='h'
     )
     # plot the bar for pgtas requested
     trace_requested = go.Bar(
-        x=df_requestedVsRecruited[selected_year + ' requested'],
-        y=df_requestedVsRecruited['Module Code'],
+        x=df_requestedVsRecruitedCleaned[selected_year + ' requested'],
+        y=df_requestedVsRecruitedCleaned['Module Code'],
         name='Requested',
-        text=['Diff: ' + str(diff) for diff in df_requestedVsRecruited['Difference']],  
+        text=['Diff: ' + str(diff) for diff in df_requestedVsRecruitedCleaned['Difference']],  
         marker_color=colors,
         orientation='h'
     )
@@ -112,7 +73,7 @@ def requestedVsRecruitedGraph(selected_year):
 
 def moduleHistoryGraphLayout():
     # Get a list of unique modules from the dataframe
-    modules = df_requestedVsRecruited['Module Code'].unique().tolist()
+    modules = df_requestedVsRecruitedCleaned['Module Code'].unique().tolist()
     options = [{'label': module, 'value': module} for module in modules]
     
     return html.Div([
@@ -128,7 +89,7 @@ def moduleHistoryGraphLayout():
 
 def moduleHistoryGraph(selected_module):
     # Filter the dataframe for the selected module
-    module_data = df_requestedVsRecruited[df_requestedVsRecruited['Module Code'] == selected_module]
+    module_data = df_requestedVsRecruitedCleaned[df_requestedVsRecruitedCleaned['Module Code'] == selected_module]
 
     traces = []
     for year in ['2021-22', '2022-23', '2023-24']:
@@ -140,14 +101,14 @@ def moduleHistoryGraph(selected_module):
             x=[year],
             y=[module_data[year + ' recruited'].values[0]],
             name=f'Recruited {year}',
-            text=['Diff: ' + str(diff) for diff in df_requestedVsRecruited['Difference']],  
+            text=['Diff: ' + str(diff) for diff in df_requestedVsRecruitedCleaned['Difference']],  
             marker_color=colors.values[0],
         )
         trace_requested = go.Bar(
             x=[year],
             y=[module_data[year + ' requested'].values[0]],
             name=f'Requested {year}',
-            text=['Diff: ' + str(diff) for diff in df_requestedVsRecruited['Difference']],  
+            text=['Diff: ' + str(diff) for diff in df_requestedVsRecruitedCleaned['Difference']],  
             marker_color=colors.values[0],
         )
         traces.extend([trace_recruited, trace_requested])

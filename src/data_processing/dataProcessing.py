@@ -128,6 +128,15 @@ def get_total_pgta_hours(df):
     df['PGTA hours'] = df['PGTA hours excluding marking'] + df['Marking hours excluding end of year exam (if required)'] + df['Marking hours for end of year exam (if required)']
     return df
 
+def create_df_average_pgta_hours(df, duties):
+    df_averagePGTAHours = pd.DataFrame()
+    df_averagePGTAHours['Duty'] = duties
+    average_pgta_hours = []
+    for duty in duties:
+        average_pgta_hours.append(column_average(filter_base_duty_in_duties(df, duty), 'PGTA hours'))
+    df_averagePGTAHours['Average PGTA Hours'] = average_pgta_hours
+    return df_averagePGTAHours
+
 # Split the duties into a list of individual duties
 def split_duties(duty):
     if duty == 'No data found' or len(duty) == 0:

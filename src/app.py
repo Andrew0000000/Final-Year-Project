@@ -6,6 +6,7 @@ from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVs
 from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
 from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
 from prediction_prompts.vectoriserPrompt import vectoriserPredictor ,vectoriserPredictorLayout
+
 app = Dash(__name__)
 server = app.server
 

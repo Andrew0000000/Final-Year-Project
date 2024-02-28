@@ -3,7 +3,7 @@ from dash import html, dcc
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from models.modelLoading import load_model
+from ml_models.modelLoading import load_model
 from data_processing.dataProcessing import get_set_of_duties, preprocess_text
 
 filePath_jobDescriptionData = '../data/jobDescriptionData.csv'

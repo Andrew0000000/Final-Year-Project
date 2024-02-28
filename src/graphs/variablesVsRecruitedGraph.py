@@ -4,23 +4,8 @@ import pandas as pd
 import plotly.express as px
 from dash import html, dcc
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import create_coursework_exam_ratio_column, create_combined_variables_df
+from data_processing.dataframeCleaning import df_combined_data
 
-filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
-filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
-filePath_moduleAssessmentData = '../data/moduleAssessmentData.csv'
-
-#  Data from df_moduleAssessmentData is edited as follows:
-#   - duplicated data is removed (exact same data for all columns)
-#   - there are many modules with different variants eg. COMP0025 with delivery codes A6U, A7U, A7P. Only one type of delivery code is retained
-#     to prevent duplicates in the graphs
-
-df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
-df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
-df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
-
-df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
-df_combined_data = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

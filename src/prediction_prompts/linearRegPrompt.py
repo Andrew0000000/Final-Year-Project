@@ -3,7 +3,7 @@ from dash import html, dcc
 import os 
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from models.modelLoading import load_model
+from ml_models.modelLoading import load_model
 
 model_type = 'ridge'
 model = load_model(f'{model_type}_model.pkl')

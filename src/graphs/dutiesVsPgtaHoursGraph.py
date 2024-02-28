@@ -4,13 +4,9 @@ import pandas as pd
 import plotly.express as px
 from dash import html, dcc
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import get_total_pgta_hours, get_set_of_duties, column_average, filter_base_duty_in_duties
+from data_processing.dataProcessing import get_set_of_duties, column_average, filter_base_duty_in_duties
+from data_processing.dataframeCleaning import df_jobDescriptionDataCleaned, duties
 
-filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
-df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
-df_jobDescriptionData = get_total_pgta_hours(df_jobDescriptionData)
-
-duties = list(get_set_of_duties(df_jobDescriptionData['Duties']))
 
 # plot the graph of duties vs pgta hours where duty in duties is present in the dataframe
 def dutiesVsPGTAHoursGraphLayout():
@@ -24,14 +20,14 @@ def dutiesVsPGTAHoursGraphLayout():
     ])
 
 def dutiesVsPGTAHoursGraph(duty):
-    df = filter_base_duty_in_duties(df_jobDescriptionData, duty)
+    df = filter_base_duty_in_duties(df_jobDescriptionDataCleaned, duty)
     fig = px.bar(
         df, 
         x='Select module',
         y='PGTA hours',
         title=f'PGTA Hours for Duty: {duty}'
     )
-    max_hours = df_jobDescriptionData['PGTA hours'].max()
+    max_hours = df_jobDescriptionDataCleaned['PGTA hours'].max()
     min_hours = 0
     fig.update_layout(
         yaxis=dict(
@@ -52,7 +48,7 @@ def dutiesVsPGTAHoursAverageGraph():
     df_averagePGTAHours['Duty'] = duties
     average_pgta_hours = []
     for duty in duties:
-        average_pgta_hours.append(column_average(filter_base_duty_in_duties(df_jobDescriptionData, duty), 'PGTA hours'))
+        average_pgta_hours.append(column_average(filter_base_duty_in_duties(df_jobDescriptionDataCleaned, duty), 'PGTA hours'))
     df_averagePGTAHours['Average PGTA Hours'] = average_pgta_hours
     fig = px.bar(
         df_averagePGTAHours,
