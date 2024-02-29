@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 from dash import html, dcc
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import get_set_of_duties, column_average, filter_base_duty_in_duties
+from data_processing.dataProcessing import column_average, filter_base_duty_in_duties
 from data_processing.dataframeCleaning import df_jobDescriptionDataCleaned, duties
 
 

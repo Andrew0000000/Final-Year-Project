@@ -1,6 +1,6 @@
 Module Code,Module Title,Variant,Module Code and Title,Is module new in 2023,2023-24 requested,2023-24 recruited,2022-23 requested,2022-23 recruited,2021-22 requested,2021-22 recruited,Notes
-COMP0002,Principles of Programming,Functional programming,COMP0002 Principles of Programming (Functional programming ),FALSE,150,100,150,115.5,150,67,"This and the next line are the same module, but taught by two lecturers who rectruit their own PGTAs"
-COMP0002,Principles of Programming,C,COMP0002 Principles of Programming (C ),FALSE,180,25,150,115.5,150,67,
+COMP0002,Principles of Programming,Functional programming,COMP0002 Principles of Programming (Functional programming ),FALSE,150,100,150,115,150,67,"This and the next line are the same module, but taught by two lecturers who rectruit their own PGTAs"
+COMP0002,Principles of Programming,C,COMP0002 Principles of Programming (C ),FALSE,180,25,150,115,150,67,
 COMP0003,Theory of Computation,,COMP0003 Theory of Computation,FALSE,140,64,140,124,140,140,
 COMP0004,Object-Oriented Programming,,COMP0004 Object-Oriented Programming,FALSE,360,94,270,166,270,259,
 COMP0005,Algorithms,,COMP0005 Algorithms,FALSE,180,120,120,134,120,80,

@@ -230,3 +230,4 @@ def switch_bg(dark, currentStyle):
 
 if __name__ == '__main__':
     app.run(debug=True)
+

@@ -63,9 +63,11 @@ def create_coursework_exam_ratio_column(df):
     df = df.drop_duplicates(subset='Module Code')
     df = df.merge(total_exam_weights, on='Module Code', how='left')
     df = df.merge(total_coursework_weights, on='Module Code', how='left')
-    df['Assessment Weight_y'].fillna(0, inplace=True)
-    df['Assessment Weight'].fillna(0, inplace=True)
-    df['Exam:Coursework Ratio'] = df.apply(lambda row: f"{int(row['Assessment Weight_y'])}:{int(row['Assessment Weight'])}", axis=1)
+    df.rename(columns={'Assessment Weight_y':'Exam Weight', 'Assessment Weight':'Coursework Weight'}, inplace=True)
+    df['Exam Weight'].fillna(0, inplace=True)
+    df['Coursework Weight'].fillna(0, inplace=True)
+    df['Exam:Coursework Ratio'] = df.apply(lambda row: f"{int(row['Exam Weight'])}:{int(row['Coursework Weight'])}", axis=1)
+    df.drop(['Assessment Weight_x', 'Exam Weight', 'Coursework Weight', ], axis=1, inplace=True)
 
     return df
 

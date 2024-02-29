@@ -1,5 +1,9 @@
 import pandas as pd
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing import dataProcessing
+
 
 filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
 filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
@@ -38,3 +42,19 @@ df_combined_data = dataProcessing.create_combined_variables_df(df_moduleAssessme
 
 duties = list(dataProcessing.get_set_of_duties(df_jobDescriptionDataCleaned['Duties']))
 df_averagePGTAHours = dataProcessing.create_df_average_pgta_hours(df_jobDescriptionDataCleaned, duties)
+
+# print the number of rows in the df
+print(f"Number of rows in df_jobDescriptionDataCleaned: {len(df_jobDescriptionDataCleaned)}")
+print(f"Number of rows in df_requestedVsRecruitedCleaned: {len(df_requestedVsRecruitedCleaned)}")
+print(f"Number of rows in df_capVsActualStudentsCleaned: {len(df_capVsActualStudentsCleaned)}")
+print(f"Number of rows in df_moduleAssessmentDataCleaned: {len(df_moduleAssessmentDataCleaned)}")
+print(f"Number of rows in df_combined_data: {len(df_combined_data)}")
+print(f"Number of rows in df_averagePGTAHours: {len(df_averagePGTAHours)}")
+
+# print number of columns in the df
+print(f"Number of columns in df_jobDescriptionDataCleaned: {len(df_jobDescriptionDataCleaned.columns)}")
+print(f"Number of columns in df_requestedVsRecruitedCleaned: {len(df_requestedVsRecruitedCleaned.columns)}")
+print(f"Number of columns in df_capVsActualStudentsCleaned: {len(df_capVsActualStudentsCleaned.columns)}")
+print(f"Number of columns in df_moduleAssessmentDataCleaned: {len(df_moduleAssessmentDataCleaned.columns)}")
+print(f"Number of columns in df_combined_data: {len(df_combined_data.columns)}")
+print(f"Number of columns in df_averagePGTAHours: {len(df_averagePGTAHours.columns)}")
