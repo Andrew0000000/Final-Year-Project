@@ -48,6 +48,7 @@ def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents
 
     # replace 'No data found' values with 0 to prevent complexities in plotting and removes the first row as it is the same module as the second row
     combined_data['PGTAs Recruited'] = combined_data['PGTAs Recruited'].reset_index(drop=True).replace('No data found', 0).apply(pd.to_numeric, errors='coerce')
+    combined_data = handle_nan_data(combined_data)
 
     return combined_data
 
@@ -95,7 +96,7 @@ def column_average(df, column):
 
 # calculate the difference between pgtas requested and recruited
 def difference_calculation(df, selected_year):
-    df['Difference'] = df[selected_year + ' requested'] - df[selected_year + ' recruited']
+    df['Difference'] = df[f'requested_{selected_year}'] - df[f'recruited_{selected_year}']
     return df
 
 # red is shown for PGTAs recruited > requested, signalling demand higher than expected
@@ -103,8 +104,8 @@ def set_color(df):
     return df['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
 
 def load_data(df):
-    X = df[['Number of Students', 'Exam Weight', 'Coursework Weight', 'Delivery Code']]
-    y = df['PGTAs Recruited']
+    X = df[['number_of_students', 'Exam Weight', 'Coursework Weight', 'delivery_code']]
+    y = df['pgtas_recruited']
 
     # One-hot encode the 'Delivery Code' column
     encoder = OneHotEncoder(sparse=False)
@@ -187,12 +188,12 @@ def create_feature_vector(df, unique_duties):
         df[duty] = 0
     for index, row in df.iterrows():
         for duty in unique_duties:
-            if duty in row['Duties']:
+            if duty in row['duties']:
                 df.at[index, duty] = 1
     return df
 
 def filter_base_duty_in_duties(df, duty):
-    return df[df['Duties'].str.contains(re.escape(duty), case=False, na=False)]
+    return df[df['duties'].str.contains(re.escape(duty), case=False, na=False)]
 
 # Ensure necessary NLTK resources are downloaded
 def download_nltk_resources():

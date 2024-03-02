@@ -3,9 +3,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataProcessing import create_combined_variables_df, create_coursework_exam_ratio_column, split_coursework_exam_ratio_column, handle_nan_data, load_data
-import numpy as np
 from pygam import LinearGAM, s
-import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 

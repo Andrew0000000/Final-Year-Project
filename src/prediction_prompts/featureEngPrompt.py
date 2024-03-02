@@ -8,7 +8,7 @@ from data_processing.dataProcessing import get_set_of_duties
 
 filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
 df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
-base_duties = get_set_of_duties(df_jobDescriptionData['Duties'])
+base_duties = get_set_of_duties(df_jobDescriptionData['duties'])
 
 # load the feature engineering model
 model_type = 'feature_engineering'

@@ -10,6 +10,14 @@ noDataModules2324 = no_data_modules(df_requestedVsRecruitedCleaned, '2023-24 req
 
 stats_layout = html.Div([
     html.Div([
+        'Empty rows represent data that is not available in the dataset'
+    ]),
+    html.Div([
+        dcc.Markdown("**No Data Modules in 21-22:** " + ", ".join(noDataModules2122)),
+        dcc.Markdown("**No Data Modules in 22-23:** " + ", ".join(noDataModules2223)),
+        dcc.Markdown("**No Data Modules in 23-24:** " + ", ".join(noDataModules2324)),
+    ], className='stats-column'),
+    html.Div([
         dcc.Markdown("**Total PGTAs Recruited in 21-22:** " + str(column_sum(df_requestedVsRecruitedCleaned, '2021-22 recruited'))),
         dcc.Markdown("**Total PGTAs Recruited in 22-23:** " + str(column_sum(df_requestedVsRecruitedCleaned, '2022-23 recruited'))),
         dcc.Markdown("**Total PGTAs Recruited in 23-24:** " + str(column_sum(df_requestedVsRecruitedCleaned, '2023-24 recruited'))),

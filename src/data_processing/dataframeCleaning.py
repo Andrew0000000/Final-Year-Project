@@ -40,7 +40,7 @@ df_moduleAssessmentDataCleaned = dataProcessing.create_coursework_exam_ratio_col
 
 df_combined_data = dataProcessing.create_combined_variables_df(df_moduleAssessmentDataCleaned, df_capVsActualStudentsCleaned, df_requestedVsRecruitedCleaned)
 
-duties = list(dataProcessing.get_set_of_duties(df_jobDescriptionDataCleaned['Duties']))
+duties = list(dataProcessing.get_set_of_duties(df_jobDescriptionDataCleaned['duties']))
 df_averagePGTAHours = dataProcessing.create_df_average_pgta_hours(df_jobDescriptionDataCleaned, duties)
 
 # print the number of rows in the df

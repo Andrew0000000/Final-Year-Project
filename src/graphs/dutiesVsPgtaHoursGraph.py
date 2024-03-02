@@ -4,9 +4,21 @@ import pandas as pd
 import plotly.express as px
 from dash import html, dcc
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import column_average, filter_base_duty_in_duties
-from data_processing.dataframeCleaning import df_jobDescriptionDataCleaned, duties
+from data_processing.dataProcessing import filter_base_duty_in_duties
+from data_processing.dataframeCleaning import duties
+from database.models import JobDescription, AveragePGTAHours
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
+# import data from database 
+DATABASE_URI = 'sqlite:///app_database.db'
+engine = create_engine(DATABASE_URI)
+Session = sessionmaker(bind=engine)
+session = Session()
+query_JobDescription = session.query(JobDescription)
+query_AveragePGTAHours = session.query(AveragePGTAHours)
+df_jobDescriptionData = pd.read_sql(query_JobDescription.statement, engine)
+df_averagePGTAHours = pd.read_sql(query_AveragePGTAHours.statement, engine)
 
 # plot the graph of duties vs pgta hours where duty in duties is present in the dataframe
 def dutiesVsPGTAHoursGraphLayout():
@@ -20,14 +32,14 @@ def dutiesVsPGTAHoursGraphLayout():
     ])
 
 def dutiesVsPGTAHoursGraph(duty):
-    df = filter_base_duty_in_duties(df_jobDescriptionDataCleaned, duty)
+    df = filter_base_duty_in_duties(df_jobDescriptionData, duty)
     fig = px.bar(
         df, 
-        x='Select module',
-        y='PGTA hours',
+        x='module_code',
+        y='total_hours',
         title=f'PGTA Hours for Duty: {duty}'
     )
-    max_hours = df_jobDescriptionDataCleaned['PGTA hours'].max()
+    max_hours = df_jobDescriptionData['total_hours'].max()
     min_hours = 0
     fig.update_layout(
         yaxis=dict(
@@ -44,17 +56,13 @@ def dutiesVsPGTAHoursAverageGraphLayout():
     ])
 
 def dutiesVsPGTAHoursAverageGraph():
-    df_averagePGTAHours = pd.DataFrame()
-    df_averagePGTAHours['Duty'] = duties
-    average_pgta_hours = []
-    for duty in duties:
-        average_pgta_hours.append(column_average(filter_base_duty_in_duties(df_jobDescriptionDataCleaned, duty), 'PGTA hours'))
-    df_averagePGTAHours['Average PGTA Hours'] = average_pgta_hours
     fig = px.bar(
         df_averagePGTAHours,
-        x='Duty',
-        y='Average PGTA Hours',
+        x='duties',
+        y='average_hours',
         title='Average PGTA Hours for Each Duty',
         height=1100
     )
     return fig
+
+session.close()

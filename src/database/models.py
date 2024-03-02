@@ -62,6 +62,8 @@ class CombinedData(Base):
     number_of_students = Column(Integer)
     pgtas_recruited = Column(Integer)
     exam_coursework_ratio = Column(String)
+    exam_weight = Column(Integer)
+    coursework_weight = Column(Integer)
     delivery_code = Column(String)
 
 class AveragePGTAHours(Base):

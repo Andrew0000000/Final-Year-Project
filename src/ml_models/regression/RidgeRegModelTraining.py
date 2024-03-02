@@ -6,20 +6,18 @@ from data_processing.dataProcessing import create_combined_variables_df, create_
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn.linear_model import Ridge
 import numpy as np
-from models.modelSaving import save_model
+from ml_models.modelSaving import save_model
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database.models import CombinedData
 
-filePath_requestedVsRecruited = '../data/requestedVsRecruitedData.csv'
-filePath_capVsActualStudents = '../data/capVsActualStudentsData.csv'
-filePath_moduleAssessmentData = '../data/moduleAssessmentData.csv'
-
-df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
-df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
-df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
-
-df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
-df = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
-df = split_coursework_exam_ratio_column(df)
-df = handle_nan_data(df)
+# import the data from the database
+DATABASE_URI = 'sqlite:///app_database.db'
+engine = create_engine(DATABASE_URI)
+Session = sessionmaker(bind=engine)
+session = Session()
+query = session.query(CombinedData)
+df = pd.read_sql(query.statement, engine)
 
 # Prepare the features and target variables
 X, y = load_data(df)
@@ -48,3 +46,5 @@ print("Standard deviation:", rmse_scores.std())
 # Save the trained model
 save_model(model, 'ridge_model.pkl')
 print("Model trained and saved as ridge_model.pkl")
+
+session.close()
