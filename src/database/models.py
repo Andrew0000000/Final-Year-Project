@@ -50,13 +50,15 @@ class ModuleAssessment(Base):
     delivery_code = Column(String)
     module_delivery_period_code = Column(String)
     assessment_sequence = Column(Integer)
-    assessment_type_code = Column(Integer)
+    assessment_type_code = Column(String)
     assessment_type_name = Column(String)
     assessment_title = Column(String)
+    coursework_weight = Column(Float)
+    exam_weight = Column(Float)
     exam_coursework_ratio = Column(String)
 
-class CombinedData(Base):
-    __tablename__ = 'combined_data'
+class CombinedVariables(Base):
+    __tablename__ = 'combined_variables'
     id = Column(Integer, primary_key=True)
     module_code = Column(String)
     number_of_students = Column(Integer)
@@ -65,6 +67,10 @@ class CombinedData(Base):
     exam_weight = Column(Integer)
     coursework_weight = Column(Integer)
     delivery_code = Column(String)
+    total_hours = Column(Integer)
+    duties = Column(String)
+    
+    
 
 class AveragePGTAHours(Base):
     __tablename__ = 'average_pgta_hours'

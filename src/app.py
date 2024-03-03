@@ -1,4 +1,5 @@
 from dash import Dash, html, Output, Input, State, dcc
+import dash_bootstrap_components as dbc
 import dash_daq as daq
 from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph
 from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
@@ -6,8 +7,14 @@ from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVs
 from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
 from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
 from prediction_prompts.vectoriserPrompt import vectoriserPredictor ,vectoriserPredictorLayout
+from database.databaseLayout import tableLayout, display_table
+from sqlalchemy import create_engine
+import pandas as pd
 
-app = Dash(__name__)
+DATABASE_URI = 'sqlite:///app_database.db'
+engine = create_engine(DATABASE_URI)
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
 
 app.layout = html.Div(id='dark-theme-components', style={
@@ -26,6 +33,20 @@ app.layout = html.Div(id='dark-theme-components', style={
     html.Div(className='graph-spacing'),
 
     dcc.Tabs(className='tabs-styles', children=[
+
+# # # # #   Home TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
+        dcc.Tab(label='Home', children=[
+
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                tableLayout(),
+            ]),
+
+            html.Div(className='graph-spacing'),
+
+        ], className='tab-style', selected_className='selected-tab-style'),
 
 # # # # #   FIRST TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
@@ -142,6 +163,17 @@ app.layout = html.Div(id='dark-theme-components', style={
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+# Callback for Table Display
+@app.callback(
+    Output("table-content", "children"),
+    [Input("db-tabs", "active_tab")]
+)
+
+def update_display_table(active_tab):
+    return display_table(active_tab)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 # Callback for requestedVsRecruitedGraph
 @app.callback(
     Output(component_id='requestedVsRecruitedGraph', component_property='figure'),
@@ -211,6 +243,22 @@ def update_featureEngineeringPredictor(n_clicks, selected_duties):
 
 def update_vectoriserPredictor(n_clicks, selected_duties):
     return vectoriserPredictor(n_clicks, selected_duties)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # Callback for Unified Predictor Prompt
+# @app.callback(
+#     Output('unified-prediction-output', 'children'),
+#     [Input('unified-prediction-button', 'n_clicks')],
+#     [State('unified-number-of-students', 'value'),
+#     State('unified-exam-weight', 'value'),
+#     State('unified-coursework-weight', 'value'),
+#     State('unified-delivery-code', 'value'),
+#     State('unified-base-duties-checklist', 'value')]
+# )
+
+# def update_unifiedPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code, selected_duties):
+#     return unifiedPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code, selected_duties)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

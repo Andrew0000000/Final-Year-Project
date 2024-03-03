@@ -4,11 +4,7 @@ import sys
 from dash import html, dcc
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from ml_models.modelLoading import load_model
-from data_processing.dataProcessing import get_set_of_duties
-
-filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
-df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
-base_duties = get_set_of_duties(df_jobDescriptionData['duties'])
+from data_processing.dataframeCleaning import duties
 
 # load the feature engineering model
 model_type = 'feature_engineering'
@@ -22,7 +18,7 @@ def featureEngineeringPredictorLayout():
         html.Div([
             dcc.Checklist(
                 id='feature-base-duties-checklist',
-                options=[{'label': duty, 'value': duty} for duty in base_duties],
+                options=[{'label': duty, 'value': duty} for duty in duties],
                 value=[],
                 labelStyle={'display': 'block'}
             ),
@@ -37,7 +33,7 @@ def featureEngineeringPredictorLayout():
 def featureEngineeringPredictor(n_clicks, selected_duties):
     if n_clicks > 0:
         # prepare the input data in the format expected by the model
-        input_data = {duty: 0 for duty in base_duties}
+        input_data = {duty: 0 for duty in duties}
         for duty in selected_duties:
             input_data[duty] = 1
         
@@ -50,7 +46,7 @@ def featureEngineeringPredictor(n_clicks, selected_duties):
 
         # reorder columns to match the training data
         input_df = input_df[model.feature_names_in_]
-        print(input_df)
+        
         # make prediction
         prediction = model.predict(input_df)[0]
         return f"Predicted PGTAs Recruited: {prediction}"

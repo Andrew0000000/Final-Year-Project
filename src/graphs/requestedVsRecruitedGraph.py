@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataProcessing import difference_calculation, set_color
-from data_processing.statsLayout import stats_layout, noDataModules2122, noDataModules2223, noDataModules2324, noDataModules2122, noDataModules2223, noDataModules2324
+from data_processing.statsLayout import stats_layout
 from database.models import RequestedVsRecruited
 
 
@@ -99,7 +99,6 @@ def moduleHistoryGraph(selected_module):
         year = year[2:].replace('-', '_')
         difference_calculation(module_data, year)
         colors = set_color(module_data)
-        print(year)
         # Create traces for each year
         trace_recruited = go.Bar(
             x=[year],

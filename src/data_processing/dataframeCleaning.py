@@ -38,7 +38,9 @@ df_capVsActualStudentsCleaned = df_capVsActualStudents
 
 df_moduleAssessmentDataCleaned = dataProcessing.create_coursework_exam_ratio_column(df_moduleAssessmentData)
 
-df_combined_data = dataProcessing.create_combined_variables_df(df_moduleAssessmentDataCleaned, df_capVsActualStudentsCleaned, df_requestedVsRecruitedCleaned)
+df_combined_variables = dataProcessing.create_combined_variables_df(df_moduleAssessmentDataCleaned, df_capVsActualStudentsCleaned, df_requestedVsRecruitedCleaned, df_jobDescriptionDataCleaned)
+for column in df_combined_variables.columns:
+    print(column)
 
 duties = list(dataProcessing.get_set_of_duties(df_jobDescriptionDataCleaned['duties']))
 df_averagePGTAHours = dataProcessing.create_df_average_pgta_hours(df_jobDescriptionDataCleaned, duties)
@@ -48,7 +50,7 @@ print(f"Number of rows in df_jobDescriptionDataCleaned: {len(df_jobDescriptionDa
 print(f"Number of rows in df_requestedVsRecruitedCleaned: {len(df_requestedVsRecruitedCleaned)}")
 print(f"Number of rows in df_capVsActualStudentsCleaned: {len(df_capVsActualStudentsCleaned)}")
 print(f"Number of rows in df_moduleAssessmentDataCleaned: {len(df_moduleAssessmentDataCleaned)}")
-print(f"Number of rows in df_combined_data: {len(df_combined_data)}")
+print(f"Number of rows in df_combined_variables: {len(df_combined_variables)}")
 print(f"Number of rows in df_averagePGTAHours: {len(df_averagePGTAHours)}")
 
 # print number of columns in the df
@@ -56,5 +58,5 @@ print(f"Number of columns in df_jobDescriptionDataCleaned: {len(df_jobDescriptio
 print(f"Number of columns in df_requestedVsRecruitedCleaned: {len(df_requestedVsRecruitedCleaned.columns)}")
 print(f"Number of columns in df_capVsActualStudentsCleaned: {len(df_capVsActualStudentsCleaned.columns)}")
 print(f"Number of columns in df_moduleAssessmentDataCleaned: {len(df_moduleAssessmentDataCleaned.columns)}")
-print(f"Number of columns in df_combined_data: {len(df_combined_data.columns)}")
+print(f"Number of columns in df_combined_variables: {len(df_combined_variables.columns)}")
 print(f"Number of columns in df_averagePGTAHours: {len(df_averagePGTAHours.columns)}")

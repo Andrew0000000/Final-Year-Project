@@ -17,40 +17,49 @@ from nltk.corpus import wordnet
 def no_data_modules(df, col1, col2):
     return df.loc[(df[col1] == 'No data found') | (df[col2] == 'No data found'), 'Module Code'].tolist()
 
-# Define a new DataFrame consisting of the following data: Module Code, Number of Students, PGTAs Recruited, Exam:Coursework Ratio, Delivery Code
-def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited):
+# Define a new DataFrame consisting of the following data: Module Code, Number of Students, PGTAs Recruited, Exam:Coursework Ratio, Delivery Code, PGTA Hours and Duties
+def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited, df_jobDescriptionData):
     combined_data_list = []
+    df_jobDescriptionData.rename(columns={'Select module': 'Module Code'}, inplace=True)
     # Assuming 'Number of Students' is a column in df_capVsActualStudents
-    for module in df_moduleAssessmentData['Module Code'].unique():
+    for module in df_jobDescriptionData['Module Code'].unique():
+        module = module.split(' ')[0]  # get module name from module code and name
+
         # the module code column in df_moduleAssessmentData and df_requestedVsRecruited are different. Only take the pgta data if the module from
         # df_requestedVsRecruited exists in df_moduleAssessmentData
-        if module in df_capVsActualStudents['Module Code'].values and module in df_requestedVsRecruited['Module Code'].values:
+        if module in df_capVsActualStudents['Module Code'].values and module in df_requestedVsRecruited['Module Code'].values and module in df_moduleAssessmentData['Module Code'].values:
 
-            # extract data from thier respective dataframes
+            # extract data from their respective dataframes
             students_2223 = df_capVsActualStudents[df_capVsActualStudents['Module Code'] == module]['2022-23 actual students'].iloc[0]
             recruited_2223 = df_requestedVsRecruited[df_requestedVsRecruited['Module Code'] == module]['2022-23 recruited'].iloc[0]
             exam_coursework_ratio = df_moduleAssessmentData[df_moduleAssessmentData['Module Code'] == module]['Exam:Coursework Ratio'].iloc[0]
+            exam_weight = df_moduleAssessmentData[df_moduleAssessmentData['Module Code'] == module]['Exam Weight'].iloc[0]
+            coursework_weight = df_moduleAssessmentData[df_moduleAssessmentData['Module Code'] == module]['Coursework Weight'].iloc[0]
             delivery_code = df_moduleAssessmentData[df_moduleAssessmentData['Module Code'] == module]['Delivery Code'].iloc[0]
+            pgta_hours = df_jobDescriptionData['PGTA hours'].iloc[0]
+            duties = df_jobDescriptionData['duties'].iloc[0]
 
             row_data = {
                 'Module Code': module,
                 'Number of Students': students_2223,
                 'PGTAs Recruited': recruited_2223,
                 'Exam:Coursework Ratio': exam_coursework_ratio,
-                'Delivery Code': delivery_code
+                'Exam Weight': exam_weight,
+                'Coursework Weight': coursework_weight,
+                'Delivery Code': delivery_code,
+                'Total Hours': pgta_hours,
+                'Duties': duties
             }
 
             combined_data_list.append(row_data)
 
-    # combined_data_list = sorted(combined_data_list, key=lambda d: d['Exam:Coursework Ratio'],  reverse=True)
     # converts list into dataframe
-    combined_data = pd.DataFrame(combined_data_list)
+    df_combined = pd.DataFrame(combined_data_list)
 
-    # replace 'No data found' values with 0 to prevent complexities in plotting and removes the first row as it is the same module as the second row
-    combined_data['PGTAs Recruited'] = combined_data['PGTAs Recruited'].reset_index(drop=True).replace('No data found', 0).apply(pd.to_numeric, errors='coerce')
-    combined_data = handle_nan_data(combined_data)
+    # replace 'No data found' values with 0 to prevent complexities in plotting
+    df_combined = handle_nan_data(df_combined)
 
-    return combined_data
+    return df_combined
 
 
 def create_coursework_exam_ratio_column(df):
@@ -68,7 +77,7 @@ def create_coursework_exam_ratio_column(df):
     df['Exam Weight'].fillna(0, inplace=True)
     df['Coursework Weight'].fillna(0, inplace=True)
     df['Exam:Coursework Ratio'] = df.apply(lambda row: f"{int(row['Exam Weight'])}:{int(row['Coursework Weight'])}", axis=1)
-    df.drop(['Assessment Weight_x', 'Exam Weight', 'Coursework Weight', ], axis=1, inplace=True)
+    df.drop(['Assessment Weight_x'], axis=1, inplace=True)
 
     return df
 
