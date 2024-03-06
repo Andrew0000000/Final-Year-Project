@@ -4,6 +4,7 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from ml_models.modelLoading import load_model
+import dash_bootstrap_components as dbc
 
 model_type = 'ridge'
 model = load_model(f'{model_type}_model.pkl')
@@ -11,13 +12,19 @@ model = load_model(f'{model_type}_model.pkl')
 def linearRegressionPredictorLayout():
     return html.Div([
         html.H1("PGTAs Recruitment Predictor with Ridge Regression"),
-    
-        dcc.Input(id='number-of-students', type='number', placeholder='Number of Students'),
-        dcc.Input(id='exam-weight', type='number', placeholder='Exam Weight'),
-        dcc.Input(id='coursework-weight', type='number', placeholder='Coursework Weight'),
-        dcc.Input(id='delivery-code', type='text', placeholder='Delivery Code'),
-        
-        html.Button('Predict', id='regression-prediction-button', n_clicks=0),
+        html.Div(
+        [
+            html.Br(),
+            dbc.Input(id='number-of-students', type='number', placeholder='Number of Students', style={'width': '15%'}),
+            html.Br(),
+            dbc.Input(id='exam-weight', type='number', placeholder='Exam Weight', style={'width': '15%'}),
+            html.Br(),
+            dbc.Input(id='coursework-weight', type='number', placeholder='Coursework Weight', style={'width': '15%'}),
+            html.Br(),
+            dbc.Input(id='delivery-code', type='text', placeholder='Delivery Code', style={'width': '15%'}),
+            html.Br(),
+        ]),
+        dbc.Button('Predict', color="secondary", id='regression-prediction-button', n_clicks=0),
         html.Br(),
         html.Br(),
         html.Hr(),
@@ -46,5 +53,5 @@ def linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_we
 
         # Make prediction
         prediction = model.predict(input_data)[0]
-        return f"Predicted PGTAs Recruited: {prediction}"
+        return f"Predicted PGTA Hours: {prediction}"
     return ""

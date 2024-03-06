@@ -10,6 +10,8 @@ from ml_models.modelSaving import save_model
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database.models import JobDescription
+from data_processing.dataframeCleaning import duties
+
 
 # import the data from the database
 DATABASE_URI = 'sqlite:///app_database.db'
@@ -21,11 +23,7 @@ df_jobDescriptionData = pd.read_sql(query.statement, engine)
 
 download_nltk_resources()
 
-# Load the data
-unique_duties = list(get_set_of_duties(df_jobDescriptionData['duties']))
-df_jobDescriptionData = create_feature_vector(df_jobDescriptionData, unique_duties)
-
-X = df_jobDescriptionData[unique_duties]
+X = df_jobDescriptionData[duties]
 y = df_jobDescriptionData['total_hours']
 
 # Initialize and train the RandomForestRegressor

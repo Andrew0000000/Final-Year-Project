@@ -4,11 +4,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from ml_models.modelLoading import load_model
-from data_processing.dataProcessing import get_set_of_duties, preprocess_text
-
-filePath_jobDescriptionData = '../data/jobDescriptionData.csv'
-df_jobDescriptionData = pd.read_csv(filePath_jobDescriptionData)
-base_duties = get_set_of_duties(df_jobDescriptionData['duties'])
+from data_processing.dataProcessing import preprocess_text
+from data_processing.dataframeCleaning import duties
+import dash_bootstrap_components as dbc
 
 # load the feature engineering model
 model_type = 'TF-IDF'
@@ -17,18 +15,15 @@ model = load_model(f'{model_type}_model.pkl')
 def vectoriserPredictorLayout():
     return html.Div([
         html.H1("PGTAs Recruitment Predictor with TF-IDF Vectoriser"),
-
-        # create radio items for each base duty
         html.Div([
-            dcc.Checklist(
-                id='vectoriser-base-duties-checklist',
-                options=[{'label': duty, 'value': duty} for duty in base_duties],
+            dbc.Checklist(
+                id="vectoriser-base-duties-checklist",
                 value=[],
-                labelStyle={'display': 'block'}
+                options=[{'label': duty, 'value': duty} for duty in duties],
             ),
         ]),
         html.Br(),
-        html.Button('Predict', id='vectoriser-prediction-button', n_clicks=0),
+        dbc.Button('Predict', color="secondary", id='vectoriser-prediction-button', n_clicks=0),
         html.Hr(),
         html.Br(),
         html.Div(id='vectoriser-prediction-output')
@@ -40,5 +35,5 @@ def vectoriserPredictor(n_clicks, selected_duties):
         input_data = ', '.join(selected_duties)
         preprocessed_input_data = preprocess_text(input_data)
         prediction = model.predict([preprocessed_input_data])[0]
-        return f"Predicted PGTAs Recruited: {prediction}"
+        return f"Predicted PGTA Hours: {prediction}"
     return ""

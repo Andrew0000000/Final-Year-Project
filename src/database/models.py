@@ -6,17 +6,11 @@ Base = declarative_base()
 class JobDescription(Base):
     __tablename__ = 'job_descriptions'
     id = Column(Integer, primary_key=True)
-    timestamp = Column(String)
     module_code = Column(String)
-    term = Column(String)
-    total_hours_excluding_marking = Column(Integer)
-    marking_hours_excluding_exam = Column(Integer)
-    marking_hours_exam = Column(Integer)
-    TA_needed = Column(Integer)
+    number_of_TA = Column(Integer)
     duties = Column(String)
-    categories = Column(String)
-    description = Column(Text)
     total_hours = Column(Integer)
+    module_title = Column(String)
 
 class RequestedVsRecruited(Base):
     __tablename__ = 'requested_vs_recruited'
@@ -49,25 +43,21 @@ class ModuleAssessment(Base):
     module_code = Column(String)
     delivery_code = Column(String)
     module_delivery_period_code = Column(String)
-    assessment_sequence = Column(Integer)
-    assessment_type_code = Column(String)
-    assessment_type_name = Column(String)
-    assessment_title = Column(String)
-    coursework_weight = Column(Float)
     exam_weight = Column(Float)
+    coursework_weight = Column(Float)
     exam_coursework_ratio = Column(String)
 
 class CombinedVariables(Base):
     __tablename__ = 'combined_variables'
     id = Column(Integer, primary_key=True)
     module_code = Column(String)
+    module_name = Column(String)
     number_of_students = Column(Integer)
     pgtas_recruited = Column(Integer)
     exam_coursework_ratio = Column(String)
     exam_weight = Column(Integer)
     coursework_weight = Column(Integer)
     delivery_code = Column(String)
-    total_hours = Column(Integer)
     duties = Column(String)
     
     

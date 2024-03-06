@@ -9,14 +9,14 @@ import numpy as np
 from ml_models.modelSaving import save_model
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database.models import CombinedData
+from database.models import CombinedVariables
 
 # import the data from the database
 DATABASE_URI = 'sqlite:///app_database.db'
 engine = create_engine(DATABASE_URI)
 Session = sessionmaker(bind=engine)
 session = Session()
-query = session.query(CombinedData)
+query = session.query(CombinedVariables)
 df = pd.read_sql(query.statement, engine)
 
 # Prepare the features and target variables

@@ -6,7 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from data_processing.dataProcessing import download_nltk_resources, preprocess_text_list, get_total_pgta_hours
+from data_processing.dataProcessing import download_nltk_resources, preprocess_text_list
 import numpy as np
 from ml_models.modelSaving import save_model
 from sqlalchemy import create_engine

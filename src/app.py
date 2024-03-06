@@ -7,9 +7,8 @@ from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVs
 from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
 from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
 from prediction_prompts.vectoriserPrompt import vectoriserPredictor ,vectoriserPredictorLayout
-from database.databaseLayout import tableLayout, display_table
+from database.databaseLayout import displayTableLayout, displayTable, insertModuleLayout, insertModule, deleteModuleLayout, deleteModule
 from sqlalchemy import create_engine
-import pandas as pd
 
 DATABASE_URI = 'sqlite:///app_database.db'
 engine = create_engine(DATABASE_URI)
@@ -41,7 +40,19 @@ app.layout = html.Div(id='dark-theme-components', style={
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
-                tableLayout(),
+                displayTableLayout(),
+            ]),
+
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                insertModuleLayout(),
+            ]),
+
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                deleteModuleLayout(),
             ]),
 
             html.Div(className='graph-spacing'),
@@ -50,18 +61,34 @@ app.layout = html.Div(id='dark-theme-components', style={
 
 # # # # #   FIRST TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
-        dcc.Tab(label='PGTAs Requested vs Recruited', children=[
+
+        dcc.Tab(label='Predictor', children=[
 
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
-                html.H3('Requested vs Recruited', className='graph-title'),
-                requestedVsRecruitedGraphLayout()
+                html.H3('Regression Predictor', className='graph-title'),
+                linearRegressionPredictorLayout(),
+            ]),
+            
+            html.Div(className='graph-spacing'),
+        
+            html.Div(className='graph-container', children=[
+                html.H3('NLP Predictor', className='graph-title'),
+                featureEngineeringPredictorLayout(),
+            ]),
+
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('NLP Predictor', className='graph-title'),
+                vectoriserPredictorLayout(),
             ]),
 
             html.Div(className='graph-spacing'),
 
         ], className='tab-style', selected_className='selected-tab-style'),
+    
 
 # # # # #   SECOND TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
@@ -131,27 +158,14 @@ app.layout = html.Div(id='dark-theme-components', style={
 
 # # # # #   FIFTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
 
-        dcc.Tab(label='Predictor', children=[
+
+        dcc.Tab(label='PGTAs Requested vs Recruited', children=[
 
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
-                html.H3('Regression Predictor', className='graph-title'),
-                linearRegressionPredictorLayout(),
-            ]),
-            
-            html.Div(className='graph-spacing'),
-        
-            html.Div(className='graph-container', children=[
-                html.H3('NLP Predictor', className='graph-title'),
-                featureEngineeringPredictorLayout(),
-            ]),
-
-            html.Div(className='graph-spacing'),
-
-            html.Div(className='graph-container', children=[
-                html.H3('NLP Predictor', className='graph-title'),
-                vectoriserPredictorLayout(),
+                html.H3('Requested vs Recruited', className='graph-title'),
+                requestedVsRecruitedGraphLayout()
             ]),
 
             html.Div(className='graph-spacing'),
@@ -169,8 +183,40 @@ app.layout = html.Div(id='dark-theme-components', style={
     [Input("db-tabs", "active_tab")]
 )
 
-def update_display_table(active_tab):
-    return display_table(active_tab)
+def update_displayTable(active_tab):
+    return displayTable(active_tab)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for Insert Module
+@app.callback(
+    Output("insert-module-alert", "children"),
+    [Input("insert-module-button", "n_clicks")],
+    [State("module-code-insert", "value"),
+    State("module-name-insert", "value"),
+    State("number-of-students-insert", "value"),
+    State("pgtas-recruited-insert", "value"),
+    State("exam-weight-insert", "value"),
+    State("coursework-weight-insert", "value"),
+    State("delivery-code-insert", "value"),
+    State("base-duties-checklist-insert", "value")]
+)
+
+def update_insertModule(n_clicks, module_code, module_name, number_of_students, pgtas_recruited, exam_weight, coursework_weight, delivery_code, duties):
+    return insertModule(n_clicks, module_code, module_name, number_of_students, pgtas_recruited, exam_weight, coursework_weight, delivery_code, duties)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# # Callback for Delete Module
+@app.callback(
+    Output("delete-module-alert", "children"),
+    [Input("delete-module-button", "n_clicks")],
+    [State("module-code-delete", "value")]
+)
+
+def update_deleteModule(n_clicks, module_code):
+    return deleteModule(n_clicks, module_code)
+
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

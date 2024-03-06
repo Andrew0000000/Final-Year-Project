@@ -31,10 +31,10 @@ def load_csv_to_database(df, model, session):
 def init_db():
     Base.metadata.create_all(engine)
     session = Session()
-    # load_csv_to_database(df_jobDescriptionDataCleaned, JobDescription, session)
+    load_csv_to_database(df_jobDescriptionDataCleaned, JobDescription, session)
     # load_csv_to_database(df_requestedVsRecruitedCleaned, RequestedVsRecruited, session)
     # load_csv_to_database(df_capVsActualStudentsCleaned, CapVsActualStudents, session)
-    load_csv_to_database(df_moduleAssessmentDataCleaned, ModuleAssessment, session)
+    # load_csv_to_database(df_moduleAssessmentDataCleaned, ModuleAssessment, session)
     # load_csv_to_database(df_combined_variables, CombinedVariables, session)
     # load_csv_to_database(df_averagePGTAHours, AveragePGTAHours, session)
     session.close()
