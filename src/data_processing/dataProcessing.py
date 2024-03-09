@@ -48,19 +48,19 @@ def difference_calculation(df, selected_year):
 def set_color(df):
     return df['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
 
-def load_data(df):
-    X = df[['number_of_students', 'Exam Weight', 'Coursework Weight', 'delivery_code']]
+def load_regession_data(df):
+    X = df[['number_of_students', 'exam_weight', 'coursework_weight', 'delivery_code']]
     y = df['pgtas_recruited']
 
-    # One-hot encode the 'Delivery Code' column
+    # One-hot encode the 'delivery_code' column
     encoder = OneHotEncoder(sparse=False)
-    encoded_delivery_code = encoder.fit_transform(X[['Delivery Code']])
+    encoded_delivery_code = encoder.fit_transform(X[['delivery_code']])
     
     # Create a DataFrame from the encoded array
-    encoded_delivery_code_df = pd.DataFrame(encoded_delivery_code, columns=encoder.get_feature_names_out(['Delivery Code']))
+    encoded_delivery_code_df = pd.DataFrame(encoded_delivery_code, columns=encoder.get_feature_names_out(['delivery_code']))
 
     # Drop the original 'Delivery Code' column and concatenate the encoded columns
-    X = X.drop('Delivery Code', axis=1)
+    X = X.drop('delivery_code', axis=1)
     X = pd.concat([X, encoded_delivery_code_df], axis=1)
     return X, y
 

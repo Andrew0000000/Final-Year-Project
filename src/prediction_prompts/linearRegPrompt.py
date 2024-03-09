@@ -1,5 +1,5 @@
 import pandas as pd
-from dash import html, dcc
+from dash import html
 import os 
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))

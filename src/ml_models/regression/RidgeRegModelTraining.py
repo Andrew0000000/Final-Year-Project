@@ -2,49 +2,36 @@ import pandas as pd
 import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from data_processing.dataProcessing import create_combined_variables_df, create_coursework_exam_ratio_column, split_coursework_exam_ratio_column, handle_nan_data, load_data
+from data_processing.dataProcessing import load_regession_data
 from sklearn.model_selection import cross_val_score, KFold
 from sklearn.linear_model import Ridge
 import numpy as np
 from ml_models.modelSaving import save_model
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from database.models import CombinedVariables
 
-# import the data from the database
-DATABASE_URI = 'sqlite:///app_database.db'
-engine = create_engine(DATABASE_URI)
-Session = sessionmaker(bind=engine)
-session = Session()
-query = session.query(CombinedVariables)
-df = pd.read_sql(query.statement, engine)
+def train_ridge_regression_model(df):
+    # Prepare the features and target variables
+    X, y = load_regession_data(df)
 
-# Prepare the features and target variables
-X, y = load_data(df)
+    # Convert categorical data to dummy variables
+    X = pd.get_dummies(X)
 
-# Convert categorical data to dummy variables
-X = pd.get_dummies(X)
-
-# Train the model
-model = Ridge(alpha=1.0, random_state=42)
-model.fit(X, y)
+    # Train the model
+    model = Ridge(alpha=1.0, random_state=42)
+    model.fit(X, y)
 
 
-# Initialize the K-Fold cross-validator
-kf = KFold(n_splits=5, shuffle=True, random_state=42)
+    # Initialize the K-Fold cross-validator
+    kf = KFold(n_splits=5, shuffle=True, random_state=42)
 
-# Perform cross-validation and compute the scores
-scores = cross_val_score(model, X, y, cv=kf, scoring='neg_mean_squared_error')
+    # Perform cross-validation and compute the scores
+    scores = cross_val_score(model, X, y, cv=kf, scoring='neg_mean_squared_error')
 
-# Convert the scores to root mean squared error (RMSE)
-rmse_scores = np.sqrt(-scores)
+    # Convert the scores to root mean squared error (RMSE)
+    rmse_scores = np.sqrt(-scores)
 
-print("RMSE scores for each fold:", rmse_scores)
-print("Mean RMSE:", rmse_scores.mean())
-print("Standard deviation:", rmse_scores.std())
+    print("Ridge Regression Mean RMSE:", rmse_scores.mean())
+    print("Ridge Regression Standard deviation:", rmse_scores.std())
 
-# Save the trained model
-save_model(model, 'ridge_model.pkl')
-print("Model trained and saved as ridge_model.pkl")
-
-session.close()
+    # Save the trained model
+    save_model(model, 'ridge_model.pkl')
+    print("Ridge Regression Model trained and saved as ridge_model.pkl")

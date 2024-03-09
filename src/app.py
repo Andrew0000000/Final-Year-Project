@@ -7,6 +7,7 @@ from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVs
 from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
 from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
 from prediction_prompts.vectoriserPrompt import vectoriserPredictor ,vectoriserPredictorLayout
+from ml_models.modelTraining import retrainModels, retrainModelsLayout
 from database.databaseLayout import displayTableLayout, displayTable, insertModuleLayout, insertModule, deleteModuleLayout, deleteModule
 from sqlalchemy import create_engine
 
@@ -40,18 +41,21 @@ app.layout = html.Div(id='dark-theme-components', style={
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
+                html.H3('Database Display', className='graph-title'),
                 displayTableLayout(),
             ]),
 
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
+                html.H3('Insert Module', className='graph-title'),
                 insertModuleLayout(),
             ]),
 
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
+                html.H3('Delete Module', className='graph-title'),
                 deleteModuleLayout(),
             ]),
 
@@ -63,6 +67,13 @@ app.layout = html.Div(id='dark-theme-components', style={
 
 
         dcc.Tab(label='Predictor', children=[
+
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('Retrain Models', className='graph-title'),
+                retrainModelsLayout(),
+            ]),
 
             html.Div(className='graph-spacing'),
 
@@ -250,6 +261,17 @@ def update_moduleHistoryGraph(selected_module):
 
 def update_dutiesVsPGTAHoursGraph(selected_duty):
     return dutiesVsPGTAHoursGraph(selected_duty)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for Retain Models
+@app.callback(
+    Output('retrain-models-alert', 'children'),
+    Input('retrain-models-button', 'n_clicks')
+)
+
+def update_retainModels(n_clicks):
+    return retrainModels(n_clicks)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

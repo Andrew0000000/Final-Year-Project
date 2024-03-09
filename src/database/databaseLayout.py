@@ -1,6 +1,9 @@
 from dash import html, dcc
 from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataframeCleaning import duties
 import dash_bootstrap_components as dbc
 import pandas as pd
@@ -98,8 +101,6 @@ def insertModuleLayout():
 def insertModule(n_clicks, module_code, module_name, number_of_students, pgtas_recruited, exam_weight, coursework_weight, delivery_code, duties):
     if n_clicks is not None and n_clicks > 0:
         # Insert data into database
-        session = Session()
-        
         new_module = CombinedVariables(
             module_code=module_code,
             module_name=module_name,
