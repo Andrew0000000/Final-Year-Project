@@ -22,7 +22,7 @@ def train_tf_idf_model(df):
     # Create a pipeline with TF-IDF Vectorization and Linear Regression
     pipeline = Pipeline([
         ('tfidf', TfidfVectorizer()),
-        ('regressor', Ridge())
+        ('regressor', Ridge(alpha=1.0, random_state=42))
     ])
 
     # Fit the pipeline to the data

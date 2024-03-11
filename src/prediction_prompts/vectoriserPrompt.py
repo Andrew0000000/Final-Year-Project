@@ -8,9 +8,8 @@ from data_processing.dataProcessing import preprocess_text
 from data_processing.dataframeCleaning import duties
 import dash_bootstrap_components as dbc
 
-# load the feature engineering model
-model_type = 'TF-IDF'
-model = load_model(f'{model_type}_model.pkl')
+# load the TF-IDF Vectorizer model
+model = load_model('TF-IDF_model.pkl')
 
 def vectoriserPredictorLayout():
     return html.Div([

@@ -15,22 +15,22 @@ from data_processing.dataProcessing import download_nltk_resources
 from data_processing.dataframeCleaning import duties
 
 
-def retrainModelsLayout():
+def modelTrainingLayout():
     return dbc.Container([
         dbc.Row([
             dbc.Col([
-                dbc.Button("Retrain Models", id="retrain-models-button")
+                dbc.Button("Train Models", id="modelTraining-button")
             ], width=6)
         ]),
         html.Br(),
         dbc.Row([
             dbc.Col([
-                html.Div(id="retrain-models-alert")
+                html.Div(id="modelTraining-alert")
             ], width=4)
         ])
     ], fluid=True)
 
-def retrainModels(n_clicks):
+def modelTraining(n_clicks):
     if n_clicks and n_clicks > 0:
         # import the data from the database
         DATABASE_URI = 'sqlite:///app_database.db'
@@ -48,5 +48,5 @@ def retrainModels(n_clicks):
         train_tf_idf_model(df)
 
         session.close()
-        return dbc.Alert("Models retrained!", color="success", duration=4000)
+        return dbc.Alert("Models Trained!", color="success", duration=4000)
     return ""

@@ -5,9 +5,10 @@ from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requeste
 from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
 from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVsPGTAHoursGraph, dutiesVsPGTAHoursAverageGraphLayout
 from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
+from prediction_prompts.ridgeRegPrompt import ridgeRegressionPredictor, ridgeRegressionPredictorLayout
 from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
 from prediction_prompts.vectoriserPrompt import vectoriserPredictor ,vectoriserPredictorLayout
-from ml_models.modelTraining import retrainModels, retrainModelsLayout
+from ml_models.modelTraining import modelTraining, modelTrainingLayout
 from database.databaseLayout import displayTableLayout, displayTable, insertModuleLayout, insertModule, deleteModuleLayout, deleteModule
 from sqlalchemy import create_engine
 
@@ -71,15 +72,22 @@ app.layout = html.Div(id='dark-theme-components', style={
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
-                html.H3('Retrain Models', className='graph-title'),
-                retrainModelsLayout(),
+                html.H3('Train Models', className='graph-title'),
+                modelTrainingLayout(),
             ]),
 
             html.Div(className='graph-spacing'),
 
             html.Div(className='graph-container', children=[
-                html.H3('Regression Predictor', className='graph-title'),
+                html.H3('Linear Regression Predictor', className='graph-title'),
                 linearRegressionPredictorLayout(),
+            ]),
+            
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('Ridge Regression Predictor', className='graph-title'),
+                ridgeRegressionPredictorLayout(),
             ]),
             
             html.Div(className='graph-spacing'),
@@ -264,29 +272,44 @@ def update_dutiesVsPGTAHoursGraph(selected_duty):
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Callback for Retain Models
+# Callback for Model Training
 @app.callback(
-    Output('retrain-models-alert', 'children'),
-    Input('retrain-models-button', 'n_clicks')
+    Output('modelTraining-alert', 'children'),
+    Input('modelTraining-button', 'n_clicks')
 )
 
-def update_retainModels(n_clicks):
-    return retrainModels(n_clicks)
+def update_modelTraining(n_clicks):
+    return modelTraining(n_clicks)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Linear Regression Predictor Prompt
 @app.callback(
-    Output('regression-prediction-output', 'children'),
-    [Input('regression-prediction-button', 'n_clicks')],
-    [State('number-of-students', 'value'),
-    State('exam-weight', 'value'),
-    State('coursework-weight', 'value'),
-    State('delivery-code', 'value')]
+    Output('linear-regression-prediction-output', 'children'),
+    [Input('linear-regression-prediction-button', 'n_clicks')],
+    [State('number-of-students-linear', 'value'),
+    State('exam-weight-linear', 'value'),
+    State('coursework-weight-linear', 'value'),
+    State('delivery-code-linear', 'value')]
 )
 
 def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
     return linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for Ridge Regression Predictor Prompt
+@app.callback(
+    Output('ridge-regression-prediction-output', 'children'),
+    [Input('ridge-regression-prediction-button', 'n_clicks')],
+    [State('number-of-students-ridge', 'value'),
+    State('exam-weight-ridge', 'value'),
+    State('coursework-weight-ridge', 'value'),
+    State('delivery-code-ridge', 'value')]
+)
+
+def update_ridgeRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
+    return ridgeRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 

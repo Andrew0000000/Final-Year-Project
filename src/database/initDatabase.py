@@ -3,8 +3,8 @@ from sqlalchemy.orm import sessionmaker
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from src.database.models import Base, JobDescription, RequestedVsRecruited, CapVsActualStudents, ModuleAssessment, CombinedVariables, AveragePGTAHours
-from src.data_processing.dataframeCleaning import df_jobDescriptionDataCleaned, df_requestedVsRecruitedCleaned, df_capVsActualStudentsCleaned, df_moduleAssessmentDataCleaned, df_combined_variables, df_averagePGTAHours
+from database.models import Base, JobDescription, RequestedVsRecruited, CapVsActualStudents, ModuleAssessment, CombinedVariables, AveragePGTAHours
+from data_processing.dataframeCleaning import df_jobDescriptionDataCleaned, df_requestedVsRecruitedCleaned, df_capVsActualStudentsCleaned, df_moduleAssessmentDataCleaned, df_combined_variables, df_averagePGTAHours
 
 DATABASE_URI = 'sqlite:///app_database.db'
 engine = create_engine(DATABASE_URI)
@@ -30,14 +30,19 @@ def load_csv_to_database(df, model, session):
 def init_db():
     Base.metadata.create_all(engine)
     session = Session()
-    # load_csv_to_database(df_jobDescriptionDataCleaned, JobDescription, session)
-    # load_csv_to_database(df_requestedVsRecruitedCleaned, RequestedVsRecruited, session)
-    # load_csv_to_database(df_capVsActualStudentsCleaned, CapVsActualStudents, session)
-    # load_csv_to_database(df_moduleAssessmentDataCleaned, ModuleAssessment, session)
-    # load_csv_to_database(df_combined_variables, CombinedVariables, session)
-    # load_csv_to_database(df_averagePGTAHours, AveragePGTAHours, session)
+    load_csv_to_database(df_jobDescriptionDataCleaned, JobDescription, session)
+    load_csv_to_database(df_requestedVsRecruitedCleaned, RequestedVsRecruited, session)
+    load_csv_to_database(df_capVsActualStudentsCleaned, CapVsActualStudents, session)
+    load_csv_to_database(df_moduleAssessmentDataCleaned, ModuleAssessment, session)
+    load_csv_to_database(df_averagePGTAHours, AveragePGTAHours, session)
+    load_csv_to_database(df_combined_variables, CombinedVariables, session)
     session.close()
     print("Database initialized successfully")
 
+def delete_db():
+    Base.metadata.drop_all(engine)
+    print("Database deleted successfully")
+
 if __name__ == '__main__':
     init_db()
+    # delete_db()

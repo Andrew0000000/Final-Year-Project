@@ -36,11 +36,11 @@ df_moduleAssessmentDataCleaned = dataProcessing.create_coursework_exam_ratio_col
 df_jobDescriptionDataCleaned = dataProcessing.get_total_pgta_hours(df_jobDescriptionData)
 df_jobDescriptionDataCleaned = dataProcessing.split_module_code_and_name(df_jobDescriptionDataCleaned)
 duties = list(dataProcessing.get_set_of_duties(df_jobDescriptionDataCleaned['duties']))
-for duty in duties:
-    print(duty)
+
 df_requestedVsRecruitedCleaned = dataProcessing.handle_missing_data(df_requestedVsRecruited, columns_to_replace)
 
 df_capVsActualStudentsCleaned = df_capVsActualStudents
+
 
 df_combined_variables = dataProcessing.create_combined_variables_df(df_moduleAssessmentDataCleaned, df_capVsActualStudentsCleaned, df_requestedVsRecruitedCleaned, df_jobDescriptionDataCleaned)
 

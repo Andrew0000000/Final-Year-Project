@@ -8,8 +8,7 @@ from data_processing.dataframeCleaning import duties
 import dash_bootstrap_components as dbc
 
 # load the feature engineering model
-model_type = 'feature_engineering'
-model = load_model(f'{model_type}_model.pkl')
+model = load_model('feature_engineering_model.pkl')
 
 def featureEngineeringPredictorLayout():
     return html.Div([
