@@ -22,5 +22,5 @@ At the file directory, run `python3 app.py` or `python app.py`
 `SELECT COUNT(*) FROM {table_name};`
 
 #### Delete a table
-`DROP TABLE {table_name};'
+`DROP TABLE {table_name};`
 
