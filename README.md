@@ -18,5 +18,9 @@ At the file directory, run `python3 app.py` or `python app.py`
 #### Show first n rows of a table
 `SELECT * FROM {table_name} LIMIT {n};`
 
+#### Get the total number of rows of a table
+`SELECT COUNT(*) FROM {table_name};`
+
 #### Delete a table
-`DROP TABLE {table_name};
+`DROP TABLE {table_name};'
+
