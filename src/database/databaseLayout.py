@@ -25,7 +25,7 @@ table_names = inspector.get_table_names()
 def displayTableLayout():
     return dbc.Container([
         dbc.Tabs(
-            id="db-tabs",
+            id="database-tabs",
             children=[dbc.Tab(
                 label=table_name, 
                 tab_id=table_name

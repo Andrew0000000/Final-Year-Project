@@ -35,7 +35,9 @@ app.layout = html.Div(id='dark-theme-components', style={
 
     dcc.Tabs(className='tabs-styles', children=[
 
-# # # # #   Home TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # HOME TAB # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
         dcc.Tab(label='Home', children=[
 
@@ -64,7 +66,11 @@ app.layout = html.Div(id='dark-theme-components', style={
 
         ], className='tab-style', selected_className='selected-tab-style'),
 
-# # # # #   FIRST TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # #  PREDICTOR TAB  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 
         dcc.Tab(label='Predictor', children=[
@@ -109,7 +115,9 @@ app.layout = html.Div(id='dark-theme-components', style={
         ], className='tab-style', selected_className='selected-tab-style'),
     
 
-# # # # #   SECOND TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # #   MODULE HISTORY TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
         dcc.Tab(label='Module History', children=[
 
@@ -124,7 +132,9 @@ app.layout = html.Div(id='dark-theme-components', style={
 
         ], className='tab-style', selected_className='selected-tab-style'),
 
-# # # # #   THIRD TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # #   VARIABLES VS PGTAS RECRUITED TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
         dcc.Tab(label='Variables Vs PGTAs Recruited', children=[
 
@@ -153,7 +163,9 @@ app.layout = html.Div(id='dark-theme-components', style={
 
         ], className='tab-style', selected_className='selected-tab-style'),
 
-# # # # #   FOURTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # #   DUTIES VS PGTA HOURS NEEDED TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
         dcc.Tab(label='Duties Vs PGTA Hours Needed', children=[
             
@@ -175,8 +187,9 @@ app.layout = html.Div(id='dark-theme-components', style={
 
         ], className='tab-style', selected_className='selected-tab-style'),
 
-# # # # #   FIFTH TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # Tab Separation
-
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # #   PGTAS REQUESTED VS RECRUITED TAB   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
         dcc.Tab(label='PGTAs Requested vs Recruited', children=[
 
@@ -194,17 +207,20 @@ app.layout = html.Div(id='dark-theme-components', style={
     ])
 ])
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 # Callback for Table Display
 @app.callback(
     Output("table-content", "children"),
-    [Input("db-tabs", "active_tab")]
+    [Input("database-tabs", "active_tab")]
 )
 
 def update_displayTable(active_tab):
     return displayTable(active_tab)
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Insert Module
@@ -225,6 +241,7 @@ def update_insertModule(n_clicks, module_code, module_name, number_of_students, 
     return insertModule(n_clicks, module_code, module_name, number_of_students, pgtas_recruited, exam_weight, coursework_weight, delivery_code, duties)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # # Callback for Delete Module
 @app.callback(
@@ -238,6 +255,7 @@ def update_deleteModule(n_clicks, module_code):
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for requestedVsRecruitedGraph
 @app.callback(
@@ -248,6 +266,7 @@ def update_deleteModule(n_clicks, module_code):
 def update_requestedVsRecruitedGraph(selected_year):
     return requestedVsRecruitedGraph(selected_year)
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for moduleHistoryGraph
@@ -260,6 +279,7 @@ def update_moduleHistoryGraph(selected_module):
     return moduleHistoryGraph(selected_module)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Duties Vs PGTA Hours Graph
 @app.callback(
@@ -271,6 +291,7 @@ def update_dutiesVsPGTAHoursGraph(selected_duty):
     return dutiesVsPGTAHoursGraph(selected_duty)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Model Training
 @app.callback(
@@ -281,6 +302,7 @@ def update_dutiesVsPGTAHoursGraph(selected_duty):
 def update_modelTraining(n_clicks):
     return modelTraining(n_clicks)
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Linear Regression Predictor Prompt
@@ -297,6 +319,7 @@ def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, course
     return linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Ridge Regression Predictor Prompt
 @app.callback(
@@ -312,6 +335,7 @@ def update_ridgeRegressionPredictor(n_clicks, num_students, exam_weight, coursew
     return ridgeRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Feature Engineering Predictor Prompt
 @app.callback(
@@ -324,6 +348,7 @@ def update_featureEngineeringPredictor(n_clicks, selected_duties):
     return featureEngineeringPredictor(n_clicks, selected_duties)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Callback for Vectoriser Predictor Prompt
 @app.callback(
@@ -335,6 +360,7 @@ def update_featureEngineeringPredictor(n_clicks, selected_duties):
 def update_vectoriserPredictor(n_clicks, selected_duties):
     return vectoriserPredictor(n_clicks, selected_duties)
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # # Callback for Unified Predictor Prompt
@@ -352,8 +378,9 @@ def update_vectoriserPredictor(n_clicks, selected_duties):
 #     return unifiedPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code, selected_duties)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Callback for toggling between light and dark theme
+# Callback for light and dark theme toggle
 @app.callback(
     Output('dark-theme-components', 'style'),
     Input('toggle-theme', 'value'),
