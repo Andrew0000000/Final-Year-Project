@@ -11,6 +11,7 @@ from ml_models.natural_language_processing.featureEngModelTraining import train_
 from ml_models.natural_language_processing.TF_IDFModelTraining import train_tf_idf_model
 from ml_models.regression.LinearRegModelTraining import train_linear_regression_model
 from ml_models.regression.RidgeRegModelTraining import train_ridge_regression_model
+from ml_models.generalised_additive_model.generalisedAdditiveModel import train_generalised_additive_model
 from data_processing.dataProcessing import download_nltk_resources
 from data_processing.dataframeCleaning import duties
 
@@ -42,6 +43,7 @@ def modelTraining(n_clicks):
 
         download_nltk_resources()
         # Train the models
+        train_generalised_additive_model(df)
         train_linear_regression_model(df)
         train_ridge_regression_model(df)
         train_feature_engineering_model(df, duties)

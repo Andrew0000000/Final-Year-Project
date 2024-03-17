@@ -36,3 +36,4 @@ def train_tf_idf_model(df):
 
     save_model(pipeline, 'TF-IDF_model.pkl')
     print("TF-IDF Vectorization Model trained and saved as TF-IDF_model.pkl")
+    print('---------------------------------------------------------------------------------')

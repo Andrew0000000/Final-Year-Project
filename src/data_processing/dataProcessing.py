@@ -44,8 +44,14 @@ def difference_calculation(df, selected_year):
     return df
 
 # red is shown for PGTAs recruited > requested, signalling demand higher than expected
-def set_color(df):
-    return df['Difference'].apply(lambda x: 'red' if x < 0 else 'green')
+def set_colour(df):
+    colours = []
+    for diff in df['Difference']:
+        if diff < 0:
+            colours.append('red')
+        else:
+            colours.append('green')
+    return colours
 
 def load_regession_data(df):
     X = df[['number_of_students', 'exam_weight', 'coursework_weight', 'delivery_code']]
@@ -148,7 +154,7 @@ def create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents
 
 def create_df_average_pgta_hours(df, duties):
     df_averagePGTAHours = pd.DataFrame()
-    df_averagePGTAHours['Duty'] = duties
+    df_averagePGTAHours['duties'] = duties
     average_pgta_hours = []
     for duty in duties:
         average_pgta_hours.append(column_average(filter_base_duty_in_duties(df, duty), 'PGTA hours'))
@@ -260,8 +266,3 @@ def preprocess_text(text):
 # Preprocess all descriptions in a list and return a transformed list
 def preprocess_text_list(text_list):
     return text_list.apply(preprocess_text)
-
-# Vectorize a series of preprocessed documents
-def vectorize_documents(preprocessed_text):
-    vectorizer = TfidfVectorizer()
-    return vectorizer.fit_transform(preprocessed_text)

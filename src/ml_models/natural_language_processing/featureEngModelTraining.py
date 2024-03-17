@@ -26,3 +26,4 @@ def train_feature_engineering_model(df, duties):
 
     save_model(model, 'feature_engineering_model.pkl')
     print("Feature Engineering Model trained and saved as feature_engineering_model.pkl")
+    print('---------------------------------------------------------------------------------')

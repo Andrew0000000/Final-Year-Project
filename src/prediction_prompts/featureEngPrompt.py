@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 import sys
-from dash import html, dcc
+from dash import html
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from ml_models.modelLoading import load_model
 from data_processing.dataframeCleaning import duties

@@ -1,38 +1,31 @@
 import pandas as pd
+import numpy as np
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import create_combined_variables_df, create_coursework_exam_ratio_column, split_coursework_exam_ratio_column, handle_nan_data, load_data
-from pygam import LinearGAM
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+from pygam import LinearGAM, s, f
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from data_processing.dataProcessing import load_regession_data
 
+def train_generalised_additive_model(df):
+    # Prepare the features and target variables
+    X, y = load_regession_data(df)
+    
+    # Setting up the GAM model with spline terms for continuous features and factor terms for categorical
+    terms = s(0) + s(1) + s(2) # Spline terms for the continuous features
+    for i in range(3, X.shape[1]):  # f() for encoded categorical features starting from index 3 onwards
+        terms += f(i)
 
-filePath_requestedVsRecruited = 'data/requestedVsRecruitedData.csv'
-filePath_capVsActualStudents = 'data/capVsActualStudentsData.csv'
-filePath_moduleAssessmentData = 'data/moduleAssessmentData.csv'
+    gam = LinearGAM(terms)
 
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-df_capVsActualStudents = pd.read_csv(filePath_capVsActualStudents)
-df_requestedVsRecruited = pd.read_csv(filePath_requestedVsRecruited)
-df_moduleAssessmentData = pd.read_csv(filePath_moduleAssessmentData)
+    gam.fit(X_train, y_train)
 
-df_moduleAssessmentData = create_coursework_exam_ratio_column(df_moduleAssessmentData)
-df = create_combined_variables_df(df_moduleAssessmentData, df_capVsActualStudents, df_requestedVsRecruited)
-df = split_coursework_exam_ratio_column(df)
-df = handle_nan_data(df)
+    y_pred = gam.predict(X_test)
 
-print(df.head())
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 
-# Prepare the features and target variables
-X, y = load_data(df)
-
-# Split the data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Assuming you have your training data in X_train and y_train
-gam = LinearGAM(s(0, penalties='auto') + s(1, penalties='auto') + s(2, penalties='auto') + s(3, penalties='auto') + s(4, penalties='auto'))
-gam.fit(X_train, y_train)
-y_pred = gam.predict(X_test)
-
-print("RMSE:", mean_squared_error(y_test, y_pred, squared=False))
+    print("Generalised Additive Model RMSE:", rmse)
+    print('---------------------------------------------------------------------------------')

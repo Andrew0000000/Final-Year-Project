@@ -34,3 +34,4 @@ def train_linear_regression_model(df):
     # Save the trained model
     save_model(model, 'linear_model.pkl')
     print("Linear Regression Model trained and saved as linear_model.pkl")
+    print('---------------------------------------------------------------------------------')

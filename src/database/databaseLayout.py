@@ -17,10 +17,6 @@ session = Session()
 meta = MetaData()
 meta.reflect(bind=engine)
 table_names = list(meta.tables.keys())
-inspector = inspect(engine)
-table_names = inspector.get_table_names()
-
-
 
 def displayTableLayout():
     return dbc.Container([
@@ -138,9 +134,6 @@ def deleteModuleLayout():
 def deleteModule(n_clicks, moduleCode):
     if n_clicks is not None and n_clicks > 0:
         # Delete data from database
-        session = Session()
-        # session.query(CombinedVariables).filter(CombinedVariables.module_code == moduleCode).delete()
-        # handle module not found
         module = session.query(CombinedVariables).filter(CombinedVariables.module_code == moduleCode).first()
         if not module:
             return dbc.Alert("Module not found!", color="danger")

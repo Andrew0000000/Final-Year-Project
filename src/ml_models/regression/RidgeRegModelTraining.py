@@ -35,3 +35,4 @@ def train_ridge_regression_model(df):
     # Save the trained model
     save_model(model, 'ridge_model.pkl')
     print("Ridge Regression Model trained and saved as ridge_model.pkl")
+    print('---------------------------------------------------------------------------------')
