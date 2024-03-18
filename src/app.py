@@ -4,6 +4,7 @@ import dash_daq as daq
 from graphs.requestedVsRecruitedGraph import requestedVsRecruitedGraph, requestedVsRecruitedGraphLayout, moduleHistoryGraphLayout, moduleHistoryGraph
 from graphs.variablesVsRecruitedGraph import studentsVsRecruitedGraphLayout, examWeightsVsRecruitedGraphLayout, deliveryCodeVsRecruitedGraphLayout
 from graphs.dutiesVsPgtaHoursGraph import dutiesVsPGTAHoursGraphLayout, dutiesVsPGTAHoursGraph, dutiesVsPGTAHoursAverageGraphLayout
+from prediction_prompts.gamPrompt import gamPredictor, gamPredictorLayout
 from prediction_prompts.linearRegPrompt import linearRegressionPredictor, linearRegressionPredictorLayout
 from prediction_prompts.ridgeRegPrompt import ridgeRegressionPredictor, ridgeRegressionPredictorLayout
 from prediction_prompts.featureEngPrompt import featureEngineeringPredictor, featureEngineeringPredictorLayout
@@ -94,6 +95,13 @@ app.layout = html.Div(id='dark-theme-components', style={
             html.Div(className='graph-container', children=[
                 html.H3('Ridge Regression Predictor', className='graph-title'),
                 ridgeRegressionPredictorLayout(),
+            ]),
+            
+            html.Div(className='graph-spacing'),
+
+            html.Div(className='graph-container', children=[
+                html.H3('Generalized Additive Model Predictor', className='graph-title'),
+                gamPredictorLayout(),
             ]),
             
             html.Div(className='graph-spacing'),
@@ -333,6 +341,22 @@ def update_linearRegressionPredictor(n_clicks, number_of_students, exam_weight, 
 
 def update_ridgeRegressionPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code):
     return ridgeRegressionPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Callback for Ridge Regression Predictor Prompt
+@app.callback(
+    Output('gam-prediction-output', 'children'),
+    [Input('gam-prediction-button', 'n_clicks')],
+    [State('number-of-students-gam', 'value'),
+    State('exam-weight-gam', 'value'),
+    State('coursework-weight-gam', 'value'),
+    State('delivery-code-gam', 'value')]
+)
+
+def update_gamPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code):
+    return gamPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

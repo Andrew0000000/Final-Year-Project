@@ -7,7 +7,6 @@ from ml_models.modelLoading import load_model
 from data_processing.dataframeCleaning import duties
 import dash_bootstrap_components as dbc
 
-model = load_model('feature_engineering_model.pkl')
 
 def featureEngineeringPredictorLayout():
     return html.Div([
@@ -34,6 +33,8 @@ def featureEngineeringPredictor(n_clicks, selected_duties):
             data[duty] = 1
         
         input_data = pd.DataFrame([data])
+        
+        model = load_model('feature_engineering_model.pkl')
         
         # fill missing columns with 0s
         missing_cols = set(model.feature_names_in_) - set(input_data.columns)

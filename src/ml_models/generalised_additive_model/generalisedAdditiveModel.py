@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 import sys
 import os
@@ -7,6 +6,7 @@ from sklearn.metrics import mean_squared_error
 from pygam import LinearGAM, s, f
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from data_processing.dataProcessing import one_hot_encode_delivery_code
+from ml_models.modelSaving import save_model
 
 def train_generalised_additive_model(df):
     # Prepare the features and target variables
@@ -20,10 +20,9 @@ def train_generalised_additive_model(df):
     for i in range(3, X.shape[1]):  # f() for encoded categorical features starting from index 3 onwards
         terms += f(i)
 
-    gam = LinearGAM(terms)
-
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+    gam = LinearGAM(terms)
     gam.fit(X_train, y_train)
 
     y_pred = gam.predict(X_test)
@@ -31,4 +30,8 @@ def train_generalised_additive_model(df):
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 
     print("Generalised Additive Model RMSE:", rmse)
+
+    # Save the trained model
+    save_model(gam, 'gam_model.pkl')
+    print("Generalised Additive Model trained and saved as gam_model.pkl")
     print('---------------------------------------------------------------------------------')

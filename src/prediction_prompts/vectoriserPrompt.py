@@ -7,8 +7,6 @@ from data_processing.dataProcessing import preprocess_text
 from data_processing.dataframeCleaning import duties
 import dash_bootstrap_components as dbc
 
-# load the TF-IDF Vectorizer model
-model = load_model('TF-IDF_model.pkl')
 
 def vectoriserPredictorLayout():
     return html.Div([
@@ -31,7 +29,12 @@ def vectoriserPredictor(n_clicks, selected_duties):
     if n_clicks > 0:
         # take the selected duties, join them together by a comma and feed into the model
         input_data = ', '.join(selected_duties)
+        
         preprocessed_input_data = preprocess_text(input_data)
+        
+        model = load_model('TF-IDF_model.pkl')
+
+        
         prediction = model.predict([preprocessed_input_data])[0]
         return f"Predicted PGTA Hours: {prediction}"
     return ""

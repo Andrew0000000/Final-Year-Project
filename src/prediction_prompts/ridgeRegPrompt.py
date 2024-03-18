@@ -7,7 +7,6 @@ from ml_models.modelLoading import load_model
 from data_processing.dataProcessing import one_hot_encode_delivery_code
 import dash_bootstrap_components as dbc
 
-model = load_model('ridge_model.pkl')
 
 def ridgeRegressionPredictorLayout():
     return html.Div([
@@ -42,6 +41,8 @@ def ridgeRegressionPredictor(n_clicks, number_of_students, exam_weight, coursewo
         }])
 
         input_data = one_hot_encode_delivery_code(input_data)
+
+        model = load_model('ridge_model.pkl')
 
         # Ensure all columns from training data are present in input data (fill missing columns with 0s)
         missing_cols = set(model.feature_names_in_) - set(input_data.columns)
