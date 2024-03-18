@@ -6,12 +6,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from pygam import LinearGAM, s, f
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from data_processing.dataProcessing import load_regession_data
+from data_processing.dataProcessing import one_hot_encode_delivery_code
 
 def train_generalised_additive_model(df):
     # Prepare the features and target variables
-    X, y = load_regession_data(df)
-    
+    df = one_hot_encode_delivery_code(df)
+
+    X = df[['number_of_students', 'exam_weight', 'coursework_weight', 'delivery_code_A4U', 'delivery_code_A5U', 'delivery_code_A6U', 'delivery_code_A7U', 'delivery_code_A7P']]
+    y = df['pgtas_recruited']
+
     # Setting up the GAM model with spline terms for continuous features and factor terms for categorical
     terms = s(0) + s(1) + s(2) # Spline terms for the continuous features
     for i in range(3, X.shape[1]):  # f() for encoded categorical features starting from index 3 onwards

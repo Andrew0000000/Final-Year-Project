@@ -1,9 +1,9 @@
 import os
 import sys
-import pandas as pd
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import Ridge
+from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import Pipeline
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from data_processing.dataProcessing import preprocess_text_list
@@ -21,7 +21,7 @@ def train_tf_idf_model(df):
     # Create a pipeline with TF-IDF Vectorization and Linear Regression
     pipeline = Pipeline([
         ('tfidf', TfidfVectorizer()),
-        ('regressor', Ridge(alpha=1.0, random_state=42))
+        ('regressor', Ridge())
     ])
 
     # Fit the pipeline to the data

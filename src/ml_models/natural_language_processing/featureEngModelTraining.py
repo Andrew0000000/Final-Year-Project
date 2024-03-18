@@ -1,6 +1,5 @@
 import os
 import sys
-import pandas as pd
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.linear_model import Ridge
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))

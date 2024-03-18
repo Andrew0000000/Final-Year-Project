@@ -53,21 +53,18 @@ def set_colour(df):
             colours.append('green')
     return colours
 
-def load_regession_data(df):
-    X = df[['number_of_students', 'exam_weight', 'coursework_weight', 'delivery_code']]
-    y = df['pgtas_recruited']
-
-    # One-hot encode the 'delivery_code' column
+def one_hot_encode_delivery_code(df):
+    # One-hot encode the 'Delivery Code' column
     encoder = OneHotEncoder(sparse=False)
-    encoded_delivery_code = encoder.fit_transform(X[['delivery_code']])
-    
+    encoded_delivery_code = encoder.fit_transform(df[['delivery_code']])
+
     # Create a DataFrame from the encoded array
     encoded_delivery_code_df = pd.DataFrame(encoded_delivery_code, columns=encoder.get_feature_names_out(['delivery_code']))
 
     # Drop the original 'Delivery Code' column and concatenate the encoded columns
-    X = X.drop('delivery_code', axis=1)
-    X = pd.concat([X, encoded_delivery_code_df], axis=1)
-    return X, y
+    df = df.drop('delivery_code', axis=1)
+    df = pd.concat([df, encoded_delivery_code_df], axis=1)
+    return df
 
 
 # ==============================================

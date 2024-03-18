@@ -315,8 +315,8 @@ def update_modelTraining(n_clicks):
     State('delivery-code-linear', 'value')]
 )
 
-def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
-    return linearRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
+def update_linearRegressionPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code):
+    return linearRegressionPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -331,8 +331,8 @@ def update_linearRegressionPredictor(n_clicks, num_students, exam_weight, course
     State('delivery-code-ridge', 'value')]
 )
 
-def update_ridgeRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code):
-    return ridgeRegressionPredictor(n_clicks, num_students, exam_weight, coursework_weight, delivery_code)
+def update_ridgeRegressionPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code):
+    return ridgeRegressionPredictor(n_clicks, number_of_students, exam_weight, coursework_weight, delivery_code)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

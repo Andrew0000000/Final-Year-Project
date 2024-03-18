@@ -74,17 +74,16 @@ def test_set_colour():
 def test_load_regession_data():
     data = {'number_of_students': [100, 200, 300], 'exam_weight': [40, 50, 60], 'coursework_weight': [60, 50, 40], 'delivery_code': ['DC1', 'DC2', 'DC3'], 'pgtas_recruited': [10, 20, 30]}
     df = pd.DataFrame(data)
-    X, y = dp.load_regession_data(df)
+    encoded_df = dp.one_hot_encode_delivery_code(df)
     # check if the original Delivery Code column is removed
-    assert 'delivery_code' not in X.columns
+    assert 'delivery_code' not in encoded_df.columns
     # check if the encoded columns have the correct binary values
-    assert (X['delivery_code_DC1'] == [1, 0, 0]).all()
-    assert (X['delivery_code_DC2'] == [0, 1, 0]).all()
-    assert (X['delivery_code_DC3'] == [0, 0, 1]).all()
-    assert X['number_of_students'].tolist() == [100, 200, 300]
-    assert X['exam_weight'].tolist() == [40, 50, 60]
-    assert X['coursework_weight'].tolist() == [60, 50, 40]
-    assert y.tolist() == [10, 20, 30]
+    assert (encoded_df['delivery_code_DC1'] == [1, 0, 0]).all()
+    assert (encoded_df['delivery_code_DC2'] == [0, 1, 0]).all()
+    assert (encoded_df['delivery_code_DC3'] == [0, 0, 1]).all()
+    assert encoded_df['number_of_students'].tolist() == [100, 200, 300]
+    assert encoded_df['exam_weight'].tolist() == [40, 50, 60]
+    assert encoded_df['coursework_weight'].tolist() == [60, 50, 40]
 
 # ========================================
 # TESTING FOR DATAFRAME CLEANING FUNCTIONS

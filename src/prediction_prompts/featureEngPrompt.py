@@ -7,7 +7,6 @@ from ml_models.modelLoading import load_model
 from data_processing.dataframeCleaning import duties
 import dash_bootstrap_components as dbc
 
-# load the feature engineering model
 model = load_model('feature_engineering_model.pkl')
 
 def featureEngineeringPredictorLayout():
@@ -30,21 +29,21 @@ def featureEngineeringPredictorLayout():
 def featureEngineeringPredictor(n_clicks, selected_duties):
     if n_clicks > 0:
         # prepare the input data in the format expected by the model
-        input_data = {duty: 0 for duty in duties}
+        data = {duty: 0 for duty in duties}
         for duty in selected_duties:
-            input_data[duty] = 1
+            data[duty] = 1
         
-        input_df = pd.DataFrame([input_data])
+        input_data = pd.DataFrame([data])
         
         # fill missing columns with 0s
-        missing_cols = set(model.feature_names_in_) - set(input_df.columns)
+        missing_cols = set(model.feature_names_in_) - set(input_data.columns)
         for col in missing_cols:
-            input_df[col] = 0
+            input_data[col] = 0
 
         # reorder columns to match the training data
-        input_df = input_df[model.feature_names_in_]
+        input_data = input_data[model.feature_names_in_]
         
         # make prediction
-        prediction = model.predict(input_df)[0]
+        prediction = model.predict(input_data)[0]
         return f"Predicted PGTA Hours: {prediction}"
     return ""
