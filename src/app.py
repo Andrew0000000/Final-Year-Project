@@ -255,7 +255,7 @@ def update_insertModule(n_clicks, module_code, module_name, number_of_students, 
 @app.callback(
     Output("delete-module-alert", "children"),
     [Input("delete-module-button", "n_clicks")],
-    [State("module-code-delete", "value")]
+    [State("module-id-delete", "value")]
 )
 
 def update_deleteModule(n_clicks, module_code):

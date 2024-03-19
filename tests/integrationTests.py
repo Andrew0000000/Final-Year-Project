@@ -9,8 +9,14 @@ from src.database.models import Base
 from src.ml_models.modelLoading import load_model
 from src.prediction_prompts.linearRegPrompt import linearRegressionPredictor
 from src.prediction_prompts.ridgeRegPrompt import ridgeRegressionPredictor
+from src.prediction_prompts.gamPrompt import gamPredictor
 from src.prediction_prompts.featureEngPrompt import featureEngineeringPredictor
 from src.prediction_prompts.vectoriserPrompt import vectoriserPredictor
+
+
+# ===============================
+# TESTING FOR DATABASE OPERATIONS
+# ===============================
 
 # Adjust the DATABASE_URI to use an in-memory SQLite database
 DATABASE_URI = 'sqlite:///:memory:'
@@ -111,23 +117,35 @@ def test_fetch_data(session):
     assert inserted_module.delivery_code == delivery_code
     assert inserted_module.duties == ', '.join(duties)
 
+
+# ===============================================
+# TESTING FOR MACHINE LEARNING PREDCITION PROMPTS
+# ===============================================
+
+
 def test_linear_regression_prompt():
-    # load the feature engineering model
     model = load_model('linear_model.pkl')
     assert model is not None
     output = linearRegressionPredictor(1, 120, 10, 90, 'A4U')
     result = float(output.split(' ')[-1])
     assert result > 50
-    assert result < 300
+    assert result < 250
 
 def test_ridge_regression_prompt():
-    # load the feature engineering model
     model = load_model('ridge_model.pkl')
     assert model is not None
     output = ridgeRegressionPredictor(1, 120, 10, 90, 'A4U')
     result = float(output.split(' ')[-1])
     assert result > 50
-    assert result < 300
+    assert result < 250
+
+def test_gam_prompt():
+    model = load_model('gam_model.pkl')
+    assert model is not None
+    output = gamPredictor(1, 120, 10, 90, 'A4U')
+    result = float(output.split(' ')[-1])
+    assert result > 50
+    assert result < 250
 
 def test_feature_engineering_prompt():
     model = load_model('feature_engineering_model.pkl')
@@ -141,7 +159,7 @@ def test_feature_engineering_prompt():
     output = featureEngineeringPredictor(1, duties)
     result = float(output.split(' ')[-1])
     assert result > 50
-    assert result < 300
+    assert result < 250
 
 def test_vectoriser_prompt():
     model = load_model('TF-IDF_model.pkl')
@@ -155,4 +173,4 @@ def test_vectoriser_prompt():
     output = vectoriserPredictor(1, duties)
     result = float(output.split(' ')[-1])
     assert result > 50
-    assert result < 300
+    assert result < 250

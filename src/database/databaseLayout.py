@@ -65,7 +65,7 @@ def insertModuleLayout():
                 html.Br(),
                 dbc.Input(id="module-name-insert", type="text", placeholder="Module Name"),
                 html.Br(),
-                dbc.Input(id="number-of-students-insert", type="text", placeholder="Number of Students"),
+                dbc.Input(id="number-of-students-insert", type="number", placeholder="Number of Students"),
                 html.Br(),
                 dbc.Input(id="pgtas-recruited-insert", type="number", placeholder="PGTAs Recruited"),
                 html.Br(),
@@ -96,29 +96,32 @@ def insertModuleLayout():
 
 def insertModule(n_clicks, module_code, module_name, number_of_students, pgtas_recruited, exam_weight, coursework_weight, delivery_code, duties):
     if n_clicks is not None and n_clicks > 0:
-        # Insert data into database
-        new_module = CombinedVariables(
-            module_code=module_code,
-            module_name=module_name,
-            number_of_students=number_of_students,
-            pgtas_recruited=pgtas_recruited,
-            exam_weight=exam_weight,
-            coursework_weight=coursework_weight,
-            exam_coursework_ratio=f'{exam_weight}:{coursework_weight}',
-            delivery_code=delivery_code,
-            duties=(', ').join(duties),
-        )
-        session.add(new_module)
-        session.commit()
-        session.close()
-        return dbc.Alert("Module successfully inserted!", color="success", duration=4000)
+        if all([module_code, module_name, number_of_students, pgtas_recruited, exam_weight, coursework_weight, delivery_code, duties]):
+            # Insert data into database
+            new_module = CombinedVariables(
+                module_code=module_code,
+                module_name=module_name,
+                number_of_students=number_of_students,
+                pgtas_recruited=pgtas_recruited,
+                exam_weight=exam_weight,
+                coursework_weight=coursework_weight,
+                exam_coursework_ratio=f'{exam_weight}:{coursework_weight}',
+                delivery_code=delivery_code,
+                duties=(', ').join(duties),
+            )
+            session.add(new_module)
+            session.commit()
+            session.close()
+            return dbc.Alert("Module successfully inserted!", color="success", duration=4000)
+        else:
+            return dbc.Alert("All fields must be filled to insert a module!", color="danger", duration=4000)
     return ""
 
 def deleteModuleLayout():
     return dbc.Container([
         dbc.Row([
             dbc.Col([
-                dbc.Input(id="module-code-delete", type="text", placeholder="Module Code"),
+                dbc.Input(id="module-id-delete", type="text", placeholder="id of Module"),
                 html.Br(),
                 dbc.Button("Delete Module", id="delete-module-button", color="danger")
             ], width=6)
@@ -131,10 +134,10 @@ def deleteModuleLayout():
         ])
     ], fluid=True)
 
-def deleteModule(n_clicks, moduleCode):
+def deleteModule(n_clicks, id):
     if n_clicks is not None and n_clicks > 0:
         # Delete data from database
-        module = session.query(CombinedVariables).filter(CombinedVariables.module_code == moduleCode).first()
+        module = session.query(CombinedVariables).filter(CombinedVariables.id == id).first()
         if not module:
             return dbc.Alert("Module not found!", color="danger")
         session.delete(module)
