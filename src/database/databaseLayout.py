@@ -137,6 +137,8 @@ def deleteModuleLayout():
 def deleteModule(n_clicks, id):
     if n_clicks is not None and n_clicks > 0:
         # Delete data from database
+        if not id:
+            return dbc.Alert("Fill in the module's id!", color="danger", duration=4000)
         module = session.query(CombinedVariables).filter(CombinedVariables.id == id).first()
         if not module:
             return dbc.Alert("Module not found!", color="danger")

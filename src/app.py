@@ -251,7 +251,7 @@ def update_insertModule(n_clicks, module_code, module_name, number_of_students, 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# # Callback for Delete Module
+# Callback for Delete Module
 @app.callback(
     Output("delete-module-alert", "children"),
     [Input("delete-module-button", "n_clicks")],
@@ -345,7 +345,7 @@ def update_ridgeRegressionPredictor(n_clicks, number_of_students, exam_weight, c
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Callback for Ridge Regression Predictor Prompt
+# Callback for Generalized Additive Model Predictor Prompt
 @app.callback(
     Output('gam-prediction-output', 'children'),
     [Input('gam-prediction-button', 'n_clicks')],
