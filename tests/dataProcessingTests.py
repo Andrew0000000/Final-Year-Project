@@ -60,11 +60,6 @@ def test_difference_calculation():
     df = dp.difference_calculation(df, selected_year)
     assert df['Difference'].tolist() == [3, 3, 3]
 
-selected_year = '20_21'
-data = {'requested_20_21': [4, 5, 6], 'recruited_20_21': [1, 2, 3]}
-df = pd.DataFrame(data)
-df = dp.difference_calculation(df, selected_year)
-
 def test_set_colour():
     data = {'Difference': [3, -3, 3]}
     df = pd.DataFrame(data)

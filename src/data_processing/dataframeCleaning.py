@@ -45,6 +45,8 @@ df_combined_variables = dataProcessing.create_combined_variables_df(df_moduleAss
 df_averagePGTAHours = dataProcessing.create_df_average_pgta_hours(df_jobDescriptionDataCleaned, duties)
 
 
+
+# Print functions for debugging
 # # print the number of rows in the df
 # print(f"Number of rows in df_jobDescriptionDataCleaned: {len(df_jobDescriptionDataCleaned)}")
 # print(f"Number of rows in df_requestedVsRecruitedCleaned: {len(df_requestedVsRecruitedCleaned)}")
